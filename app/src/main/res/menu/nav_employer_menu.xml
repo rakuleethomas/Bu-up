@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_emp_home"
+        android:title="Employer Home"
+        />
+
+    <item
+        android:id="@+id/main_emp_search"
+        android:title="Search"/>
+
+    <item
+        android:id="@+id/main_emp_profile"
+        android:title="Profile"/>
+
+</menu>

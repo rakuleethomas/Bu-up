@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_job_seeker"
+    app:startDestination="@id/main_seeker_home">
+
+    <fragment
+        android:id="@+id/main_seeker_home"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest1"
+        android:label="main_seeker_home"
+        tools:layout="@layout/fragment_job_seeker_test1" />
+    <fragment
+        android:id="@+id/main_seeker_search"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest2"
+        android:label="main_seeker_search"
+        tools:layout="@layout/fragment_job_seeker_test2" />
+    <fragment
+        android:id="@+id/main_seeker_profile"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest3"
+        android:label="fragment_job_seeker_test3"
+        tools:layout="@layout/fragment_job_seeker_test3" />
+</navigation>
