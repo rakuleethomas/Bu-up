@@ -95,4 +95,8 @@ dependencies {
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1'
+
+
+    /** Square */
+    implementation "com.squareup.sdk.in-app-payments:card-entry:1.5.1"
 }

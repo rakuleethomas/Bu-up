@@ -28,12 +28,12 @@ class LoginActivity : AppCompatActivity() {
     fun onClickEmployerTest(){
         val intent = Intent(this, PartTimeEmployerActivity::class.java)
         startActivity(intent)
-        finish()
+
     }
 
     fun onClickJobSeekerTest(){
         val intent = Intent(this, PartTimeJobSeekerActivity::class.java)
         startActivity(intent)
-        finish()
+
     }
 }
