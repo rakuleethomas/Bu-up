@@ -99,4 +99,7 @@ dependencies {
 
     /** Square */
     implementation "com.squareup.sdk.in-app-payments:card-entry:1.5.1"
+
+    /** Parse */
+    implementation "com.github.parse-community.Parse-SDK-Android:parse:1.26.0"
 }

@@ -13,27 +13,47 @@
         android:layout_height="match_parent"
         tools:context=".screens.LoginActivity">
 
-        <Button
-            android:id="@+id/employer_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Employer Test"
-            android:onClick="@{() -> activity.onClickEmployerTest()}"
-            app:layout_constraintBottom_toTopOf="@+id/job_seeker_test"
-            app:layout_constraintEnd_toEndOf="parent"
+
+        <EditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="300dp"
+            android:hint="Username"
+            app:layout_constraintBottom_toTopOf="@+id/edit_user_password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/edit_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_username" />
+
+
+        <Button
+            android:id="@+id/employer_test"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:onClick="@{() -> activity.onClickEmployerTest()}"
+            android:text="Employer Test"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/job_seeker_test"
+            app:layout_constraintTop_toBottomOf="@+id/edit_user_password" />
+
         <Button
             android:id="@+id/job_seeker_test"
-            android:layout_width="wrap_content"
+            android:layout_width="168dp"
             android:layout_height="wrap_content"
-            android:text="Job Seeker Test"
             android:onClick="@{() -> activity.onClickJobSeekerTest()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Job Seeker Test"
+            app:layout_constraintEnd_toStartOf="@+id/employer_test"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/employer_test" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_user_password" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
