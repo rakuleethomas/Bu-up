@@ -9,7 +9,11 @@
         android:id="@+id/main_seeker_home"
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest1"
         android:label="main_seeker_home"
-        tools:layout="@layout/fragment_job_seeker_test1" />
+        tools:layout="@layout/fragment_job_seeker_test1" >
+        <action
+            android:id="@+id/action_main_seeker_home_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/main_seeker_search"
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest2"
@@ -20,4 +24,11 @@
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest3"
         android:label="fragment_job_seeker_test3"
         tools:layout="@layout/fragment_job_seeker_test3" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="org.rakulee.buup.fragments.common.PaymentFragment"
+        android:label="PaymentFragment" />
+    <action
+        android:id="@+id/action_global_paymentFragment"
+        app:destination="@id/paymentFragment" />
 </navigation>
