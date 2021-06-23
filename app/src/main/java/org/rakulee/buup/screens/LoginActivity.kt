@@ -46,17 +46,15 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-
-    fun onClickEmployerTest(){
-        val intent = Intent(this, PartTimeEmployerActivity::class.java)
-        Toast.makeText(applicationContext, binding.editUsername.text.toString() + " " +binding.editUserPassword.text.toString(), Toast.LENGTH_SHORT).show()
-        startActivity(intent)
-
-    }
-
-    fun onClickJobSeekerTest(){
-        val intent = Intent(this, PartTimeJobSeekerActivity::class.java)
-        startActivity(intent)
-
+    fun doLogin(){
+        if(binding.tabLayout.getTabAt(0)!!.isSelected){
+            val intent = Intent(this, PartTimeEmployerActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(this, "Login as employer", Toast.LENGTH_SHORT).show()
+        }else if(binding.tabLayout.getTabAt(1)!!.isSelected){
+            val intent = Intent(this, PartTimeJobSeekerActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(this, "Login as job seeker", Toast.LENGTH_SHORT).show()
+        }
     }
 }

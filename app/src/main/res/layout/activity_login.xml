@@ -13,47 +13,155 @@
         android:layout_height="match_parent"
         tools:context=".screens.LoginActivity">
 
-
-        <EditText
-            android:id="@+id/edit_username"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="300dp"
-            android:hint="Username"
-            app:layout_constraintBottom_toTopOf="@+id/edit_user_password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/edit_user_password"
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="password"
-            android:inputType="textPassword"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_username" />
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_email"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_employer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:text="Employer" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_job_seeker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Job Seeker" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="#C9C9CA"
+            android:padding="8dp"
+            android:hint="Email"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_password"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="#C9C9CA"
+            android:padding="8dp"
+            android:hint="Password"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btn_login"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
 
         <Button
-            android:id="@+id/employer_test"
-            android:layout_width="157dp"
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="43dp"
-            android:onClick="@{() -> activity.onClickEmployerTest()}"
-            android:text="Employer Test"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/job_seeker_test"
-            app:layout_constraintTop_toBottomOf="@+id/edit_user_password" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#646464"
+            android:text="Login"
+            android:onClick="@{() -> activity.doLogin()}"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
         <Button
-            android:id="@+id/job_seeker_test"
-            android:layout_width="168dp"
+            android:id="@+id/btn_sign_up"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> activity.onClickJobSeekerTest()}"
-            android:text="Job Seeker Test"
-            app:layout_constraintEnd_toStartOf="@+id/employer_test"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_user_password" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:text="Sign up"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/tv_continue_as_guest"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+
+        <TextView
+            android:id="@+id/tv_continue_as_guest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="Continue as a guest"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10948905" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <!--        <Button-->
+        <!--            android:id="@+id/employer_test"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Employer Test"-->
+        <!--            android:onClick="@{() -> activity.onClickEmployerTest()}"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/job_seeker_test"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            android:visibility="gone"/>-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/job_seeker_test"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Job Seeker Test"-->
+        <!--            android:onClick="@{() -> activity.onClickJobSeekerTest()}"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/employer_test"-->
+        <!--            android:visibility="gone"/>-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
