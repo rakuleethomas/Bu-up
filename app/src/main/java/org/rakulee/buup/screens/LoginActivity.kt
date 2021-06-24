@@ -34,15 +34,6 @@ class LoginActivity : AppCompatActivity() {
             .clientKey("hrcIMfNQZESdJVFY5H3g11rkvQK9d5jRWruyQjfA")  // should correspond to Client key env variable
             .server("https://parseapi.back4app.com").build());
 
-        val firstObject = ParseObject("FirstClass")
-        firstObject.put("message","Hey ! First message from android. Parse is now connected")
-        firstObject.saveInBackground {
-            if (it != null){
-                it.localizedMessage?.let { message -> Log.e("MainActivity", message) }
-            }else{
-                Log.d("MainActivity","Object saved.")
-            }
-        }
 
     }
 
@@ -56,5 +47,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this, "Login as job seeker", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun goSignup(){
+        val intent = Intent(this, SignupActivity::class.java)
+        startActivity(intent)
     }
 }
