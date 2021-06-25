@@ -15,11 +15,11 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [EmployerTest2.newInstance] factory method to
+ * Use the [EmployerProfile.newInstance] factory method to
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class EmployerTest2 : Fragment() {
+class EmployerProfile : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -37,7 +37,7 @@ class EmployerTest2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employer_test2, container, false)
+        return inflater.inflate(R.layout.fragment_employer_profile, container, false)
     }
 
     companion object {
@@ -47,12 +47,12 @@ class EmployerTest2 : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment EmployerTest2.
+         * @return A new instance of fragment EmployerTest3.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            EmployerTest2().apply {
+            EmployerProfile().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

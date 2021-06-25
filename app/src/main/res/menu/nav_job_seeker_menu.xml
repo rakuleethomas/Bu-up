@@ -3,15 +3,18 @@
 
     <item
         android:id="@+id/main_seeker_home"
+        android:icon="@drawable/ic_jobseeker"
         android:title="Seeker Home"
         />
 
     <item
         android:id="@+id/main_seeker_search"
+        android:icon="@drawable/ic_search"
         android:title="Search"/>
 
     <item
         android:id="@+id/main_seeker_profile"
+        android:icon="@drawable/ic_profile"
         android:title="Profile"/>
 
 </menu>

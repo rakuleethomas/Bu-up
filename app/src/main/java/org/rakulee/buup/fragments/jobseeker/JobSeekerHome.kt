@@ -5,13 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.rakulee.buup.R
-import org.rakulee.buup.databinding.FragmentJobSeekerTest1Binding
+import org.rakulee.buup.adapters.JobListAdapter
+import org.rakulee.buup.databinding.FragmentJobSeekerHomeBinding
+import org.rakulee.buup.model.JobItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,15 +25,17 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [JobSeekerTest1.newInstance] factory method to
+ * Use the [JobSeekerHome.newInstance] factory method to
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class JobSeekerTest1 : Fragment() {
+class JobSeekerHome : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var binding : FragmentJobSeekerTest1Binding
+    lateinit var binding : FragmentJobSeekerHomeBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,15 +51,45 @@ class JobSeekerTest1 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_test1, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_home, container, false)
         binding.lifecycleOwner = this
         binding.vm = this
+
+        // create a dummy data
+        /**
+         * data class JobItem(
+        var imageUrl : String = "",
+        var companyTitle : String = "",
+        var jobDescription : String = ""
+        )
+         */
+        var list = ArrayList<JobItem>()
+        val adapter = JobListAdapter()
+
+
+        var company : JobItem
+        for(i : Int in 1..10){
+            company = if(i%2 == 1){
+                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "SVKoreans", "Looking for part timers!")
+            }else{
+                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "Rakulee, Inc.", "Looking for volunteers!")
+            }
+            list.add(company)
+        }
+
+        // end of create the dummy data
+        adapter.updateItems(list)
+        adapter.setHasStableIds(true)       // prevent blinking recyclerview items
+
+        binding.rvAdList.adapter = adapter
+        binding.rvAdList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+//        binding.executePendingBindings()
         return binding.root
     }
 
     fun showPaymentPage(){
 
-        val direction : NavDirections = JobSeekerTest1Directions.actionMainSeekerHomeToPaymentFragment()
+        val direction : NavDirections = JobSeekerHomeDirections.actionMainSeekerHomeToPaymentFragment()
         findNavController().navigate(direction)
     }
 
@@ -68,7 +105,7 @@ class JobSeekerTest1 : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            JobSeekerTest1().apply {
+            JobSeekerHome().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -8,17 +8,17 @@
 
     <fragment
         android:id="@+id/main_emp_home"
-        android:name="org.rakulee.buup.fragments.employer.EmployerTest"
+        android:name="org.rakulee.buup.fragments.employer.EmployerHome"
         android:label="main_emp_home"
-        tools:layout="@layout/fragment_employer_test" />
+        tools:layout="@layout/fragment_employer_home" />
     <fragment
         android:id="@+id/main_emp_search"
-        android:name="org.rakulee.buup.fragments.employer.EmployerTest2"
+        android:name="org.rakulee.buup.fragments.employer.EmployerSearch"
         android:label="main_emp_search"
-        tools:layout="@layout/fragment_employer_test2" />
+        tools:layout="@layout/fragment_employer_search" />
     <fragment
         android:id="@+id/main_emp_profile"
-        android:name="org.rakulee.buup.fragments.employer.EmployerTest3"
+        android:name="org.rakulee.buup.fragments.employer.EmployerProfile"
         android:label="main_emp_profile"
-        tools:layout="@layout/fragment_employer_test3" />
+        tools:layout="@layout/fragment_employer_profile" />
 </navigation>

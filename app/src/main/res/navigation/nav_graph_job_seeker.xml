@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/main_seeker_home"
-        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest1"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerHome"
         android:label="main_seeker_home"
-        tools:layout="@layout/fragment_job_seeker_test1" >
+        tools:layout="@layout/fragment_job_seeker_home" >
         <action
             android:id="@+id/action_main_seeker_home_to_paymentFragment"
             app:destination="@id/paymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/main_seeker_search"
-        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest2"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerSearch"
         android:label="main_seeker_search"
-        tools:layout="@layout/fragment_job_seeker_test2" />
+        tools:layout="@layout/fragment_job_seeker_search" />
     <fragment
         android:id="@+id/main_seeker_profile"
-        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerTest3"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerProfile"
         android:label="fragment_job_seeker_test3"
-        tools:layout="@layout/fragment_job_seeker_test3" />
+        tools:layout="@layout/fragment_job_seeker_profile" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="org.rakulee.buup.fragments.common.PaymentFragment"
