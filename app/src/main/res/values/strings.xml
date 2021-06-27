@@ -3,4 +3,28 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_hint">Search employers...</string>
+    <string name="skills_sample_list">Active listening
+Communication
+Computer skills
+Customer service
+Interpersonal skills
+Leadership
+Management skills
+Problem-solving
+Time management
+Transferable skills</string>
+    <string name="dummy_string">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et aliquam turpis. Nam facilisis tincidunt ex a dapibus. Aliquam ac nulla odio. Morbi semper hendrerit risus, ac consequat magna consequat sit amet. Integer non varius tellus. Donec justo ex, dignissim quis suscipit id, iaculis nec orci. Donec mattis pretium condimentum. Vivamus malesuada dui quis ex imperdiet, id rhoncus augue porta. Maecenas sed est gravida arcu varius ornare in quis diam.
+
+Phasellus vel ante nec augue eleifend malesuada vel eu nisl. Vivamus bibendum volutpat velit non placerat. Phasellus rhoncus ipsum nec tincidunt eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras congue est eu augue scelerisque condimentum. Quisque eleifend nibh eu elit pellentesque, et gravida dolor ultrices. Fusce consequat tortor convallis iaculis tempus. Sed ut leo quis orci maximus faucibus a dapibus ipsum. Sed bibendum arcu ligula, vitae cursus turpis ultricies in.
+
+Duis consectetur odio nec velit placerat congue vel id nisl. Donec sollicitudin sagittis lorem ut mattis. Suspendisse quis convallis turpis, quis pharetra velit. Integer dui ante, malesuada id enim eu, rhoncus dapibus dolor. Fusce sed mattis nibh. In id luctus sem. Mauris ligula libero, euismod id facilisis in, placerat id purus. Nam tempus sodales leo, quis rhoncus eros tempus ac.
+
+Mauris finibus ut lacus id venenatis. Etiam sit amet sapien et augue tincidunt maximus vel ac mauris. Donec tempor ac lectus eu accumsan. Curabitur leo massa, aliquam sit amet accumsan nec, sagittis sed tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mauris arcu, euismod non enim vitae, malesuada lacinia odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque ac dolor fringilla, fringilla lacus eu, imperdiet quam. Donec hendrerit viverra porttitor.
+
+Vivamus consectetur velit enim, nec volutpat est consequat lacinia. Morbi a orci non dui pharetra commodo. Quisque at arcu ultricies, volutpat elit vitae, consectetur augue. Ut feugiat at dui in imperdiet. Aliquam ligula magna, semper non interdum a, laoreet non neque. Aliquam metus diam, rutrum ac tortor ut, malesuada malesuada arcu. Cras diam elit, hendrerit vel porta sed, dignissim non lacus.</string>
+    <string name="sample_introduction">I noticed your recent job listing seeking professional consultants. I’ve always admired the work of your well-known firm, and it would be a privilege to contribute my consulting talents and ensure even greater success at Global Consulting.
+
+I’ve provided financial and business management consulting services for the last 4 years working at Global Technology Solutions. Within that time, I’ve helped upstarts and industry veterans alike develop efficient workforce solutions and investment strategies.
+
+As an Associate Partner of Business Strategy, I was tasked with appraising the internal operations of global businesses and implement cost-saving strategies. Previously, I managed high-level investment portfolios as an Associate Consultant of Investments for an international bank.</string>
 </resources>
