@@ -10,7 +10,11 @@
         android:id="@+id/main_emp_home"
         android:name="org.rakulee.buup.fragments.employer.EmployerHome"
         android:label="main_emp_home"
-        tools:layout="@layout/fragment_employer_home" />
+        tools:layout="@layout/fragment_employer_home" >
+        <action
+            android:id="@+id/action_main_emp_home_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/main_emp_search"
         android:name="org.rakulee.buup.fragments.employer.EmployerSearch"
@@ -21,4 +25,12 @@
         android:name="org.rakulee.buup.fragments.employer.EmployerProfile"
         android:label="main_emp_profile"
         tools:layout="@layout/fragment_employer_profile" />
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="org.rakulee.buup.fragments.common.PaymentFragment"
+        android:label="PaymentFragment" />
+    <action
+        android:id="@+id/action_global_paymentFragment2"
+        app:destination="@id/paymentFragment" />
 </navigation>

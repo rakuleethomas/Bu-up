@@ -5,8 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.JobSeekerListAdapter
+import org.rakulee.buup.databinding.FragmentEmployerHomeBinding
+import org.rakulee.buup.model.EmpInfo
+import org.rakulee.buup.model.JobSeekerItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,10 +27,12 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class EmployerHome : Fragment() {
+class EmployerHome : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var binding : FragmentEmployerHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +47,45 @@ class EmployerHome : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employer_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_home, container, false)
+        binding.lifecycleOwner = this
+
+        val empInfo = EmpInfo("SVKoreans", 1000000)
+        binding.empInfo = empInfo
+
+        /**
+         * create dummy data
+         */
+
+        var list = ArrayList<JobSeekerItem>()
+        for(i : Int in 1..20){
+            var data = if(i%2 == 1){
+                JobSeekerItem("Jake","svkoreans@gmail.com", "Bay Area Professional Realtor")
+            }else{
+                JobSeekerItem("Thomas", "thomas@rakulee.org", "Android Developer")
+            }
+            list.add(data)
+        }
+
+        val adapter = JobSeekerListAdapter()
+        adapter.setHasStableIds(true)       // prevent blinking recyclerview items
+        adapter.updateItems(list)
+        binding.rvJobSeekerList.adapter = adapter
+        binding.rvJobSeekerList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        binding.btnChargePoints.setOnClickListener(this)
+
+        return binding.root
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            binding.btnChargePoints.id -> doChargePoint()
+        }
+    }
+
+    private fun doChargePoint(){
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentFragment()
+        findNavController().navigate(directions)
     }
 
     companion object {

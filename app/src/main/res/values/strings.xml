@@ -27,4 +27,7 @@ Vivamus consectetur velit enim, nec volutpat est consequat lacinia. Morbi a orci
 I’ve provided financial and business management consulting services for the last 4 years working at Global Technology Solutions. Within that time, I’ve helped upstarts and industry veterans alike develop efficient workforce solutions and investment strategies.
 
 As an Associate Partner of Business Strategy, I was tasked with appraising the internal operations of global businesses and implement cost-saving strategies. Previously, I managed high-level investment portfolios as an Associate Consultant of Investments for an international bank.</string>
+
+
+    <string name="format_emp_point">%,3d pts</string>
 </resources>

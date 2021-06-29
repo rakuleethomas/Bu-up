@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="empInfo"
+            type="org.rakulee.buup.model.EmpInfo" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.employer.EmployerHome">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_emp_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Employer Home" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_8dp"
+        android:theme="@style/CardView"
+        app:layout_constraintBottom_toTopOf="@id/rv_job_seeker_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/iv_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_employer"
+            android:scaleType="fitCenter"
+            android:src="@drawable/border_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.2"
+            app:roundPercent="1">
+
+        </androidx.constraintlayout.utils.widget.ImageFilterView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_emp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxEms="8"
+            android:text="@{empInfo.empName}"
+            android:textSize="@dimen/text_medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_points"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="SVKoreans">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/format_emp_point(empInfo.point)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_charge_points"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_emp_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1,000,000pts">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_charge_points"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_baseline_add_box_24"
+            app:layout_constraintBottom_toBottomOf="@id/tv_points"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_points"
+            app:layout_constraintTop_toTopOf="@id/tv_points"
+            app:layout_constraintDimensionRatio="W, 1:1"
+            app:layout_constraintWidth_percent="0.1">
+
+        </com.google.android.material.button.MaterialButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_job_seeker_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_emp_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_job_seekers_list">
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
