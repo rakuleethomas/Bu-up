@@ -2,7 +2,8 @@
     <string name="app_name">Buup</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_hint">Search employers...</string>
+    <string name="search_employer_hint">Search Employers...</string>
+    <string name="search_job_seeker_hint">Search Job Seekers...</string>
     <string name="skills_sample_list">Active listening
 Communication
 Computer skills

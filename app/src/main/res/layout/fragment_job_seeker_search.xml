@@ -16,12 +16,12 @@
     android:layout_height="match_parent">
 
     <SearchView
-        android:id="@+id/ticker_searchview"
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:minHeight="24dp"
-        android:queryHint="@string/search_hint"
+        android:queryHint="@string/search_employer_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         android:indeterminate="true"
         app:is_loading="@{!loading}"
         app:layout_constraintBottom_toTopOf="@+id/legends"
-        app:layout_constraintTop_toBottomOf="@+id/ticker_searchview">
+        app:layout_constraintTop_toBottomOf="@+id/search_view">
 
     </com.google.android.material.progressindicator.LinearProgressIndicator>
 
@@ -44,7 +44,7 @@
         android:id="@+id/legends"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_company_lst"
+        app:layout_constraintBottom_toTopOf="@+id/rv_company_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_horizontal">

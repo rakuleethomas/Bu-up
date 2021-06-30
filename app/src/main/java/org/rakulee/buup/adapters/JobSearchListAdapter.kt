@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.rakulee.buup.R
-import org.rakulee.buup.databinding.ItemPartTimerListBinding
 import org.rakulee.buup.databinding.ItemSearchJobListBinding
 import org.rakulee.buup.model.JobSearchItem
 
