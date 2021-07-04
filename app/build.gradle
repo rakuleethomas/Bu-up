@@ -102,6 +102,7 @@ dependencies {
 
     /** Parse */
     implementation "com.github.parse-community.Parse-SDK-Android:parse:1.26.0"
+    implementation "com.github.parse-community.Parse-SDK-Android:ktx:1.26.0"
 
     /** Retrofit */
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
