@@ -31,4 +31,5 @@ As an Associate Partner of Business Strategy, I was tasked with appraising the i
 
 
     <string name="format_emp_point">%,3d pts</string>
+    <string name="format_exp_from_to">%s to\n %s</string>
 </resources>

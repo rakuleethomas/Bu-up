@@ -5,8 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.JobSeekerProfileExperiencesListAdapter
+import org.rakulee.buup.adapters.JobSeekerProfileInterestListAdapter
+import org.rakulee.buup.adapters.JobSeekerProfileSkillsListAdapter
+import org.rakulee.buup.databinding.FragmentJobSeekerProfileBinding
+import org.rakulee.buup.model.JobSeekerExperiences
+import org.rakulee.buup.model.JobSeekerInterestItem
+import org.rakulee.buup.model.JobSeekerSkill
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,12 +40,57 @@ class JobSeekerProfile : Fragment() {
         }
     }
 
+    lateinit var binding : FragmentJobSeekerProfileBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_job_seeker_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_profile, container, false)
+        binding.lifecycleOwner = this
+        binding.viewOnly = false
+
+        binding.tvName.text = "Thomas"
+        binding.tvBio.text = "Android App Developer"
+        binding.tvWageValue.text = "$25 - $30 /hr"
+
+        var interestList = ArrayList<JobSeekerInterestItem>()
+        var skillsList = ArrayList<JobSeekerSkill>()
+        var expList = ArrayList<JobSeekerExperiences>()
+        interestList.add(JobSeekerInterestItem("Restraunt"))
+        interestList.add(JobSeekerInterestItem("Customer Service"))
+        interestList.add(JobSeekerInterestItem("Sales"))
+        interestList.add(JobSeekerInterestItem("Marketing"))
+        interestList.add(JobSeekerInterestItem("Translation"))
+
+
+        skillsList.add(JobSeekerSkill("POS"))
+        skillsList.add(JobSeekerSkill("Computer Science"))
+        skillsList.add(JobSeekerSkill("Cooking"))
+        skillsList.add(JobSeekerSkill("Customer Service"))
+        skillsList.add(JobSeekerSkill("Education Consulting"))
+        skillsList.add(JobSeekerSkill("Counseling"))
+
+        expList.add(JobSeekerExperiences("Bonchon Chicken", "Cashier", "Mar 2021", "May 2021"))
+        expList.add(JobSeekerExperiences("Osteria Toscana", "Server", "Feb 2020", "Feb 2021"))
+        expList.add(JobSeekerExperiences("De Anza College", "Cook", "Jan 2019", "Jan 2020"))
+
+        val interestListAdapter = JobSeekerProfileInterestListAdapter()
+        interestListAdapter.updateItems(interestList)
+
+        val skillsListAdapter = JobSeekerProfileSkillsListAdapter()
+        skillsListAdapter.updateItems(skillsList)
+
+        val experiencesListAdapter = JobSeekerProfileExperiencesListAdapter()
+        experiencesListAdapter.updateItems(expList)
+
+        binding.rvInterest.adapter = interestListAdapter
+        binding.rvSkills.adapter = skillsListAdapter
+        binding.rvExpList.adapter = experiencesListAdapter
+
+
+        return binding.root
     }
 
     companion object {
