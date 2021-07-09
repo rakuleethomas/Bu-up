@@ -106,6 +106,11 @@ class JobSeekerProfile : Fragment() {
             findNavController().navigate(direction)
         }
 
+        binding.tvEditSkills.setOnClickListener{
+            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditSkill()
+            findNavController().navigate(direction)
+        }
+
 
         return binding.root
     }

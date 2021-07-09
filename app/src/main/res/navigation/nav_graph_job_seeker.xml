@@ -29,6 +29,8 @@
         <action android:id="@+id/action_profile_to_edit_interest"
             app:destination="@id/profile_edit_interest">
         </action>
+        <action android:id="@+id/action_profile_to_edit_skill"
+            app:destination="@id/profile_edit_skill"/>
     </fragment>
 
     <fragment
@@ -61,4 +63,17 @@
         </action>
 
     </fragment>
+
+
+    <fragment
+        android:id="@+id/profile_edit_skill"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileSkillEdit"
+        android:label="profile_edit_skill"
+        tools:layout="@layout/fragment_profile_skill_edit">
+        <action
+            android:id="@+id/action_edit_skill_to_profile"
+            app:destination="@+id/main_seeker_profile">
+        </action>
+    </fragment>
+
 </navigation>

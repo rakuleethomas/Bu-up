@@ -5,7 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.JobSeekerProfileSkillEditListAdapter
+import org.rakulee.buup.adapters.JobSeekerProfileSkillSelectedListAdapter
+import org.rakulee.buup.adapters.JobSeekerProfileSkillsListAdapter
+import org.rakulee.buup.databinding.FragmentProfileSkillEditBinding
+import org.rakulee.buup.model.JobSeekerSkill
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +30,8 @@ class ProfileSkillEdit : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var binding : FragmentProfileSkillEditBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +45,52 @@ class ProfileSkillEdit : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_skill_edit, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_skill_edit, container, false)
+        binding.lifecycleOwner = this
+        binding.editSkill = this
+
+        var skillsList = ArrayList<JobSeekerSkill>()
+        var skillsSelectedList = ArrayList<JobSeekerSkill>()
+
+
+        skillsList.add(JobSeekerSkill("POS"))
+        skillsList.add(JobSeekerSkill("Computer Science"))
+        skillsList.add(JobSeekerSkill("Cooking"))
+        skillsList.add(JobSeekerSkill("Customer Service"))
+        skillsList.add(JobSeekerSkill("Education Consulting"))
+        skillsList.add(JobSeekerSkill("Counseling"))
+        skillsList.add(JobSeekerSkill("POS"))
+        skillsList.add(JobSeekerSkill("Computer Science"))
+        skillsList.add(JobSeekerSkill("Cooking"))
+        skillsList.add(JobSeekerSkill("Customer Service"))
+        skillsList.add(JobSeekerSkill("Education Consulting"))
+        skillsList.add(JobSeekerSkill("Counseling"))
+
+
+        skillsSelectedList.add(JobSeekerSkill("POS"))
+        skillsSelectedList.add(JobSeekerSkill("Computer Science"))
+        skillsSelectedList.add(JobSeekerSkill("Cooking"))
+        skillsSelectedList.add(JobSeekerSkill("Customer Service"))
+        skillsSelectedList.add(JobSeekerSkill("Education Consulting"))
+        skillsSelectedList.add(JobSeekerSkill("Counseling"))
+
+
+        val skillsListAdapter = JobSeekerProfileSkillEditListAdapter()
+        skillsListAdapter.updateItems(skillsList)
+
+        val skillsSelectedAdapter = JobSeekerProfileSkillSelectedListAdapter()
+        skillsSelectedAdapter.updateItems(skillsSelectedList)
+
+        binding.rvSkills.adapter = skillsListAdapter
+        binding.recyclerViewSelectedSkill.adapter = skillsSelectedAdapter
+
+        binding.cancel.setOnClickListener{
+            val direction : NavDirections = ProfileSkillEditDirections.actionEditSkillToProfile()
+            findNavController().navigate(direction)
+        }
+
+
+        return binding.root
     }
 
     companion object {
