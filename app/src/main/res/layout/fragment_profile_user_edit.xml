@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.jobseeker.profileEdit.ProfileUserEdit">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="editUser"
+            type="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileUserEdit" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,13 +15,14 @@
 
         <TextView
             android:id="@+id/cancel"
-            android:layout_width="47dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
             android:text="Cancel"
+            android:textStyle="bold"
             android:textAppearance="@style/cancel"
             android:lineSpacingExtra="2sp"
             android:translationY="1.21sp"
@@ -28,14 +31,15 @@
 
         <TextView
             android:id="@+id/save"
-            android:layout_width="33dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_alignParentTop="true"
             android:layout_marginTop="38dp"
             android:layout_marginEnd="16dp"
             android:text="Save"
+            android:textStyle="bold"
             android:textAppearance="@style/save"
             android:lineSpacingExtra="2sp"
             android:translationY="1.21sp"
@@ -44,8 +48,8 @@
 
         <TextView
             android:id="@+id/kuku_gmail_"
-            android:layout_width="69dp"
-            android:layout_height="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="118dp"
             android:layout_marginStart="16dp"
@@ -57,28 +61,129 @@
             />
 
         <EditText
-            android:layout_width="328dp"
-            android:layout_height="0dp"
-            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             tools:text="James"
             android:textSize="18dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/kuku_gmail_" />
 
         <TextView
-            android:layout_width="69dp"
-            android:layout_height="17dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="230dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Last Name"
-            android:textAppearance="@style/kuku_gmail_"
             android:gravity="top"
-            />
+            android:text="Last Name"
+            android:layout_marginStart="16dp"
+            android:textAppearance="@style/kuku_gmail_"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="Heldens" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="$"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/editText3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            tools:text="25"
+            android:background="@drawable/rectangle_7"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="14dp"
+            android:text="~"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/editText2"
+            app:layout_constraintStart_toEndOf="@+id/editText3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="128dp"
+            android:layout_marginTop="10dp"
+            tools:text="30"
+            android:gravity="center"
+            android:background="@drawable/rectangle_7"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="340dp"
+            android:text="Desired Salary Range"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="428dp"
+            android:text="Summary"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rectangle_3"
+            tools:text="Lorem......."
+            android:padding="8dp"
+            android:gravity="top"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:layout_editor_absoluteX="19dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</layout>

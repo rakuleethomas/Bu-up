@@ -3,7 +3,7 @@
 
     <style name="save">
         <item name="android:textSize">
-            15sp
+            20sp
         </item>
 
         <item name="android:textColor">
@@ -13,7 +13,7 @@
 
     <style name="cancel">
         <item name="android:textSize">
-            15sp
+            20sp
         </item>
         <item name="android:textColor">
             #808080
@@ -23,7 +23,7 @@
     <style name="kuku_gmail_">
 
         <item name="android:textSize">
-            14sp
+            16sp
         </item>
 
         <item name="android:textColor">

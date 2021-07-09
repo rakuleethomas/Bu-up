@@ -9,20 +9,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:background="@drawable/experience"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_skill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_oval_horizontal_edges"
         android:textAlignment="center"
         android:minEms="4"
         android:maxEms="16"
         android:maxLength="32"
         android:maxLines="2"
+        android:padding="8dp"
         android:textSize="@dimen/text_small"
-        android:layout_marginEnd="@dimen/default_8dp"
         android:text="@{skill}"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

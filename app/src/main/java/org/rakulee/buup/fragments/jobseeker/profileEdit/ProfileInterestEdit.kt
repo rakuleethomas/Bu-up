@@ -1,4 +1,4 @@
-package org.rakulee.buup.fragments.jobseeker
+package org.rakulee.buup.fragments.jobseeker.profileEdit
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,16 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
-import org.rakulee.buup.adapters.JobSeekerProfileExperiencesListAdapter
 import org.rakulee.buup.adapters.JobSeekerProfileInterestListAdapter
-import org.rakulee.buup.adapters.JobSeekerProfileSkillsListAdapter
-import org.rakulee.buup.databinding.FragmentJobSeekerProfileBinding
-import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileUserEdit
-import org.rakulee.buup.model.JobSeekerExperiences
+import org.rakulee.buup.adapters.ProfileInterestSelectedAdapter
+import org.rakulee.buup.databinding.FragmentProfileInterestEditBinding
 import org.rakulee.buup.model.JobSeekerInterestItem
-import org.rakulee.buup.model.JobSeekerSkill
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,14 +21,15 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [JobSeekerProfile.newInstance] factory method to
+ * Use the [ProfileInterestEdit.newInstance] factory method to
  * create an instance of this fragment.
  */
-@AndroidEntryPoint
-class JobSeekerProfile : Fragment() {
+class ProfileInterestEdit : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    lateinit var binding : FragmentProfileInterestEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,24 +39,37 @@ class JobSeekerProfile : Fragment() {
         }
     }
 
-    lateinit var binding : FragmentJobSeekerProfileBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_profile, container, false)
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_interest_edit, container, false)
         binding.lifecycleOwner = this
-        binding.viewOnly = false
+        binding.editInterest = this
 
-        binding.tvName.text = "Thomas"
-        binding.tvBio.text = "Android App Developer"
-        binding.tvWageValue.text = "$25 - $30 /hr"
 
+        var interestSelectedList = ArrayList<JobSeekerInterestItem>()
         var interestList = ArrayList<JobSeekerInterestItem>()
-        var skillsList = ArrayList<JobSeekerSkill>()
-        var expList = ArrayList<JobSeekerExperiences>()
+
+        interestSelectedList.add(JobSeekerInterestItem("Restaurant"))
+        interestSelectedList.add(JobSeekerInterestItem("helllo"))
+        interestSelectedList.add(JobSeekerInterestItem("test1"))
+        interestSelectedList.add(JobSeekerInterestItem("test2"))
+        interestSelectedList.add(JobSeekerInterestItem("Customer Service"))
+        interestSelectedList.add(JobSeekerInterestItem("Sales"))
+        interestSelectedList.add(JobSeekerInterestItem("Marketing"))
+        interestSelectedList.add(JobSeekerInterestItem("Translation"))
+
+        interestList.add(JobSeekerInterestItem("Restaurant"))
+        interestList.add(JobSeekerInterestItem("helllo"))
+        interestList.add(JobSeekerInterestItem("test1"))
+        interestList.add(JobSeekerInterestItem("test2"))
+        interestList.add(JobSeekerInterestItem("Customer Service"))
+        interestList.add(JobSeekerInterestItem("Sales"))
+        interestList.add(JobSeekerInterestItem("Marketing"))
+        interestList.add(JobSeekerInterestItem("Translation"))
         interestList.add(JobSeekerInterestItem("Restaurant"))
         interestList.add(JobSeekerInterestItem("helllo"))
         interestList.add(JobSeekerInterestItem("test1"))
@@ -71,45 +80,24 @@ class JobSeekerProfile : Fragment() {
         interestList.add(JobSeekerInterestItem("Translation"))
 
 
-        skillsList.add(JobSeekerSkill("POS"))
-        skillsList.add(JobSeekerSkill("Computer Science"))
-        skillsList.add(JobSeekerSkill("Cooking"))
-        skillsList.add(JobSeekerSkill("Customer Service"))
-        skillsList.add(JobSeekerSkill("Education Consulting"))
-        skillsList.add(JobSeekerSkill("Counseling"))
 
-        expList.add(JobSeekerExperiences("Bonchon Chicken", "Cashier", "Mar 2021", "May 2021"))
-        expList.add(JobSeekerExperiences("Osteria Toscana", "Server", "Feb 2020", "Feb 2021"))
-        expList.add(JobSeekerExperiences("De Anza College", "Cook", "Jan 2019", "Jan 2020"))
+        val interestSelectedListAdapter = ProfileInterestSelectedAdapter()
+        interestSelectedListAdapter.updateItems(interestSelectedList)
 
         val interestListAdapter = JobSeekerProfileInterestListAdapter()
         interestListAdapter.updateItems(interestList)
 
-        val skillsListAdapter = JobSeekerProfileSkillsListAdapter()
-        skillsListAdapter.updateItems(skillsList)
-
-        val experiencesListAdapter = JobSeekerProfileExperiencesListAdapter()
-        experiencesListAdapter.updateItems(expList)
-
+        binding.recyclerView.adapter = interestSelectedListAdapter
         binding.rvInterest.adapter = interestListAdapter
-        binding.rvSkills.adapter = skillsListAdapter
-        binding.rvExpList.adapter = experiencesListAdapter
 
-        binding.tvEditProfile.setOnClickListener {
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditUser()
-            findNavController().navigate(direction)
-
-        }
-
-        binding.tvEditInterest.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditInterest()
+        binding.cancel.setOnClickListener{
+            val direction : NavDirections = ProfileInterestEditDirections.actionEditInterestToProfile()
             findNavController().navigate(direction)
         }
 
 
         return binding.root
     }
-
 
     companion object {
         /**
@@ -118,12 +106,12 @@ class JobSeekerProfile : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment JobSeekerTest3.
+         * @return A new instance of fragment ProfileInterestEdit.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            JobSeekerProfile().apply {
+            ProfileInterestEdit().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
