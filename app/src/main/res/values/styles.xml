@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="save">
+        <item name="android:textSize">
+            15sp
+        </item>
+
+        <item name="android:textColor">
+            #9233FF
+        </item>
+    </style>
+
+    <style name="cancel">
+        <item name="android:textSize">
+            15sp
+        </item>
+        <item name="android:textColor">
+            #808080
+        </item>
+    </style>
+
+    <style name="kuku_gmail_">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #717171
+        </item>
+
+    </style>
+
+
+</resources>

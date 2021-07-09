@@ -156,17 +156,19 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_interest"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:itemCount="8"
-                tools:listitem="@layout/item_card_interest_industry"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_interest"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintVertical_bias="0.0"
+                app:spanCount="2"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_card_interest_industry">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -226,18 +228,18 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_skills"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_skills"
+                app:layout_constraintVertical_bias="0.136"
                 app:spanCount="4"
                 tools:itemCount="10"
-                android:orientation="horizontal"
-                app:layout_constraintVertical_bias="0.1"
-                tools:listitem="@layout/item_profile_skills"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_skills"
-                app:layout_constraintBottom_toBottomOf="parent">
+                tools:listitem="@layout/item_profile_skills">
 
             </androidx.recyclerview.widget.RecyclerView>
 

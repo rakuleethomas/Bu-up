@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.jobseeker.profileEdit.ProfileUserEdit">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="47dp"
+            android:layout_height="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="38dp"
+            android:text="Cancel"
+            android:textAppearance="@style/cancel"
+            android:lineSpacingExtra="2sp"
+            android:translationY="1.21sp"
+            android:gravity="bottom"
+            />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="33dp"
+            android:layout_height="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="16dp"
+            android:text="Save"
+            android:textAppearance="@style/save"
+            android:lineSpacingExtra="2sp"
+            android:translationY="1.21sp"
+            android:gravity="right|bottom"
+            />
+
+        <TextView
+            android:id="@+id/kuku_gmail_"
+            android:layout_width="69dp"
+            android:layout_height="17dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="118dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/kuku_gmail_"
+            android:textAppearance="@style/kuku_gmail_"
+            android:gravity="top"
+            />
+
+        <EditText
+            android:layout_width="328dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            tools:text="James"
+            android:textSize="18dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kuku_gmail_" />
+
+        <TextView
+            android:layout_width="69dp"
+            android:layout_height="17dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="230dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Last Name"
+            android:textAppearance="@style/kuku_gmail_"
+            android:gravity="top"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
