@@ -31,6 +31,9 @@
         </action>
         <action android:id="@+id/action_profile_to_edit_skill"
             app:destination="@id/profile_edit_skill"/>
+        <action android:id="@+id/action_profile_to_edit_experience"
+            app:destination="@+id/profile_edit_experience">
+        </action>
     </fragment>
 
     <fragment
@@ -74,6 +77,33 @@
             android:id="@+id/action_edit_skill_to_profile"
             app:destination="@+id/main_seeker_profile">
         </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_edit_experience"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileExperienceEdit"
+        android:label="profile_edit_experience"
+        tools:layout="@layout/fragment_profile_experience_edit">
+        <action
+            android:id="@+id/action_edit_experience_to_profile"
+            app:destination="@+id/main_seeker_profile">
+        </action>
+        <action
+            android:id="@+id/action_edit_experience_to_edit_experience_detail"
+            app:destination="@+id/profile_edit_experience_detail">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_edit_experience_detail"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileExperienceDetailEdit"
+        android:label="profile_edit_experience_detail"
+        tools:layout="@layout/fragment_profile_experience_detail_edit">
+        <action
+            android:id="@+id/action_edit_experience_detail_to_edit_experience"
+            app:destination="@+id/profile_edit_experience">
+        </action>
+
     </fragment>
 
 </navigation>

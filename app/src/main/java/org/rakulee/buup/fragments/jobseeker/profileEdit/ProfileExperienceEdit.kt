@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import org.rakulee.buup.R
+import org.rakulee.buup.databinding.FragmentProfileExperienceEditBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +25,7 @@ class ProfileExperienceEdit : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var binding : FragmentProfileExperienceEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,21 @@ class ProfileExperienceEdit : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_experience_edit, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_experience_edit, container, false)
+        binding.lifecycleOwner = this
+        binding.editExperience = this
+
+        binding.cancel.setOnClickListener{
+            val direction : NavDirections = ProfileExperienceEditDirections.actionEditExperienceToProfile()
+            findNavController().navigate(direction)
+        }
+
+        binding.btnAdd.setOnClickListener{
+            val direction : NavDirections = ProfileExperienceEditDirections.actionEditExperienceToEditExperienceDetail()
+            findNavController().navigate(direction)
+        }
+
+        return binding.root
     }
 
     companion object {

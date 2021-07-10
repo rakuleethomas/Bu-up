@@ -1,14 +1,128 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.jobseeker.profileEdit.ProfileExperienceEdit">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="EditExperience"
+            type="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileExperienceEdit" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        >
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="38dp"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:textAppearance="@style/cancel"
+            android:lineSpacingExtra="2sp"
+            android:translationY="1.21sp"
+            android:gravity="bottom"
+            />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="16dp"
+            android:text="Save"
+            android:textStyle="bold"
+            android:textAppearance="@style/save"
+            android:lineSpacingExtra="2sp"
+            android:translationY="1.21sp"
+            android:gravity="right|bottom"
+            />
+
+        <TextView
+            android:id="@+id/kuku_gmail_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="118dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="My Experience"
+            android:textAppearance="@style/kuku_gmail_"
+            android:gravity="top"
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            app:tabTextAppearance="@style/MyCustomTextAppearance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kuku_gmail_"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:text="All"
+                />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_buup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bu-up" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_personal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <TextView
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:text="Add"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExperience"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_card_experience_edit">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
