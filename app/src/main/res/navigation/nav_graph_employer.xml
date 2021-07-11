@@ -39,9 +39,6 @@
         android:id="@+id/paymentActivity"
         android:name="org.rakulee.buup.screens.PaymentActivity"
         android:label="PaymentActivity" />
-    <action
-        android:id="@+id/action_global_paymentFragment2"
-        app:destination="@id/paymentFragment" />
 
     <fragment
         android:id="@+id/employer_profile_edit"
@@ -64,8 +61,10 @@
             app:destination="@id/main_emp_profile">
         </action>
     </fragment>
+    <action
         android:id="@+id/action_global_paymentActivity"
         app:destination="@id/paymentActivity"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim" />
+
 </navigation>

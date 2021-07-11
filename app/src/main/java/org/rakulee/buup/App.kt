@@ -2,6 +2,7 @@ package org.rakulee.buup
 
 import android.app.Application
 import com.parse.Parse
+import com.parse.ParseObject
 import dagger.hilt.android.HiltAndroidApp
 import org.rakulee.buup.model.Job
 import org.rakulee.buup.screens.LoginActivity

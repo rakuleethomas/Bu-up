@@ -107,11 +107,6 @@ class JobSeekerHome : Fragment() {
         return binding.root
     }
 
-    fun showPaymentPage(){
-
-        val direction : NavDirections = JobSeekerHomeDirections.actionMainSeekerHomeToPaymentFragment()
-        findNavController().navigate(direction)
-    }
 
     companion object {
         /**

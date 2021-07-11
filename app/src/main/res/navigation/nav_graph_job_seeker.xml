@@ -30,15 +30,11 @@
         <action android:id="@+id/action_profile_to_edit_experience"
             app:destination="@+id/profile_edit_experience">
         </action>
+        <action
+            android:id="@+id/action_main_seeker_profile_to_paymentActivity2"
+            app:destination="@id/paymentActivity2" />
     </fragment>
 
-    <fragment
-        android:id="@+id/paymentFragment"
-        android:name="org.rakulee.buup.fragments.common.PaymentFragment"
-        android:label="PaymentFragment" />
-    <action
-        android:id="@+id/action_global_paymentFragment"
-        app:destination="@id/paymentFragment" />
 
     <fragment
         android:id="@+id/profile_edit_user"
@@ -101,11 +97,7 @@
         </action>
 
     </fragment>
-        tools:layout="@layout/fragment_job_seeker_profile" >
-        <action
-            android:id="@+id/action_main_seeker_profile_to_paymentActivity2"
-            app:destination="@id/paymentActivity2" />
-    </fragment>
+
     <activity
         android:id="@+id/paymentActivity2"
         android:name="org.rakulee.buup.screens.PaymentActivity"
