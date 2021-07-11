@@ -1,4 +1,4 @@
-package org.rakulee.buup.fragments.employer
+package org.rakulee.buup.fragments.jobseeker.profileEdit
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
-import org.rakulee.buup.databinding.FragmentEmployerProfileBinding
-import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileInterestEditDirections
+import org.rakulee.buup.databinding.FragmentProfileExperienceEditBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,16 +18,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [EmployerProfile.newInstance] factory method to
+ * Use the [ProfileExperienceEdit.newInstance] factory method to
  * create an instance of this fragment.
  */
-@AndroidEntryPoint
-class EmployerProfile : Fragment() {
+class ProfileExperienceEdit : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
-    lateinit var binding : FragmentEmployerProfileBinding
+    lateinit var binding : FragmentProfileExperienceEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +40,17 @@ class EmployerProfile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_experience_edit, container, false)
         binding.lifecycleOwner = this
-        binding.employerProfile = this
+        binding.editExperience = this
 
-
-        binding.btnEdit.setOnClickListener{
-            val direction : NavDirections = EmployerProfileDirections.actionMainEmpProfileToProfileEdit()
+        binding.cancel.setOnClickListener{
+            val direction : NavDirections = ProfileExperienceEditDirections.actionEditExperienceToProfile()
             findNavController().navigate(direction)
         }
 
-        binding.button.setOnClickListener{
-            val direction : NavDirections = EmployerProfileDirections.actionMainEmpProfileToJobPosting()
+        binding.btnAdd.setOnClickListener{
+            val direction : NavDirections = ProfileExperienceEditDirections.actionEditExperienceToEditExperienceDetail()
             findNavController().navigate(direction)
         }
 
@@ -70,12 +64,12 @@ class EmployerProfile : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment EmployerTest3.
+         * @return A new instance of fragment ProfileExperienceEdit.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            EmployerProfile().apply {
+            ProfileExperienceEdit().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

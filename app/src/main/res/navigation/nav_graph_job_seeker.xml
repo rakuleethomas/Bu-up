@@ -19,6 +19,88 @@
         android:id="@+id/main_seeker_profile"
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerProfile"
         android:label="fragment_job_seeker_test3"
+        tools:layout="@layout/fragment_job_seeker_profile">
+        <action android:id="@+id/action_profile_to_edit_user"
+            app:destination="@id/profile_edit_user"/>
+        <action android:id="@+id/action_profile_to_edit_interest"
+            app:destination="@id/profile_edit_interest">
+        </action>
+        <action android:id="@+id/action_profile_to_edit_skill"
+            app:destination="@id/profile_edit_skill"/>
+        <action android:id="@+id/action_profile_to_edit_experience"
+            app:destination="@+id/profile_edit_experience">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="org.rakulee.buup.fragments.common.PaymentFragment"
+        android:label="PaymentFragment" />
+    <action
+        android:id="@+id/action_global_paymentFragment"
+        app:destination="@id/paymentFragment" />
+
+    <fragment
+        android:id="@+id/profile_edit_user"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileUserEdit"
+        android:label="profile_edit_user"
+        tools:layout="@layout/fragment_profile_user_edit">
+        <action
+            android:id="@+id/action_edit_user_to_profile"
+            app:destination="@id/main_seeker_profile"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_edit_interest"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileInterestEdit"
+        android:label="profile_edit_interest"
+        tools:layout="@layout/fragment_profile_interest_edit">
+        <action
+            android:id="@+id/action_edit_interest_to_profile"
+            app:destination="@+id/main_seeker_profile">
+        </action>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/profile_edit_skill"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileSkillEdit"
+        android:label="profile_edit_skill"
+        tools:layout="@layout/fragment_profile_skill_edit">
+        <action
+            android:id="@+id/action_edit_skill_to_profile"
+            app:destination="@+id/main_seeker_profile">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_edit_experience"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileExperienceEdit"
+        android:label="profile_edit_experience"
+        tools:layout="@layout/fragment_profile_experience_edit">
+        <action
+            android:id="@+id/action_edit_experience_to_profile"
+            app:destination="@+id/main_seeker_profile">
+        </action>
+        <action
+            android:id="@+id/action_edit_experience_to_edit_experience_detail"
+            app:destination="@+id/profile_edit_experience_detail">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_edit_experience_detail"
+        android:name="org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileExperienceDetailEdit"
+        android:label="profile_edit_experience_detail"
+        tools:layout="@layout/fragment_profile_experience_detail_edit">
+        <action
+            android:id="@+id/action_edit_experience_detail_to_edit_experience"
+            app:destination="@+id/profile_edit_experience">
+        </action>
+
+    </fragment>
         tools:layout="@layout/fragment_job_seeker_profile" >
         <action
             android:id="@+id/action_main_seeker_profile_to_paymentActivity2"

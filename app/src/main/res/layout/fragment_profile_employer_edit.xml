@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="EmployerProfileEdit"
+            type="org.rakulee.buup.fragments.employer.profileEdit.ProfileEmployerEdit" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="16dp"
+            android:text="Save"
+            android:textStyle="bold"
+            android:textAppearance="@style/save"
+            android:lineSpacingExtra="2sp"
+            android:translationY="1.21sp"
+            android:gravity="right|bottom"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="84dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/iv_company_logo_edit"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_jobseeker"
+                app:roundPercent="1"
+                tools:src="@drawable/ic_employer" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/iv_employer_edit"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_jobseeker"
+                app:roundPercent="1"
+                tools:src="@drawable/ic_employer" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="72dp"
+            android:text="Name"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <EditText
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="260dp"
+            android:hint="James Heldens"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></EditText>
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Company Name"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <EditText
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="56dp"
+            android:hint="Chung Dam Restaurant"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Phone Number"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/Edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:hint="(408)-929-2929"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:text="Email"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Edit_phone" />
+
+        <EditText
+            android:id="@+id/Edit_Email"
+            android:layout_width="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:hint="exampleemail@email.com"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.134"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Edit_phone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

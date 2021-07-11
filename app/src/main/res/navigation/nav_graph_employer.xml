@@ -24,13 +24,46 @@
         android:id="@+id/main_emp_profile"
         android:name="org.rakulee.buup.fragments.employer.EmployerProfile"
         android:label="main_emp_profile"
-        tools:layout="@layout/fragment_employer_profile" />
+        tools:layout="@layout/fragment_employer_profile">
+        <action
+            android:id="@+id/action_main_emp_profile_to_profile_edit"
+            app:destination="@id/employer_profile_edit">
+        </action>
+        <action
+            android:id="@+id/action_main_emp_profile_to_job_posting"
+            app:destination="@id/employer_job_posting">
+        </action>
+    </fragment>
 
     <activity
         android:id="@+id/paymentActivity"
         android:name="org.rakulee.buup.screens.PaymentActivity"
         android:label="PaymentActivity" />
     <action
+        android:id="@+id/action_global_paymentFragment2"
+        app:destination="@id/paymentFragment" />
+
+    <fragment
+        android:id="@+id/employer_profile_edit"
+        android:name="org.rakulee.buup.fragments.employer.profileEdit.ProfileEmployerEdit1"
+        android:label="Employer_profile_edit"
+        tools:layout="@layout/fragment_profile_employer_edit1">
+        <action
+            android:id="@+id/action_employer_profile_edit_to_profile"
+            app:destination="@id/main_emp_profile">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/employer_job_posting"
+        android:name="org.rakulee.buup.fragments.employer.employerPost.EmployerJobPosting"
+        android:label="Employer_Job_Posting"
+        tools:layout="@layout/fragment_employer_job_posting">
+        <action
+            android:id="@+id/action_employer_job_posting_to_Profile"
+            app:destination="@id/main_emp_profile">
+        </action>
+    </fragment>
         android:id="@+id/action_global_paymentActivity"
         app:destination="@id/paymentActivity"
         app:enterAnim="@anim/nav_default_enter_anim"

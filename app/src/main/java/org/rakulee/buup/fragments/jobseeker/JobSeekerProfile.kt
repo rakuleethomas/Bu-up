@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.adapters.JobSeekerProfileExperiencesListAdapter
 import org.rakulee.buup.adapters.JobSeekerProfileInterestListAdapter
 import org.rakulee.buup.adapters.JobSeekerProfileSkillsListAdapter
 import org.rakulee.buup.databinding.FragmentJobSeekerProfileBinding
+import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileUserEdit
 import org.rakulee.buup.model.JobSeekerExperiences
 import org.rakulee.buup.model.JobSeekerInterestItem
 import org.rakulee.buup.model.JobSeekerSkill
@@ -58,7 +61,10 @@ class JobSeekerProfile : Fragment() {
         var interestList = ArrayList<JobSeekerInterestItem>()
         var skillsList = ArrayList<JobSeekerSkill>()
         var expList = ArrayList<JobSeekerExperiences>()
-        interestList.add(JobSeekerInterestItem("Restraunt"))
+        interestList.add(JobSeekerInterestItem("Restaurant"))
+        interestList.add(JobSeekerInterestItem("helllo"))
+        interestList.add(JobSeekerInterestItem("test1"))
+        interestList.add(JobSeekerInterestItem("test2"))
         interestList.add(JobSeekerInterestItem("Customer Service"))
         interestList.add(JobSeekerInterestItem("Sales"))
         interestList.add(JobSeekerInterestItem("Marketing"))
@@ -89,9 +95,31 @@ class JobSeekerProfile : Fragment() {
         binding.rvSkills.adapter = skillsListAdapter
         binding.rvExpList.adapter = experiencesListAdapter
 
+        binding.tvEditProfile.setOnClickListener {
+            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditUser()
+            findNavController().navigate(direction)
+
+        }
+
+        binding.tvEditInterest.setOnClickListener{
+            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditInterest()
+            findNavController().navigate(direction)
+        }
+
+        binding.tvEditSkills.setOnClickListener{
+            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditSkill()
+            findNavController().navigate(direction)
+        }
+
+        binding.tvEditExperience.setOnClickListener{
+            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditExperience()
+            findNavController().navigate(direction)
+        }
+
 
         return binding.root
     }
+
 
     companion object {
         /**

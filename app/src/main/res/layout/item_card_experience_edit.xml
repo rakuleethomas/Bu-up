@@ -5,13 +5,12 @@
     <data>
 
         <variable
-            name="item"
+            name="editItem"
             type="org.rakulee.buup.model.JobSeekerExperiences" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/buup_experience"
@@ -26,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/text_medium"
-            android:text="@{item.empName}"
+            android:text="@{editItem.empName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Bonchon Chicken">
@@ -38,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_small"
-            android:text="@{item.title}"
+            android:text="@{editItem.title}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_emp_name"
@@ -46,21 +45,33 @@
 
         </com.google.android.material.textview.MaterialTextView>
 
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/format_exp_from_to(item.durationFrom, item.durationTo)}"
+            android:layout_marginStart="244dp"
+            android:text="@{@string/format_exp_from_to(editItem.durationFrom, editItem.durationTo)}"
             android:textSize="@dimen/text_small"
             app:layout_constraintBaseline_toBaselineOf="@id/tv_emp_name"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/group2"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.47"
             tools:text="Mar 2021 -\n May 2021">
 
         </com.google.android.material.textview.MaterialTextView>
+
+        <Button
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/experience_edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_duration"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.486" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group2"

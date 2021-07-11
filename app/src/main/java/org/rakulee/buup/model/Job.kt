@@ -8,8 +8,8 @@ import com.parse.ktx.putOrIgnore
 @ParseClassName("Job")
 class Job : ParseObject(){
     var author: ParseUser?
-        get() = getParseUser("author")
-        set(author) = putOrIgnore("author", author)
+        get() = getParseUser("Author")
+        set(author) = putOrIgnore("Author", author)
 
     var ImageUrl : String
         get() = getString("ImageUrl").toString()

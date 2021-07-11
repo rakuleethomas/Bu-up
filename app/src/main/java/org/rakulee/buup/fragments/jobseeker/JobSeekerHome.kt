@@ -1,14 +1,17 @@
 package org.rakulee.buup.fragments.jobseeker
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.parse.ParseQuery
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +19,7 @@ import kotlinx.coroutines.launch
 import org.rakulee.buup.R
 import org.rakulee.buup.adapters.JobListAdapter
 import org.rakulee.buup.databinding.FragmentJobSeekerHomeBinding
+import org.rakulee.buup.model.Job
 import org.rakulee.buup.model.JobItem
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,7 +38,8 @@ class JobSeekerHome : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding : FragmentJobSeekerHomeBinding
-
+    private var TAG = "JobSeekerHome"
+    var list = ArrayList<Job>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,22 +68,37 @@ class JobSeekerHome : Fragment() {
         var jobDescription : String = ""
         )
          */
-        var list = ArrayList<JobItem>()
         val adapter = JobListAdapter()
+//
+//
+//        var company : Job
+//        for(i : Int in 1..10){
+//            company = if(i%2 == 1){
+//                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "SVKoreans", "Looking for part timers!")
+//            }else{
+//                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "Rakulee, Inc.", "Looking for volunteers!")
+//            }
+//            list.add(company)
+//        }
 
 
-        var company : JobItem
-        for(i : Int in 1..10){
-            company = if(i%2 == 1){
-                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "SVKoreans", "Looking for part timers!")
-            }else{
-                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "Rakulee, Inc.", "Looking for volunteers!")
+        val query = ParseQuery.getQuery<Job>("Job")
+        query.findInBackground { jobs, e->
+            if (e == null) {
+                Log.d(TAG, "onCreateView: "+ jobs.size)
+                for (job : Job in jobs){
+                    Log.d(TAG, "onCreateView: "+ job.companyTitle)
+                }
+                list.addAll(jobs)
+                adapter.updateItems(list)
+                Log.d(TAG, "onCreateViewListSize: " + adapter.itemCount)
+            } else {
+                Log.e(TAG, "onCreateView: " + e.localizedMessage)
             }
-            list.add(company)
         }
 
+
         // end of create the dummy data
-        adapter.updateItems(list)
         adapter.setHasStableIds(true)       // prevent blinking recyclerview items
 
         binding.rvAdList.adapter = adapter

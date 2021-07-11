@@ -41,6 +41,11 @@ As an Associate Partner of Business Strategy, I was tasked with appraising the i
 
     <string name="format_emp_point">%,3d pts</string>
     <string name="format_exp_from_to">%s to\n %s</string>
+
+    <string name="kuku_gmail_">
+
+First Name
+</string>
     <string name="format_estimate_points">%,3d pts equals $%,3d</string>
     <string name="format_your_current_points">Your current point is: %,3d pts</string>
 </resources>
