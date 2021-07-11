@@ -2,9 +2,10 @@ package org.rakulee.buup
 
 import android.app.Application
 import com.parse.Parse
-import com.parse.ParseObject
 import dagger.hilt.android.HiltAndroidApp
-import org.rakulee.buup.screens.LoginActivity
+import org.rakulee.buup.network.service.CardEntryBackgroundHandler
+import sqip.CardEntry.setCardNonceBackgroundHandler
+
 
 @HiltAndroidApp
 class App : Application() {
@@ -19,6 +20,7 @@ class App : Application() {
             .server("https://parseapi.back4app.com").build())
 
 
-
+        val cardHandler = CardEntryBackgroundHandler()
+        setCardNonceBackgroundHandler(cardHandler)
     }
 }

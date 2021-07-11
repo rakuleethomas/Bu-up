@@ -8,12 +8,13 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/bu_up_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Buup">
-        <activity android:name=".screens.SignupActivity"></activity>
+        <activity android:name=".screens.PaymentActivity"></activity>
+        <activity android:name=".screens.SignupActivity" />
         <activity android:name=".screens.LoginActivity" />
         <activity android:name=".screens.PartTimeEmployerActivity" />
         <activity android:name=".screens.PartTimeJobSeekerActivity" />
