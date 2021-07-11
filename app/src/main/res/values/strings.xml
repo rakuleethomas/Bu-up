@@ -30,6 +30,15 @@ I’ve provided financial and business management consulting services for the la
 As an Associate Partner of Business Strategy, I was tasked with appraising the internal operations of global businesses and implement cost-saving strategies. Previously, I managed high-level investment portfolios as an Associate Consultant of Investments for an international bank.</string>
 
 
+    <string name="title_order_successful">Success</string>
+    <string name="msg_order_successful">Thank you for your order!</string>
+
+    <string name="title_order_unsuccessful">Failed</string>
+    <string name="msg_order_unsuccessful">Your order was failed to process. Please try again!</string>
+
+    <string name="title_network_failure">Network Error</string>
+    <string name="msg_network_error">There was an error processing the payment.\n Please check your network connectivity</string>
+
     <string name="format_emp_point">%,3d pts</string>
     <string name="format_exp_from_to">%s to\n %s</string>
 
@@ -37,5 +46,6 @@ As an Associate Partner of Business Strategy, I was tasked with appraising the i
 
 First Name
 </string>
-
+    <string name="format_estimate_points">%,3d pts equals $%,3d</string>
+    <string name="format_your_current_points">Your current point is: %,3d pts</string>
 </resources>

@@ -84,7 +84,7 @@ class EmployerHome : Fragment(), View.OnClickListener {
     }
 
     private fun doChargePoint(){
-        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentFragment()
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentActivity()
         findNavController().navigate(directions)
     }
 
