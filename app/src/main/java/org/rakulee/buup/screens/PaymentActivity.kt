@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -104,7 +105,9 @@ class PaymentActivity : AppCompatActivity() {
 //                    }
 
                     if(result.isSuccess()){
-                        showSuccessCharge()
+                        if (points != null) {
+                            showSuccessCharge(points)
+                        }
                     }else{
                         showError()
                     }
@@ -119,8 +122,11 @@ class PaymentActivity : AppCompatActivity() {
 
 
 
-    fun showSuccessCharge(){
+    fun showSuccessCharge(points : Int){
         showDialog(R.string.title_order_successful, getString(R.string.msg_order_successful))
+        val currentPoint : Int = ParseUser.getCurrentUser().get("Points") as Int
+        ParseUser.getCurrentUser().put("Points", currentPoint + points)
+        ParseUser.getCurrentUser().saveInBackground()
     }
 
     fun showError(){

@@ -1,11 +1,15 @@
 package org.rakulee.buup.fragments.employer.employerPost
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.parse.Parse
+import com.parse.ParseUser
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerJobPostingBinding
 
@@ -42,6 +46,21 @@ class EmployerJobPosting : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_job_posting, container, false)
         binding.lifecycleOwner = this
         binding.jobPosting= this
+
+
+        binding.btnSubmit.setOnClickListener{
+            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Submit test")
+                .setMessage("submit test")
+                .setPositiveButton(android.R.string.ok, object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        val currentPoint = ParseUser.getCurrentUser().get("Points") as Int
+                        ParseUser.getCurrentUser().put("Points", currentPoint - 100)
+                        ParseUser.getCurrentUser().saveInBackground()
+                    }
+                })
+                .show()
+        }
 
 
 
