@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentProfileUserEditBinding
@@ -47,6 +48,14 @@ class ProfileUserEdit : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_user_edit, container, false)
         binding.lifecycleOwner = this
         binding.editUser = this
+
+        binding.etFirstName.hint = ParseUser.getCurrentUser().get("FirstName").toString()
+        binding.etLastName.hint = ParseUser.getCurrentUser().get("LastName").toString()
+        val minSalary = ParseUser.getCurrentUser().get("MinSalary") as Int
+        binding.etMinSalary.hint = minSalary.toString()
+        val maxSalary = ParseUser.getCurrentUser().get("MaxSalary") as Int
+        binding.etMaxSalary.hint = maxSalary.toString()
+        binding.etSummary.hint = ParseUser.getCurrentUser().get("Summary").toString()
 
         binding.cancel.setOnClickListener(){
             val direction : NavDirections = ProfileUserEditDirections.actionEditUserToProfile()

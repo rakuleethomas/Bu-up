@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerProfileBinding
@@ -48,6 +50,26 @@ class EmployerProfile : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_profile, container, false)
         binding.lifecycleOwner = this
         binding.employerProfile = this
+
+        var EmployerimageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
+//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+        if("".equals(EmployerimageUrl)){
+            EmployerimageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+        }
+        Glide.with(requireContext()).load(EmployerimageUrl).into(binding.ivEmployer)
+
+        var companyImageUrl = ParseUser.getCurrentUser().get("CompanyImageUrl").toString()
+//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+        if("".equals(companyImageUrl)){
+            companyImageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+        }
+        Glide.with(requireContext()).load(companyImageUrl).into(binding.ivCompanyLogo)
+        
+        val firstName = ParseUser.getCurrentUser().get("FirstName").toString()
+        val lastName = ParseUser.getCurrentUser().get("LastName").toString()
+        binding.tvEmployerName.text = "${firstName} ${lastName}"
+        binding.tvCompanyName.text = ParseUser.getCurrentUser().get("CompanyTitle").toString()
+
 
 
         binding.btnEdit.setOnClickListener{

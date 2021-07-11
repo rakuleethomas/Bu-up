@@ -7,11 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.parse.Parse
 import com.parse.ParseUser
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerJobPostingBinding
+import org.rakulee.buup.model.Job
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +51,16 @@ class EmployerJobPosting : Fragment() {
         binding.jobPosting= this
 
 
+        var companyImageUrl = ParseUser.getCurrentUser().get("CompanyImageUrl").toString()
+//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+        if("".equals(companyImageUrl)){
+            companyImageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+        }
+        Glide.with(requireContext()).load(companyImageUrl).into(binding.ivCompanyLogo)
+        val companyTitle = ParseUser.getCurrentUser().get("CompanyTitle").toString()
+        binding.textView17.text = companyTitle
+
+
         binding.btnSubmit.setOnClickListener{
             androidx.appcompat.app.AlertDialog.Builder(requireContext())
                 .setTitle("Submit test")
@@ -57,6 +70,24 @@ class EmployerJobPosting : Fragment() {
                         val currentPoint = ParseUser.getCurrentUser().get("Points") as Int
                         ParseUser.getCurrentUser().put("Points", currentPoint - 100)
                         ParseUser.getCurrentUser().saveInBackground()
+
+                        val exampleJob  = Job()
+
+                        exampleJob.ImageUrl = companyImageUrl
+                        exampleJob.author = ParseUser.getCurrentUser()
+                        exampleJob.companyTitle = companyTitle
+                        exampleJob.jobLocation = binding.editText.text.toString()
+                        exampleJob.jobDescription = binding.editText6.text.toString()
+                        exampleJob.jobPay = binding.etPay.text.toString()
+                        exampleJob.jobRequirement = binding.editText7.text.toString()
+
+                        exampleJob.saveInBackground { e ->
+                            if (e == null) {
+                                // success
+                            } else {
+                                Toast.makeText(requireContext(), "error : " + e.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
                 })
                 .show()

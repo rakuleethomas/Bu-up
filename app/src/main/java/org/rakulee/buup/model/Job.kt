@@ -23,4 +23,15 @@ class Job : ParseObject(){
         get() = getString("Description").toString()
         set(jobDescription) = put("Description", jobDescription)
 
+    var jobLocation : String
+        get() = getString("Location").toString()
+        set(jobLocation) = put("Location", jobLocation)
+
+    var jobRequirement : String
+        get() = getString("Requirements").toString()
+        set(jobRequirement) = put("Requirements", jobRequirement)
+
+    var jobPay : String
+        get() = getString("Pay").toString()
+        set(jobPay) = put("Pay", jobPay)
 }

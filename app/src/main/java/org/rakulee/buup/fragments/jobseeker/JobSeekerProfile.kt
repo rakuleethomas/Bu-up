@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.adapters.JobSeekerProfileExperiencesListAdapter
@@ -54,9 +56,18 @@ class JobSeekerProfile : Fragment() {
         binding.lifecycleOwner = this
         binding.viewOnly = false
 
-        binding.tvName.text = "Thomas"
-        binding.tvBio.text = "Android App Developer"
-        binding.tvWageValue.text = "$25 - $30 /hr"
+        binding.tvName.text = ParseUser.getCurrentUser().get("FirstName").toString()
+        binding.tvBio.text = ParseUser.getCurrentUser().get("JobTitle").toString()
+        val minSalary = ParseUser.getCurrentUser().get("MinSalary") as Int
+        val maxSalary = ParseUser.getCurrentUser().get("MaxSalary") as Int
+        binding.tvWageValue.text = "$${minSalary} - $${maxSalary} /hr"
+
+        var imageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
+//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+        if("".equals(imageUrl)){
+            imageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+        }
+        Glide.with(requireContext()).load(imageUrl).into(binding.ivProfile)
 
         var interestList = ArrayList<JobSeekerInterestItem>()
         var skillsList = ArrayList<JobSeekerSkill>()
