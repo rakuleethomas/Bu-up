@@ -1,5 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="JobPostings"
+            type="org.rakulee.buup.model.Job" />
+
+    </data>
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
@@ -10,46 +19,40 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chung Dam Restaurant"
-            android:textSize="18dp"
-            android:layout_marginBottom="4dp">
-        </TextView>
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Chung Dam Restaurant"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_jobdescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Server"
-            android:textSize="14dp">
-        </TextView>
+            android:textSize="14dp"></TextView>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="end">
 
         <TextView
+            android:id="@+id/tv_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:textSize="18dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="4dp"
             android:text="$25/hr"
-            android:layout_marginBottom="4dp">
+            android:textSize="14dp">
 
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="06/20/21 - 06/20/21"
-            android:textSize="14dp"
-            android:layout_marginStart="10dp">
         </TextView>
 
     </LinearLayout>
@@ -59,3 +62,4 @@
 
 
 </LinearLayout>
+</layout>

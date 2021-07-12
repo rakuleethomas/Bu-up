@@ -1,19 +1,24 @@
 package org.rakulee.buup.fragments.employer
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.parse.ParseQuery
 import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.JobPostingAdapter
 import org.rakulee.buup.databinding.FragmentEmployerProfileBinding
 import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileInterestEditDirections
+import org.rakulee.buup.model.Job
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +35,7 @@ class EmployerProfile : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    val Joblists = ArrayList<Job>()
 
     lateinit var binding : FragmentEmployerProfileBinding
 
@@ -51,6 +57,7 @@ class EmployerProfile : Fragment() {
         binding.lifecycleOwner = this
         binding.employerProfile = this
 
+
         var EmployerimageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
 //            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
         if("".equals(EmployerimageUrl)){
@@ -69,7 +76,20 @@ class EmployerProfile : Fragment() {
         val lastName = ParseUser.getCurrentUser().get("LastName").toString()
         binding.tvEmployerName.text = "${firstName} ${lastName}"
         binding.tvCompanyName.text = ParseUser.getCurrentUser().get("CompanyTitle").toString()
+        val adapter = JobPostingAdapter()
+        binding.rvPosting.adapter = adapter
 
+        val query = ParseQuery.getQuery<Job>("Job")
+        query.whereContains("Author", ParseUser.getCurrentUser().objectId)
+        query.findInBackground { jobs, e->
+            if (e == null) {
+                Joblists.addAll(jobs)
+                adapter.updateItems(Joblists)
+                Log.d("EmployerProfile", "onCreateView: " + adapter.itemCount)
+            } else {
+                Toast.makeText(requireContext(), "error : " + e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
         binding.btnEdit.setOnClickListener{
