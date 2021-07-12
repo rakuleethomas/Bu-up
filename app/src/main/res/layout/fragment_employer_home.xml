@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="empInfo"
-            type="org.rakulee.buup.model.EmpInfo" />
+            name="vm"
+            type="org.rakulee.buup.viewmodel.EmployerViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxEms="8"
-            android:text="@{empInfo.empName}"
+            android:text="@{vm.emp.empName}"
             android:textSize="@dimen/text_medium"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +65,7 @@
             android:id="@+id/tv_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/format_emp_point(empInfo.point)}"
+            android:text="@{@string/format_emp_point(vm.emp.point)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_charge_points"
             app:layout_constraintHorizontal_bias="0.5"

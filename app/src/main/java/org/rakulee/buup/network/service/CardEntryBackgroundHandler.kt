@@ -38,7 +38,7 @@ class CardEntryBackgroundHandler() : CardNonceBackgroundHandler {
         retrofit = NetworkModule.providesRetrofit()
         squareAPI = NetworkModule.providesSquareApiService(retrofit)
         paymentRepo = NetworkModule.providesSquareRepository(squareAPI)
-        paymentViewModel = PaymentViewModel()
+        
 
         points = (points.toInt() / 100).toString()
 

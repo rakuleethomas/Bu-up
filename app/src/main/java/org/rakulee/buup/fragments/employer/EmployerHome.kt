@@ -1,11 +1,13 @@
 package org.rakulee.buup.fragments.employer
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,6 +17,9 @@ import org.rakulee.buup.adapters.JobSeekerListAdapter
 import org.rakulee.buup.databinding.FragmentEmployerHomeBinding
 import org.rakulee.buup.model.EmpInfo
 import org.rakulee.buup.model.JobSeekerItem
+import org.rakulee.buup.viewmodel.EmployerViewModel
+import org.rakulee.buup.viewmodel.PaymentViewModel
+import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +47,15 @@ class EmployerHome : Fragment(), View.OnClickListener {
         }
     }
 
+
+    private val employerViewModel : EmployerViewModel by viewModels()
+
+
+    override fun onResume() {
+        super.onResume()
+        employerViewModel.fetchEmployerData()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,9 +63,7 @@ class EmployerHome : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_home, container, false)
         binding.lifecycleOwner = this
-
-        val empInfo = EmpInfo("SVKoreans", 1000000)
-        binding.empInfo = empInfo
+        binding.vm = employerViewModel
 
         /**
          * create dummy data

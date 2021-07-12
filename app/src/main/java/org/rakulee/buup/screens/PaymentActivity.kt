@@ -49,6 +49,8 @@ class PaymentActivity : AppCompatActivity() {
     @Inject
     lateinit var squareAPI: SquareAPI
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,7 +59,10 @@ class PaymentActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.ui = this
-        binding.points = 100
+        binding.points = viewModel.currentPts.value
+        viewModel.fetchCurrentPoint()
+
+
 
         binding.sliderPts.addOnChangeListener {slider, value, fromUser ->
             binding.viewModel!!.update(value.toInt())
@@ -126,6 +131,7 @@ class PaymentActivity : AppCompatActivity() {
         showDialog(R.string.title_order_successful, getString(R.string.msg_order_successful))
         val currentPoint : Int = ParseUser.getCurrentUser().get("Points") as Int
         ParseUser.getCurrentUser().put("Points", currentPoint + points)
+        viewModel.updateCurrentPoint(currentPoint + points)
         ParseUser.getCurrentUser().saveInBackground()
     }
 

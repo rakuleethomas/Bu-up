@@ -51,7 +51,7 @@
                 android:id="@+id/tv_your_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/format_your_current_points(points)}"
+                android:text="@{@string/format_your_current_points(viewModel.currentPts)}"
                 app:layout_constraintBottom_toTopOf="@+id/slider_pts"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
