@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="ui"
+            type="org.rakulee.buup.screens.PaymentActivity" />
+
+        <variable
+            name="points"
+            type="Integer" />
+
+        <variable
+            name="selectedPoints"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="org.rakulee.buup.viewmodel.PaymentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.PaymentActivity">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_charge_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Charge points\n 100 / $1"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_large"
+                app:layout_constraintBottom_toTopOf="@+id/tv_your_points"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_your_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/format_your_current_points(viewModel.currentPts)}"
+                app:layout_constraintBottom_toTopOf="@+id/slider_pts"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_charge_points"
+                tools:text="Your current point: 1,000,000 pts">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_pts_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/format_estimate_points(viewModel.currentSelectedPts, viewModel.currentSelectedPts / 100)}"
+                android:textSize="@dimen/text_large"
+                app:layout_constraintBottom_toTopOf="@+id/btn_check_out"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/slider_pts"
+                tools:text="0 pts">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <!--        <com.google.android.material.textfield.TextInputEditText-->
+            <!--            android:id="@+id/textInputEditText"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:hint="Put amount to charge your points"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            tools:layout_editor_absoluteY="419dp">-->
+
+            <!--        </com.google.android.material.textfield.TextInputEditText>-->
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_pts"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:stepSize="100"
+                android:valueFrom="0"
+                android:valueTo="1000000"
+                app:layout_constraintBottom_toTopOf="@+id/tv_pts_selected"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline_divider"
+                app:layout_constraintVertical_chainStyle="spread">
+
+            </com.google.android.material.slider.Slider>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_check_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> ui.doCheckOut()}"
+                android:text="Checkout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pts_selected" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.34199727" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
