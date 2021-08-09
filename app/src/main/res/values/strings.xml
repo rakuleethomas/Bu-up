@@ -48,4 +48,5 @@ First Name
 </string>
     <string name="format_estimate_points">%,3d pts equals $%,3d</string>
     <string name="format_your_current_points">Your current point is: %,3d pts</string>
+    <string name="forgot_password"><u>Forgot password?</u></string>
 </resources>
