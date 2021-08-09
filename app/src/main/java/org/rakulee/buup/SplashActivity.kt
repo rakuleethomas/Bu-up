@@ -7,6 +7,7 @@ import android.os.Handler
 import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.screens.LoginActivity
+import org.rakulee.buup.screens.OnBoardingActivity
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
@@ -14,13 +15,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-
         Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, OnBoardingActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.
