@@ -193,7 +193,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCreateAccount"
-            app:layout_constraintVertical_bias="0.241"
+            app:layout_constraintVertical_bias="0.369"
             app:track="@drawable/switch_background" />
 
         <TextView
