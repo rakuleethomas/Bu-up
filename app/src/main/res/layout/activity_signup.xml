@@ -191,12 +191,13 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:backgroundTint="#797ED1"
+            android:onClick="startOnBoarding"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/RePasswordLayout"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.13" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_employer"
@@ -208,7 +209,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
-            app:layout_constraintVertical_bias="0.421"
+            app:layout_constraintVertical_bias="0.365"
             app:track="@drawable/switch_background" />
 
         <TextView

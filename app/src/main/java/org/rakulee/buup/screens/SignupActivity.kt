@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.parse.Parse
@@ -31,6 +32,11 @@ class SignupActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.activity = this
 
+    }
+
+    fun startOnBoarding(view: View) {
+        val intent = Intent(this, JobSeekerOnBoardingActivity::class.java)
+        startActivity(intent)
     }
 
 

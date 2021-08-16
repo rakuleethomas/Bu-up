@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Buup">
+        <activity android:name=".screens.JobSeekerOnBoardingActivity"></activity>
         <activity
             android:name=".screens.OnBoardingActivity"
             android:exported="true" />
