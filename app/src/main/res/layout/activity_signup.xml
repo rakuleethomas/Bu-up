@@ -15,16 +15,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#31235C"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
         tools:context=".screens.OnBoardingActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_begin="24dp"
+            android:orientation="vertical"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline2"
+            app:layout_constraintGuide_end="24dp"
+            android:orientation="vertical"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline3"
+            app:layout_constraintGuide_begin="24dp"
+            android:orientation="horizontal"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline4"
+            app:layout_constraintGuide_end="24dp"
+            android:orientation="horizontal"/>
+
 
         <ImageView
             android:id="@+id/logo_image"
             android:layout_width="132dp"
             android:layout_height="60dp"
             android:layout_marginTop="103dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bu_up_logo" />
 
@@ -38,19 +65,20 @@
             android:text="Find the part-time job \nthat's right for you"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/logo_image" />
 
 
         <LinearLayout
             android:id="@+id/EmailLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/rectangle_edittext"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-            tools:layout_editor_absoluteX="24dp">
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription">
 
 
             <ImageView
@@ -76,14 +104,15 @@
 
         <LinearLayout
             android:id="@+id/PasswordLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/rectangle_edittext"
             android:backgroundTint="#FFFFFF"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/EmailLayout"
-            tools:layout_editor_absoluteX="24dp">
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/EmailLayout">
 
 
             <ImageView
@@ -109,14 +138,15 @@
 
         <LinearLayout
             android:id="@+id/RePasswordLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/rectangle_edittext"
             android:backgroundTint="#FFFFFF"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/PasswordLayout"
-            tools:layout_editor_absoluteX="3dp">
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/PasswordLayout">
 
 
             <ImageView
@@ -143,20 +173,20 @@
 
         <Button
             android:id="@+id/btnCreateAccount"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="200dp"
             android:background="@drawable/rectangle_edittext"
             android:fontFamily="@font/poppins"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:text="Create an Account"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:backgroundTint="#797ED1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/RePasswordLayout"
+            app:layout_constraintVertical_bias="0.122" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_employer"
@@ -168,6 +198,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
+            app:layout_constraintVertical_bias="0.809"
             app:track="@drawable/switch_background" />
 
         <TextView
@@ -179,10 +211,12 @@
             android:text="Are you an Employer?"
             android:textColor="#E8E8E8"
             android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_employer" />
+            app:layout_constraintTop_toBottomOf="@+id/switch_employer"
+            app:layout_constraintVertical_bias="0.144" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
