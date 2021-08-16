@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -110,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
 //        }
 //    }
 
-    fun goSignup(){
+    fun createAccount(view: View) {
         val intent = Intent(this, SignupActivity::class.java)
         startActivity(intent)
     }

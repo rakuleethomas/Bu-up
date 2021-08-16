@@ -50,11 +50,10 @@
             android:id="@+id/logo_image"
             android:layout_width="132dp"
             android:layout_height="60dp"
-            android:layout_marginTop="103dp"
+            android:layout_marginTop="64dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bu_up_logo" />
-
 
         <TextView
             android:id="@+id/tvDescription"
@@ -76,9 +75,12 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/rectangle_edittext"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescription">
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+            app:layout_constraintVertical_bias="0.065">
 
 
             <ImageView
@@ -110,9 +112,12 @@
             android:background="@drawable/rectangle_edittext"
             android:backgroundTint="#FFFFFF"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/EmailLayout">
+            app:layout_constraintTop_toBottomOf="@+id/EmailLayout"
+            app:layout_constraintVertical_bias="0.0">
 
 
             <ImageView
@@ -136,6 +141,7 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/RePasswordLayout"
             android:layout_width="0dp"
@@ -144,9 +150,12 @@
             android:background="@drawable/rectangle_edittext"
             android:backgroundTint="#FFFFFF"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/PasswordLayout">
+            app:layout_constraintTop_toBottomOf="@+id/PasswordLayout"
+            app:layout_constraintVertical_bias="0.0">
 
 
             <ImageView
@@ -170,7 +179,6 @@
 
         </LinearLayout>
 
-
         <Button
             android:id="@+id/btnCreateAccount"
             android:layout_width="0dp"
@@ -183,10 +191,12 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:backgroundTint="#797ED1"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/RePasswordLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/RePasswordLayout"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_employer"
@@ -198,7 +208,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
-            app:layout_constraintVertical_bias="0.369"
+            app:layout_constraintVertical_bias="0.421"
             app:track="@drawable/switch_background" />
 
         <TextView
