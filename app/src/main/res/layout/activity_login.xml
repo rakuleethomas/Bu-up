@@ -173,14 +173,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins"
-            android:textColor="#E8E8E8"
             android:text="Create an account"
+            android:textColor="#E8E8E8"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/switch_employer"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
-            app:layout_constraintVertical_bias="0.105">
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount">
 
         </TextView>
 
@@ -188,24 +187,24 @@
             android:id="@+id/switch_employer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
             android:thumb="@drawable/switch_thumb"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCreateAccount"
+            app:layout_constraintVertical_bias="0.241"
             app:track="@drawable/switch_background" />
 
         <TextView
             android:id="@+id/tvEmployer"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins"
             android:text="Are you an Employer?"
             android:textColor="#E8E8E8"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
