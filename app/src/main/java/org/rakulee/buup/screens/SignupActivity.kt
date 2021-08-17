@@ -35,7 +35,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
     fun startOnBoarding(view: View) {
-        val intent = Intent(this, JobSeekerOnBoardingActivity::class.java)
+        val intent = Intent(this, JobSeekerOnBordingActivity::class.java)
         startActivity(intent)
     }
 
