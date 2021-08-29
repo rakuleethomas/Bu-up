@@ -52,14 +52,56 @@
             android:layout_marginTop="28dp"
             app:dotsColor="#F3815A"
             app:dotsCornerRadius="12dp"
-            app:dotsSize="23dp"
-            app:dotsSpacing="40dp"
+            app:dotsSize="24dp"
+            app:dotsSpacing="44dp"
             app:dotsStrokeColor="#C4C4C4"
             app:dotsStrokeWidth="2dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"></com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator>
+
+        <TextView
+            android:id="@+id/tv_dot1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:text="1"
+            android:textColor="@color/white"
+            android:layout_marginRight="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dot2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/wormDotsIndicator"
+            app:layout_constraintBottom_toBottomOf="@id/wormDotsIndicator"
+            tools:layout_editor_absoluteY="52dp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_dot2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:text="2"
+            android:textColor="@color/white"
+            android:layout_marginRight="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dot3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_dot1"
+            app:layout_constraintTop_toTopOf="@id/wormDotsIndicator"
+            app:layout_constraintBottom_toBottomOf="@id/wormDotsIndicator"
+            tools:layout_editor_absoluteY="52dp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_dot3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:text="3"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_dot2"
+            app:layout_constraintTop_toTopOf="@id/wormDotsIndicator"
+            app:layout_constraintBottom_toBottomOf="@id/wormDotsIndicator"
+            tools:layout_editor_absoluteY="52dp"></TextView>
 
 
         <TextView
@@ -67,51 +109,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Wage"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            android:minEms="3"
+            android:text="  Wage  "
             app:layout_constraintEnd_toStartOf="@+id/tvIndustry"
-            app:layout_constraintHorizontal_bias="0.580"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.089" />
+            app:layout_constraintTop_toBottomOf="@+id/wormDotsIndicator" />
 
         <TextView
             android:id="@+id/tvIndustry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:fontFamily="@font/poppins"
+            android:minEms="3"
             android:text="Industry"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvLocation"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.089" />
+            app:layout_constraintStart_toEndOf="@+id/tvWage"
+            app:layout_constraintTop_toBottomOf="@+id/wormDotsIndicator" />
 
         <TextView
             android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
+            android:minEms="3"
             android:text="Location"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.410"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvIndustry"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.121" />
+            app:layout_constraintTop_toBottomOf="@+id/wormDotsIndicator" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wormDotsIndicator"
+            app:layout_constraintTop_toBottomOf="@+id/tvWage"
             app:layout_constraintVertical_bias="0.0"></androidx.viewpager2.widget.ViewPager2>
 
 
