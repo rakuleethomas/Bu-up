@@ -46,6 +46,50 @@ As an Associate Partner of Business Strategy, I was tasked with appraising the i
 
 First Name
 </string>
+
+
+    I'm not sure about this, but give it a shot.
+
+    In your strings.xml define:
+
+    <string-array name="spinner1">
+        <item>0</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>
+        <item>130</item>
+        <item>140</item>
+        <item>150</item>
+        <item>150+</item>
+    </string-array>
+
+    <string-array name="spinner2">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>
+        <item>130</item>
+        <item>140</item>
+        <item>150</item>
+        <item>150+</item>
+    </string-array>
     <string name="format_estimate_points">%,3d pts equals $%,3d</string>
     <string name="format_your_current_points">Your current point is: %,3d pts</string>
     <string name="forgot_password"><u>Forgot password?</u></string>

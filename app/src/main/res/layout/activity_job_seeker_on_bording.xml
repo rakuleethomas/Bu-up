@@ -99,8 +99,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.410"
             app:layout_constraintStart_toEndOf="@+id/tvIndustry"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.121" />
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.089" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
