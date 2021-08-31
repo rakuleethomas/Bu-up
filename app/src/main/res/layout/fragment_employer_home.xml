@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_8dp"
         android:theme="@style/CardView"
-        app:layout_constraintBottom_toTopOf="@id/rv_job_seeker_list"
+        app:layout_constraintBottom_toTopOf="@id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -88,22 +88,18 @@
             app:layout_constraintWidth_percent="0.1">
 
         </com.google.android.material.button.MaterialButton>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_job_seeker_list"
-        android:layout_width="0dp"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container_emp_info"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_job_seekers_list">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:context=".MapsFragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

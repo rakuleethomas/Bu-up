@@ -1,7 +1,6 @@
 package org.rakulee.buup.fragments.employer
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +9,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
-import org.rakulee.buup.adapters.JobSeekerListAdapter
 import org.rakulee.buup.databinding.FragmentEmployerHomeBinding
-import org.rakulee.buup.model.EmpInfo
-import org.rakulee.buup.model.JobSeekerItem
 import org.rakulee.buup.viewmodel.EmployerViewModel
-import org.rakulee.buup.viewmodel.PaymentViewModel
-import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +49,30 @@ class EmployerHome : Fragment(), View.OnClickListener {
     private val employerViewModel : EmployerViewModel by viewModels()
 
 
+
+    private val callback = OnMapReadyCallback { googleMap ->
+        /**
+         * Manipulates the map once available.
+         * This callback is triggered when the map is ready to be used.
+         * This is where we can add markers or lines, add listeners or move the camera.
+         * In this case, we just add a marker near Sydney, Australia.
+         * If Google Play services is not installed on the device, the user will be prompted to
+         * install it inside the SupportMapFragment. This method will only be triggered once the
+         * user has installed Google Play services and returned to the app.
+         */
+
+        val chimek = LatLng(37.338732, -121.994956)
+        val elPolloLoco = LatLng(37.352901144915556, -121.97108295384102)
+        val pokeatery = LatLng(37.3248567860572, -121.94719594156945)
+        googleMap.addMarker(MarkerOptions().position(chimek).title("Chimek"))
+        googleMap.addMarker(MarkerOptions().position(elPolloLoco).title("El Pollo Loco"))
+        googleMap.addMarker(MarkerOptions().position(pokeatery).title("Pokeatery"))
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f), 3000, null)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(chimek))
+        googleMap.setMinZoomPreference(12.0f)
+    }
+
+
     override fun onResume() {
         super.onResume()
         employerViewModel.fetchEmployerData()
@@ -65,28 +87,14 @@ class EmployerHome : Fragment(), View.OnClickListener {
         binding.lifecycleOwner = this
         binding.vm = employerViewModel
 
-        /**
-         * create dummy data
-         */
-
-        var list = ArrayList<JobSeekerItem>()
-        for(i : Int in 1..20){
-            var data = if(i%2 == 1){
-                JobSeekerItem("Jake","svkoreans@gmail.com", "Bay Area Professional Realtor")
-            }else{
-                JobSeekerItem("Thomas", "thomas@rakulee.org", "Android Developer")
-            }
-            list.add(data)
-        }
-
-        val adapter = JobSeekerListAdapter()
-        adapter.setHasStableIds(true)       // prevent blinking recyclerview items
-        adapter.updateItems(list)
-        binding.rvJobSeekerList.adapter = adapter
-        binding.rvJobSeekerList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        binding.btnChargePoints.setOnClickListener(this)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
     }
 
     override fun onClick(v: View?) {

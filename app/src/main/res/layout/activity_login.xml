@@ -8,6 +8,7 @@
         <variable
             name="activity"
             type="org.rakulee.buup.screens.LoginActivity" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
