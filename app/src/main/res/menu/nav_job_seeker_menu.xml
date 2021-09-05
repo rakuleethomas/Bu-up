@@ -3,14 +3,21 @@
 
     <item
         android:id="@+id/main_seeker_home"
-        android:icon="@drawable/ic_jobseeker"
+        android:icon="@drawable/ic_search_navigation"
         android:title="Seeker Home"
         />
 
+
     <item
-        android:id="@+id/main_seeker_search"
-        android:icon="@drawable/ic_search"
-        android:title="Search"/>
+        android:id="@+id/main_seeker_saved_jobs"
+        android:icon="@drawable/ic_heart"
+        android:title="Saved Jobs"
+        />
+
+    <item
+        android:id="@+id/main_seeker_message"
+        android:icon="@drawable/ic_chat"
+        android:title="Message"/>
 
     <item
         android:id="@+id/main_seeker_profile"

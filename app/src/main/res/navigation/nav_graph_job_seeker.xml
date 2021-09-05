@@ -7,9 +7,32 @@
 
     <fragment
         android:id="@+id/main_seeker_home"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerMapView"
+        android:label="main_seeker_home_map_view"
+        tools:layout="@layout/fragment_job_seeker_map_view" >
+        <action
+            android:id="@+id/action_main_seeker_home_to_main_seeker_listview3"
+            app:destination="@id/main_seeker_listview" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/main_seeker_listview"
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerHome"
-        android:label="main_seeker_home"
-        tools:layout="@layout/fragment_job_seeker_home" />
+        android:label="main_seeker_home_list_view"
+        tools:layout="@layout/fragment_job_seeker_home" >
+        <action
+            android:id="@+id/action_main_seeker_listview_to_main_seeker_home2"
+            app:destination="@id/main_seeker_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/main_seeker_saved_jobs"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerSavedJobs"
+        android:label="main_seeker_saved_jobs"
+        tools:layout="@layout/fragment_job_seeker_saved_jobs"
+        />
+
     <fragment
         android:id="@+id/main_seeker_search"
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerSearch"
