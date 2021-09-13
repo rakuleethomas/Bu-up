@@ -45,7 +45,7 @@
             app:layout_constraintGuide_end="24dp" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -55,7 +55,110 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.0"></Button>
+            app:layout_constraintVertical_bias="0.024" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="118dp"
+            android:layout_height="24dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="SET FILTER"
+            style="@style/set_filter"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.024" />
+
+
+        <TextView
+            style="@style/hourly_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Hourly Rate"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.206" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Between $0 - $30"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.257" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/wage_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:valueFrom="0.0"
+            android:valueTo="100.0"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.365"
+            app:thumbColor="#F3815A"
+            app:trackColorActive="#F3815A"
+            app:trackColorInactive="#D3D3D3"
+            app:trackHeight="3dp"
+            app:values="@array/initial_slider_values" />
+
+        <TextView
+            style="@style/hourly_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Distance"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.556" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Up to 50 mi"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.608" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/distance_slider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:valueFrom="0.0"
+            android:valueTo="100.0"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintVertical_bias="0.721"
+            app:thumbColor="#F3815A"
+            app:trackColorActive="#F3815A"
+            app:trackColorInactive="#D3D3D3"
+            app:trackHeight="3dp"
+            app:values="@array/initial_distance_slider_values" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

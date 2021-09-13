@@ -52,6 +52,15 @@ First Name
 
     In your strings.xml define:
 
+    <array name="initial_slider_values">
+        <item>10.0</item>
+        <item>30.0</item>
+    </array>
+
+    <array name="initial_distance_slider_values">
+        <item>50.0</item>
+    </array>
+
     <string-array name="spinner1">
         <item>0</item>
         <item>10</item>

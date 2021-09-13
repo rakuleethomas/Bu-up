@@ -1,5 +1,6 @@
 package org.rakulee.buup.fragments.jobseeker
 
+import android.icu.text.MeasureFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import com.google.android.gms.common.util.DataUtils
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentJobSeekerFilterBinding
+import java.text.NumberFormat
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,6 +53,17 @@ class JobSeekerFilter : Fragment() {
         binding.btnBack.setOnClickListener{
             val direction : NavDirections = JobSeekerFilterDirections.actionMainSeekerFilterToMainSeekerHome()
             findNavController().navigate(direction)
+        }
+
+        binding.wageSlider.setLabelFormatter{ value: Float ->
+            val format = NumberFormat.getCurrencyInstance()
+            format.maximumFractionDigits = 0
+            format.currency = Currency.getInstance("USD")
+            format.format(value.toDouble())
+        }
+
+        binding.distanceSlider.setLabelFormatter{ value: Float ->
+            String.format(Locale.US, "%.0f mi", value)
         }
 
         return binding.root
