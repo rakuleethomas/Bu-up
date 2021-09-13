@@ -13,6 +13,23 @@
         <action
             android:id="@+id/action_main_seeker_home_to_main_seeker_listview3"
             app:destination="@id/main_seeker_listview" />
+        <action
+            android:id="@+id/action_main_seeker_home_to_main_seeker_filter"
+            app:destination="@id/main_seeker_filter" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/main_seeker_filter"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerFilter"
+        android:label="main_seeker_home_filter"
+        tools:layout="@layout/fragment_job_seeker_filter">
+
+        <action
+            android:id="@+id/action_main_seeker_filter_to_main_seeker_listview"
+            app:destination="@id/main_seeker_listview" />
+        <action
+            android:id="@+id/action_main_seeker_filter_to_main_seeker_home"
+            app:destination="@id/main_seeker_home" />
     </fragment>
 
 
@@ -24,6 +41,9 @@
         <action
             android:id="@+id/action_main_seeker_listview_to_main_seeker_home2"
             app:destination="@id/main_seeker_home" />
+        <action
+            android:id="@+id/action_main_seeker_listview_to_main_seeker_filter"
+            app:destination="@id/main_seeker_filter" />
     </fragment>
 
     <fragment
