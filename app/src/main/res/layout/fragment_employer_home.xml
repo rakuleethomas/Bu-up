@@ -13,89 +13,42 @@
     android:layout_height="match_parent"
     tools:context=".fragments.employer.EmployerHome">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_emp_info"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_8dp"
-        android:theme="@style/CardView"
-        app:layout_constraintBottom_toTopOf="@id/map"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="48dp"
+        android:elevation="2dp"
+        android:background="@drawable/bg_search"
+        app:showDividers="beginning|end"
+        app:searchIcon="@drawable/ic_search"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:defaultQueryHint="Part-Time Jobs in San Jose"
+        app:queryHint="Part-Time Jobs in San Jose"
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/iv_profile"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_employer"
-            android:scaleType="fitCenter"
-            android:src="@drawable/border_circle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="H, 1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.2"
-            app:roundPercent="1">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_navigator"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_search_navigator"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="@id/search_bar"
+        app:layout_constraintEnd_toEndOf="@id/search_bar"
+        app:layout_constraintTop_toTopOf="@id/search_bar"
+        app:layout_constraintBottom_toBottomOf="@id/search_bar"/>
 
-        </androidx.constraintlayout.utils.widget.ImageFilterView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_emp_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxEms="8"
-            android:text="@{vm.emp.empName}"
-            android:textSize="@dimen/text_medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_points"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/iv_profile"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="SVKoreans">
-
-        </com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{@string/format_emp_point(vm.emp.point)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_charge_points"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_emp_name"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1,000,000pts">
-
-        </com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_charge_points"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_baseline_add_box_24"
-            app:layout_constraintBottom_toBottomOf="@id/tv_points"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_points"
-            app:layout_constraintTop_toTopOf="@id/tv_points"
-            app:layout_constraintDimensionRatio="W, 1:1"
-            app:layout_constraintWidth_percent="0.1">
-
-        </com.google.android.material.button.MaterialButton>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/container_emp_info"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
