@@ -27,12 +27,13 @@
         android:id="@+id/bottom_navigation_job_seeker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemTextColor="@color/design_default_color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintTop_toBottomOf="@+id/nav_host_job_seeker"
-        app:menu="@menu/nav_job_seeker_menu" />
+        app:menu="@menu/nav_job_seeker_menu"
+        app:itemIconTint="@color/share_color_navigation_view"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

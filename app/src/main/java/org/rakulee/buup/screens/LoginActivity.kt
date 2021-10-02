@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.DataBindingUtil
 import com.parse.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,15 +28,6 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
         binding.activity = this
-
-
-        binding.switchEmployer.setOnCheckedChangeListener(object: CompoundButton.OnCheckedChangeListener{
-            override fun onCheckedChanged(btn: CompoundButton?, flag: Boolean) {
-                if(flag){
-                    testEmployerHome()
-                }
-            }
-        })
 
         /**
          * 이게 잡 포스팅 대략 하는거. 일단 edittext같은거랑 서브밋 버튼 만들어서
@@ -127,8 +116,4 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun testEmployerHome(){
-        val intent = Intent(this, PartTimeEmployerActivity::class.java)
-        startActivity(intent)
-    }
 }
