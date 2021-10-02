@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
+import org.rakulee.buup.databinding.FragmentJobSeekerOnBoarding2Binding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +28,8 @@ class JobSeekerOnBoarding2 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var binding : FragmentJobSeekerOnBoarding2Binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,7 +43,16 @@ class JobSeekerOnBoarding2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_job_seeker_on_boarding2, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_on_boarding2, container, false)
+        binding.lifecycleOwner = this
+        binding.onBoarding2 = this
+
+        binding.fab.setOnClickListener{
+            val direction : NavDirections = JobSeekerOnBoarding2Directions.actionJobSeekerOnBoarding2ToJobSeekerOnBoarding3()
+            findNavController().navigate(direction)
+        }
+
+        return binding.root
     }
 
     companion object {

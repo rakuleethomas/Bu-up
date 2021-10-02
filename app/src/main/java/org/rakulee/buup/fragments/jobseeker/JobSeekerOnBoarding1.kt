@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentJobSeekerOnBoarding1Binding
@@ -40,6 +42,11 @@ class JobSeekerOnBoarding1 : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_on_boarding1, container, false)
         binding.lifecycleOwner = this
         binding.onBoarding1 = this
+
+        binding.fab.setOnClickListener{
+            val direction : NavDirections = JobSeekerOnBoarding1Directions.actionJobSeekerOnBoarding1ToJobSeekerOnBoarding2()
+            findNavController().navigate(direction)
+        }
 
 
         return binding.root

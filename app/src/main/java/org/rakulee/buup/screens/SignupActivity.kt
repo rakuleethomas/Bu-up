@@ -37,6 +37,20 @@ class SignupActivity : AppCompatActivity() {
     fun startOnBoarding(view: View) {
         val intent = Intent(this, JobSeekerOnBordingActivity::class.java)
         startActivity(intent)
+        finish()
+    }
+
+    fun goBack(view: android.view.View) {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 

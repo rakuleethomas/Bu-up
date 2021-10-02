@@ -66,6 +66,12 @@
     </style>
 
 
+    <style name="SpinnerTheme">
+        <item name="android:textColor">#4A4A4A</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
 
 </resources>

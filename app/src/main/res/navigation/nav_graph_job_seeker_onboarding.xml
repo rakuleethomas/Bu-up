@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_job_seeker_onboarding"
+    app:startDestination="@id/jobSeekerOnBoarding1">
+
+    <fragment
+        android:id="@+id/jobSeekerOnBoarding1"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding1"
+        android:label="JobSeekerOnBoarding1" >
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding1_to_jobSeekerOnBoarding2"
+            app:destination="@id/jobSeekerOnBoarding2" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobSeekerOnBoarding2"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding2"
+        android:label="JobSeekerOnBoarding2" >
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding2_to_jobSeekerOnBoarding1"
+            app:destination="@id/jobSeekerOnBoarding1" />
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding2_to_jobSeekerOnBoarding3"
+            app:destination="@id/jobSeekerOnBoarding3" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobSeekerOnBoarding3"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding3"
+        android:label="JobSeekerOnBoarding3" >
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding3_to_jobSeekerOnBoarding2"
+            app:destination="@id/jobSeekerOnBoarding2" />
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding3_to_jobSeekerOnBoarding4"
+            app:destination="@id/jobSeekerOnBoarding4" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobSeekerOnBoarding4"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding4"
+        android:label="fragment_job_seeker_on_boarding4"
+        tools:layout="@layout/fragment_job_seeker_on_boarding4" >
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding4_to_jobSeekerOnBoarding3"
+            app:destination="@id/jobSeekerOnBoarding3" />
+    </fragment>
+
+
+</navigation>
