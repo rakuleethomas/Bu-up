@@ -7,17 +7,13 @@ import android.os.Handler
 import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.screens.LoginActivity
+import org.rakulee.buup.screens.OnBoardingActivity
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
 
         Handler().postDelayed({
             val intent = Intent(this, LoginActivity::class.java)

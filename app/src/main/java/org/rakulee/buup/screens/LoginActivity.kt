@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -67,51 +68,52 @@ class LoginActivity : AppCompatActivity() {
 //        }
     }
 
-    private fun validateInput() : Boolean{
+//    private fun validateInput() : Boolean{
+//
+//
+//        if("".equals(binding.etUsername.text.toString()) || binding.etUsername.text == null){
+//            binding.etUsername.requestFocus()
+//            Toast.makeText(this,"Username cannot be empty!", Toast.LENGTH_SHORT).show()
+//        }else if("".equals(binding.etPassword.text.toString()) || binding.etPassword.text == null) {
+//            binding.etPassword.requestFocus()
+//            Toast.makeText(this,"Password cannot be empty!", Toast.LENGTH_SHORT).show()
+//        }
+//
+//
+//        return "".equals(binding.etPassword.text.toString()) || "".equals(binding.etUsername.text.toString())
+//    }
+//
+//    fun doLogin(){
+//
+//        if(validateInput()){
+//            return
+//        }
+//        if(binding.tabLayout.getTabAt(0)!!.isSelected){
+//            val intent = Intent(this, PartTimeEmployerActivity::class.java)
+//            ParseUser.logInInBackground(binding.etUsername.text!!.toString(), binding.etPassword.text!!.toString(), ({user, e ->
+//                if (user != null) {
+//                    startActivity(intent)
+//                    Toast.makeText(this, "Login as employer", Toast.LENGTH_SHORT).show()
+//                } else {
+//                    Toast.makeText(this, "user doesn't exists", Toast.LENGTH_SHORT).show()
+//                }
+//            }))
+//        }else if(binding.tabLayout.getTabAt(1)!!.isSelected){
+//            val intent = Intent(this, PartTimeJobSeekerActivity::class.java)
+//            ParseUser.logInInBackground(binding.etUsername.text!!.toString(), binding.etPassword.text!!.toString(), ({user, e ->
+//                if (user != null) {
+//                    startActivity(intent)
+//                    Toast.makeText(this, "Login as job seeker", Toast.LENGTH_SHORT).show()
+//                } else {
+//                    Toast.makeText(this, "user doesn't exists", Toast.LENGTH_SHORT).show()
+//                }
+//            }))
+//        }
+//    }
 
-
-        if("".equals(binding.etUsername.text.toString()) || binding.etUsername.text == null){
-            binding.etUsername.requestFocus()
-            Toast.makeText(this,"Username cannot be empty!", Toast.LENGTH_SHORT).show()
-        }else if("".equals(binding.etPassword.text.toString()) || binding.etPassword.text == null) {
-            binding.etPassword.requestFocus()
-            Toast.makeText(this,"Password cannot be empty!", Toast.LENGTH_SHORT).show()
-        }
-
-
-        return "".equals(binding.etPassword.text.toString()) || "".equals(binding.etUsername.text.toString())
-    }
-
-    fun doLogin(){
-
-        if(validateInput()){
-            return
-        }
-        if(binding.tabLayout.getTabAt(0)!!.isSelected){
-            val intent = Intent(this, PartTimeEmployerActivity::class.java)
-            ParseUser.logInInBackground(binding.etUsername.text!!.toString(), binding.etPassword.text!!.toString(), ({user, e ->
-                if (user != null) {
-                    startActivity(intent)
-                    Toast.makeText(this, "Login as employer", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "user doesn't exists", Toast.LENGTH_SHORT).show()
-                }
-            }))
-        }else if(binding.tabLayout.getTabAt(1)!!.isSelected){
-            val intent = Intent(this, PartTimeJobSeekerActivity::class.java)
-            ParseUser.logInInBackground(binding.etUsername.text!!.toString(), binding.etPassword.text!!.toString(), ({user, e ->
-                if (user != null) {
-                    startActivity(intent)
-                    Toast.makeText(this, "Login as job seeker", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "user doesn't exists", Toast.LENGTH_SHORT).show()
-                }
-            }))
-        }
-    }
-
-    fun goSignup(){
+    fun createAccount(view: View) {
         val intent = Intent(this, SignupActivity::class.java)
         startActivity(intent)
     }
+
 }

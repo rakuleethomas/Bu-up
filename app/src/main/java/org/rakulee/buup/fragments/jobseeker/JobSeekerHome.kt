@@ -104,6 +104,11 @@ class JobSeekerHome : Fragment() {
         binding.rvAdList.adapter = adapter
         binding.rvAdList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 //        binding.executePendingBindings()
+
+        binding.fab.setOnClickListener{
+            val direction : NavDirections = JobSeekerHomeDirections.actionMainSeekerListviewToMainSeekerHome2()
+            findNavController().navigate(direction)
+        }
         return binding.root
     }
 
