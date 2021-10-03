@@ -10,7 +10,7 @@ import org.rakulee.buup.screens.LoginActivity
 import org.rakulee.buup.screens.OnBoardingActivity
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

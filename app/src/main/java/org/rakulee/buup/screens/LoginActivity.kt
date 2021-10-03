@@ -11,13 +11,14 @@ import androidx.databinding.DataBindingUtil
 import com.parse.*
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityLoginBinding
 import org.rakulee.buup.model.Job
 
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
 
     lateinit var binding : ActivityLoginBinding
@@ -28,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
         binding.activity = this
-
         /**
          * 이게 잡 포스팅 대략 하는거. 일단 edittext같은거랑 서브밋 버튼 만들어서
          * employer 화면에 이런식으로 만들어서 submit button 누를때 saveinbackground 해주면
@@ -111,9 +111,24 @@ class LoginActivity : AppCompatActivity() {
 //        }
 //    }
 
+    override fun onResume() {
+        super.onResume()
+        blocking = false;
+    }
+
     fun createAccount(view: View) {
         val intent = Intent(this, SignupActivity::class.java)
         startActivity(intent)
+    }
+
+    var blocking = false;
+    fun testEmployer(view: View){
+        val intent = Intent(this, PartTimeEmployerActivity::class.java)
+        if(!blocking){
+            blocking = true;
+            startActivity(intent)
+        }
+
     }
 
 }

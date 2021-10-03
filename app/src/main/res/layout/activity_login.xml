@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        tools:context=".screens.OnBoardingActivity">
+        tools:context=".screens.LoginActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
@@ -44,6 +44,17 @@
             android:id="@+id/guideline4"
             app:layout_constraintGuide_end="24dp"
             android:orientation="horizontal"/>
+
+        <Button
+            android:id="@+id/test_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rectangle_edittext"
+            android:text="Employer Test"
+            android:onClick="testEmployer"
+            android:backgroundTint="@color/buup_job_seeker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <ImageView
@@ -178,7 +189,7 @@
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:backgroundTint="#2C72F6"
+            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"

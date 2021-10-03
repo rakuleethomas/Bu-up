@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="text1">#808080</color>
     <color name="text2">#C4C4C4</color>
+    <color name="buup_employer">#3F3DA1</color>
+    <color name="buup_job_seeker">#2C72F6</color>
 </resources>

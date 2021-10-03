@@ -86,7 +86,7 @@ class EmployerHome : Fragment() {
 
 
         val width = Util.dpToPx( 48, requireContext()).toInt()
-        val height = Util.dpToPx(49, requireContext()).toInt()
+        val height = Util.dpToPx(48, requireContext()).toInt()
 
         for(address in addressLists){
             val resultAddressList = geoCoder.getFromLocationName(address.second, 5)

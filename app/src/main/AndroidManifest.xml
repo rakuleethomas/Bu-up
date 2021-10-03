@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.rakulee.buup">
-
+    package="org.rakulee.buup" >
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -19,8 +18,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_4"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Buup">
-
+        android:theme="@style/Theme.Buup" >
+        <activity
+            android:name=".BaseActivity"
+            android:exported="true" >
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,9 +42,13 @@
         <activity android:name=".screens.PaymentActivity" />
         <activity android:name=".screens.SignupActivity" />
         <activity android:name=".screens.LoginActivity" />
-        <activity android:name=".screens.PartTimeEmployerActivity" />
-        <activity android:name=".screens.PartTimeJobSeekerActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".screens.PartTimeEmployerActivity"
+            android:theme="@style/buup_employer" />
+        <activity
+            android:name=".screens.PartTimeJobSeekerActivity"
+            android:theme="@style/buup_job_seeker" />
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
