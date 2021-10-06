@@ -1,4 +1,4 @@
-package org.rakulee.buup.fragments.employer.employerPost
+package org.rakulee.buup.fragments.employer.employer_post
 
 import android.app.AlertDialog
 import android.content.DialogInterface

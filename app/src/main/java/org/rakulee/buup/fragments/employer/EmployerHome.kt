@@ -10,15 +10,15 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.work.WorkManager
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -39,7 +39,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class EmployerHome : Fragment() {
+class EmployerHome : Fragment(), GoogleMap.OnMarkerClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -56,7 +56,8 @@ class EmployerHome : Fragment() {
 
 
     private val employerViewModel : EmployerViewModel by viewModels()
-
+    val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    var markerSelected : Boolean = false
 
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -70,6 +71,7 @@ class EmployerHome : Fragment() {
          * user has installed Google Play services and returned to the app.
          */
 
+        googleMap.uiSettings.isMapToolbarEnabled = false
 //        val chimek = LatLng(37.338732, -121.994956)
 //        val elPolloLoco = LatLng(37.352901144915556, -121.97108295384102)
 //        val pokeatery = LatLng(37.3248567860572, -121.94719594156945)
@@ -85,8 +87,9 @@ class EmployerHome : Fragment() {
         var longitude : Double = 0.0
 
 
-        val width = Util.dpToPx( 48, requireContext()).toInt()
-        val height = Util.dpToPx(48, requireContext()).toInt()
+        val width = Util.dpToPx( 32, requireContext()).toInt()
+        val height = Util.dpToPx(38, requireContext()).toInt()
+
 
         for(address in addressLists){
             val resultAddressList = geoCoder.getFromLocationName(address.second, 5)
@@ -95,8 +98,9 @@ class EmployerHome : Fragment() {
                 longitude = item.longitude
                 val latLng = LatLng(latitude, longitude)
                 val buupPurpleIcon = getDrawable(requireContext(), R.drawable.ic_bu_up_purple)!!.toBitmap(width, height)
-                val buupMarkerOptions = MarkerOptions().position(latLng).title(address.first).icon(BitmapDescriptorFactory.fromBitmap(buupPurpleIcon))
+                val buupMarkerOptions = MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(buupPurpleIcon))
                 googleMap.addMarker(buupMarkerOptions)
+                googleMap.setOnMarkerClickListener(this)
             }
         }
 
@@ -115,13 +119,40 @@ class EmployerHome : Fragment() {
 
     }
 
+    lateinit var currentMarker : Marker
+    lateinit var oldMarker : Marker
+    override fun onMarkerClick(marker: Marker): Boolean {
+//        currentMarker = marker
+//        oldMarker = currentMarker
+//        if(oldMarker == currentMarker){
+//            binding.markerSelected = false
+//            return false
+//        }else{
+//            oldMarker = currentMarker
+//            currentMarker = marker
+//            binding.markerSelected = true
+//        }
+        binding.markerSelected = true
+        return true
+    }
+
+    fun showDetailFragment(marker: Marker){
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToEmployerSaved()
+        findNavController().navigate(directions)
+    }
+
     fun buildDummy(storeName : String, address : String){
         addressLists.add(Pair(storeName, address))
     }
 
     override fun onResume() {
         super.onResume()
-        employerViewModel.fetchEmployerData()
+//        employerViewModel.fetchEmployerData()
+
+        scope.launch {
+            val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+            mapFragment?.getMapAsync(callback)
+        }
     }
 
     override fun onCreateView(
@@ -132,22 +163,38 @@ class EmployerHome : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_home, container, false)
         binding.lifecycleOwner = this
         binding.vm = employerViewModel
+        binding.markerSelected = this.markerSelected
 
+        binding.fabMapMode.setOnClickListener{ showLists() }
+        binding.containerJobDetails.setOnClickListener { showDetail() }
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.cancel()
     }
 
     private fun doChargePoint(){
-        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentActivity()
+//        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentActivity()
+//        findNavController().navigate(directions)
+    }
+
+    private fun showDetail(){
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToEmployerJobDetail()
         findNavController().navigate(directions)
     }
 
+    private fun showLists(){
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToEmployerSaved()
+        findNavController().navigate(directions)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

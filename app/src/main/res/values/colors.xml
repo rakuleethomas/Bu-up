@@ -11,4 +11,6 @@
     <color name="text2">#C4C4C4</color>
     <color name="buup_employer">#3F3DA1</color>
     <color name="buup_job_seeker">#2C72F6</color>
+    <color name="buup_job_saved_heart_like">#E7698E</color>
+    <color name="buup_job_saved_heart_normal">#8D9AB6</color>
 </resources>

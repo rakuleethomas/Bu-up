@@ -12,9 +12,25 @@
         android:label="main_emp_home"
         tools:layout="@layout/fragment_employer_home" >
         <action
-            android:id="@+id/action_main_emp_home_to_paymentActivity"
-            app:destination="@id/paymentActivity" />
+            android:id="@+id/action_main_emp_home_to_employerSaved"
+            app:destination="@id/main_emp_saved" />
+        <action
+            android:id="@+id/action_main_emp_home_to_employerJobDetail"
+            app:destination="@id/employerJobDetail" />
     </fragment>
+
+    <fragment
+        android:id="@+id/main_emp_saved"
+        android:name="org.rakulee.buup.fragments.employer.EmployerSaved"
+        android:label="EmployerSaved" >
+        <action
+            android:id="@+id/action_employerSaved_to_main_emp_home"
+            app:destination="@id/main_emp_home" />
+        <action
+            android:id="@+id/action_main_emp_saved_to_employerJobDetail"
+            app:destination="@id/employerJobDetail" />
+    </fragment>
+
     <fragment
         android:id="@+id/main_emp_search"
         android:name="org.rakulee.buup.fragments.employer.EmployerSearch"
@@ -53,7 +69,7 @@
 
     <fragment
         android:id="@+id/employer_job_posting"
-        android:name="org.rakulee.buup.fragments.employer.employerPost.EmployerJobPosting"
+        android:name="org.rakulee.buup.fragments.employer.employer_post.EmployerJobPosting"
         android:label="Employer_Job_Posting"
         tools:layout="@layout/fragment_employer_job_posting">
         <action
@@ -66,5 +82,10 @@
         app:destination="@id/paymentActivity"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim" />
+    <fragment
+        android:id="@+id/employerJobDetail"
+        android:name="org.rakulee.buup.fragments.employer.EmployerJobDetail"
+        android:label="EmployerJobDetail" />
+
 
 </navigation>
