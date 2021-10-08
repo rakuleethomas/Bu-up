@@ -13,4 +13,7 @@ object Configs {
     val BUUP_JOB_SEEKER = 1008
 
     var currentThemeMode = BUUP_ONBOARDING
+
+    val BUUP_BASE_URL = "https://6gkonhnvk4.execute-api.us-east-1.amazonaws.com/dev/users/"
+
 }
