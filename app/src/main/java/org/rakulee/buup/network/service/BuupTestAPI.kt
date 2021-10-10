@@ -7,8 +7,8 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 
 interface BuupTestAPI {
-    @Headers("Content-Type:applcation/json")
-    @GET("/dev/users/{test}")
+    @Headers("Content-Type:application/json")
+    @GET("users/{test}")
     suspend fun queryUserInfo(
         @Path("test") res : String
     ) : Response<BuupTestResponse>

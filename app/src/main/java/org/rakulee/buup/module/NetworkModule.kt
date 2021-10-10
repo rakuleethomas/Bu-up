@@ -6,11 +6,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import org.rakulee.buup.Configs
-import org.rakulee.buup.network.service.BuupJobPostingAPI
+import org.rakulee.buup.network.service.BuupAddJobPostingAPI
+import org.rakulee.buup.network.service.BuupGetJobPostingByDistanceAPI
 import org.rakulee.buup.network.service.BuupTestAPI
 import org.rakulee.buup.network.service.SquareAPI
 import org.rakulee.buup.repo.PaymentRepo
-import org.rakulee.buup.viewmodel.PaymentViewModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Qualifier
@@ -60,5 +60,9 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideBuupJobPostingService(retrofit: Retrofit) = retrofit.create(BuupJobPostingAPI::class.java)
+    fun provideBuupJobPostingService(retrofit: Retrofit) = retrofit.create(BuupAddJobPostingAPI::class.java)
+
+    @Singleton
+    @Provides
+    fun provideBuupGetJobPostingByDistanceAPIService(retrofit: Retrofit) = retrofit.create(BuupGetJobPostingByDistanceAPI::class.java)
 }
