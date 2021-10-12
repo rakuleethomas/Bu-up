@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_employer_onboarding"
+    app:startDestination="@id/employerOnBoarding1">
+    <fragment
+        android:id="@+id/employerOnBoarding1"
+        android:name="org.rakulee.buup.fragments.employer.onboarding.EmployerOnBoarding1"
+        android:label="fragment_employer_on_boarding1"
+        tools:layout="@layout/fragment_employer_on_boarding1" >
+        <action
+            android:id="@+id/action_employerOnBoarding1_to_employerOnBoarding2"
+            app:destination="@id/employerOnBoarding2" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerOnBoarding2"
+        android:name="org.rakulee.buup.fragments.employer.onboarding.EmployerOnBoarding2"
+        android:label="fragment_employer_on_boarding2"
+        tools:layout="@layout/fragment_employer_on_boarding2" >
+        <action
+            android:id="@+id/action_employerOnBoarding2_to_employerOnBoarding3"
+            app:destination="@id/employerOnBoarding3" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerOnBoarding3"
+        android:name="org.rakulee.buup.fragments.employer.onboarding.EmployerOnBoarding3"
+        android:label="fragment_employer_on_boarding3"
+        tools:layout="@layout/fragment_employer_on_boarding3" >
+        <action
+            android:id="@+id/action_employerOnBoarding3_to_employerOnBoarding4"
+            app:destination="@id/employerOnBoarding4" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerOnBoarding4"
+        android:name="org.rakulee.buup.fragments.employer.onboarding.EmployerOnBoarding4"
+        android:label="fragment_employer_on_boarding4"
+        tools:layout="@layout/fragment_employer_on_boarding4" >
+        <action
+            android:id="@+id/action_employerOnBoarding4_to_employerOnBoarding5"
+            app:destination="@id/employerOnBoarding5" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerOnBoarding5"
+        android:name="org.rakulee.buup.fragments.employer.onboarding.EmployerOnBoarding5"
+        android:label="fragment_employer_on_boarding5"
+        tools:layout="@layout/fragment_employer_on_boarding5" >
+        <action
+            android:id="@+id/action_employerOnBoarding5_to_employerOnBoarding6"
+            app:destination="@id/employerOnBoarding6" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerOnBoarding6"
+        android:name="org.rakulee.buup.fragments.employer.onboarding.EmployerOnBoarding6"
+        android:label="fragment_employer_on_boarding6"
+        tools:layout="@layout/fragment_employer_on_boarding6" >
+        <action
+            android:id="@+id/action_employerOnBoarding6_to_employerLoginActivity"
+            app:destination="@id/employerLoginActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/employerLoginActivity"
+        android:name="org.rakulee.buup.screens.EmployerLoginActivity"
+        android:label="EmployerLoginActivity" />
+</navigation>

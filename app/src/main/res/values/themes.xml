@@ -29,8 +29,8 @@
     </style>
 
     <style name="buup_job_seeker" parent="Theme.Buup">
-        <item name="colorPrimary">@color/buup_employer</item>
-        <item name="colorPrimaryVariant">@color/buup_employer</item>
+        <item name="colorPrimary">@color/buup_job_seeker</item>
+        <item name="colorPrimaryVariant">@color/buup_job_seeker</item>
         <item name="colorOnPrimary">@color/black</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>

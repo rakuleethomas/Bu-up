@@ -8,6 +8,7 @@ import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.screens.LoginActivity
 import org.rakulee.buup.screens.OnBoardingActivity
+import org.rakulee.buup.screens.TestModeHelper
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity() {
@@ -16,7 +17,7 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, TestModeHelper::class.java)
             startActivity(intent)
             finish()
         }, 3000) // 3000 is the delayed time in milliseconds.
