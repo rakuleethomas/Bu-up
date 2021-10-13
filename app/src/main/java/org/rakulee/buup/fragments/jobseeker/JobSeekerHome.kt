@@ -17,8 +17,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.EmployerSavedListAdapter
 import org.rakulee.buup.adapters.JobListAdapter
 import org.rakulee.buup.databinding.FragmentJobSeekerHomeBinding
+import org.rakulee.buup.model.EmployerSavedListItem
 import org.rakulee.buup.model.Job
 import org.rakulee.buup.model.JobItem
 
@@ -57,61 +59,60 @@ class JobSeekerHome : Fragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_home, container, false)
-        binding.lifecycleOwner = this
-        binding.vm = this
 
-        // create a dummy data
+
         /**
-         * data class JobItem(
-        var imageUrl : String = "",
-        var companyTitle : String = "",
-        var jobDescription : String = ""
+        data class EmployerSavedListItem(
+        val jobTitle: String,
+        val companyTitle: String,
+        val priceLow: String,
+        val priceHigh: String,
+        val location: String,
+        val distanceMiles: String,
+        val liked: Boolean
         )
          */
-        val adapter = JobListAdapter()
-//
-//
-//        var company : Job
-//        for(i : Int in 1..10){
-//            company = if(i%2 == 1){
-//                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "SVKoreans", "Looking for part timers!")
-//            }else{
-//                JobItem("https://svkoreans.com/img/svlogo1-1.jpg", "Rakulee, Inc.", "Looking for volunteers!")
-//            }
-//            list.add(company)
-//        }
 
+        val list = ArrayList<EmployerSavedListItem>()
+        val adapter = EmployerSavedListAdapter()
+        var savedItem : EmployerSavedListItem
 
-        val query = ParseQuery.getQuery<Job>("Job")
-        query.findInBackground { jobs, e->
-            if (e == null) {
-                Log.d(TAG, "onCreateView: "+ jobs.size)
-                for (job : Job in jobs){
-                    Log.d(TAG, "onCreateView: "+ job.companyTitle)
-                }
-                list.addAll(jobs)
-                adapter.updateItems(list)
-                Log.d(TAG, "onCreateViewListSize: " + adapter.itemCount)
-            } else {
-                Log.e(TAG, "onCreateView: " + e.localizedMessage)
+        for(i : Int in 1 .. 15){
+            savedItem = if(i%2 == 1){
+                EmployerSavedListItem(
+                    "Warehouse Part-Time Worker",
+                    "Amazon",
+                    "${25+i}",
+                    "${50+i}",
+                    "Santa Clara",
+                    "${19+i*0.1}",
+                    true
+                )
+            }else{
+                EmployerSavedListItem(
+                    "Warehouse Part-Time Worker",
+                    "Amazon",
+                    "${25+i}",
+                    "${50+i}",
+                    "Santa Clara",
+                    "${19+i*0.1}",
+                    false
+                )
             }
+            list.add(savedItem)
         }
+        adapter.update(list)
+        adapter.setHasStableIds(true)
 
-
-        // end of create the dummy data
-        adapter.setHasStableIds(true)       // prevent blinking recyclerview items
-
-        binding.rvAdList.adapter = adapter
-        binding.rvAdList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-//        binding.executePendingBindings()
-
-        binding.fab.setOnClickListener{
+        binding.rvSavedJob.adapter = adapter
+        binding.rvSavedJob.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        binding.fabMapMode.setOnClickListener {
             val direction : NavDirections = JobSeekerHomeDirections.actionMainSeekerListviewToMainSeekerHome2()
             findNavController().navigate(direction)
         }
+
         return binding.root
     }
-
 
     companion object {
         /**

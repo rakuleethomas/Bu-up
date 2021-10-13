@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
@@ -56,18 +57,30 @@ class JobSeekerProfile : Fragment() {
         binding.lifecycleOwner = this
         binding.viewOnly = false
 
-        binding.tvName.text = ParseUser.getCurrentUser().get("FirstName").toString()
-        binding.tvBio.text = ParseUser.getCurrentUser().get("JobTitle").toString()
-        val minSalary = ParseUser.getCurrentUser().get("MinSalary") as Int
-        val maxSalary = ParseUser.getCurrentUser().get("MaxSalary") as Int
-        binding.tvWageValue.text = "$${minSalary} - $${maxSalary} /hr"
 
-        var imageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(imageUrl)){
-            imageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+        binding.btnDropdown.setOnClickListener{
+            if(binding.constraintLayout9.visibility == View.VISIBLE){
+                binding.constraintLayout9.visibility = View.GONE
+            } else{
+                binding.constraintLayout9.visibility = View.VISIBLE
+            }
         }
-        Glide.with(requireContext()).load(imageUrl).into(binding.ivProfile)
+
+//        binding.tvName.text = ParseUser.getCurrentUser().get("FirstName").toString()
+//        binding.tvBio.text = ParseUser.getCurrentUser().get("JobTitle").toString()
+//        val minSalary = ParseUser.getCurrentUser().get("MinSalary") as Int
+//        val maxSalary = ParseUser.getCurrentUser().get("MaxSalary") as Int
+//        binding.tvWageValue.text = "$${minSalary} - $${maxSalary} /hr"
+//
+//        var imageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
+////            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+//        if("".equals(imageUrl)){
+//            imageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+//        }
+        var imageUrl = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80";
+        Glide.with(requireContext()).load(imageUrl)
+            .apply(RequestOptions.circleCropTransform())
+            .into(binding.ivProfile)
 
         var interestList = ArrayList<JobSeekerInterestItem>()
         var skillsList = ArrayList<JobSeekerSkill>()
@@ -102,31 +115,31 @@ class JobSeekerProfile : Fragment() {
         val experiencesListAdapter = JobSeekerProfileExperiencesListAdapter()
         experiencesListAdapter.updateItems(expList)
 
-        binding.rvInterest.adapter = interestListAdapter
-        binding.rvSkills.adapter = skillsListAdapter
-        binding.rvExpList.adapter = experiencesListAdapter
-
-        binding.tvEditProfile.setOnClickListener {
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditUser()
-            findNavController().navigate(direction)
-
-        }
-
-        binding.tvEditInterest.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditInterest()
-            findNavController().navigate(direction)
-        }
-
-        binding.tvEditSkills.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditSkill()
-            findNavController().navigate(direction)
-        }
-
-        binding.tvEditExperience.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditExperience()
-            findNavController().navigate(direction)
-        }
-
+//        binding.rvInterest.adapter = interestListAdapter
+//        binding.rvSkills.adapter = skillsListAdapter
+//        binding.rvExpList.adapter = experiencesListAdapter
+//
+//        binding.tvEditProfile.setOnClickListener {
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditUser()
+//            findNavController().navigate(direction)
+//
+//        }
+//
+//        binding.tvEditInterest.setOnClickListener{
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditInterest()
+//            findNavController().navigate(direction)
+//        }
+//
+//        binding.tvEditSkills.setOnClickListener{
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditSkill()
+//            findNavController().navigate(direction)
+//        }
+//
+//        binding.tvEditExperience.setOnClickListener{
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditExperience()
+//            findNavController().navigate(direction)
+//        }
+//
 
         return binding.root
     }

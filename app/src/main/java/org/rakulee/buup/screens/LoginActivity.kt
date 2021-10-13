@@ -29,6 +29,13 @@ class LoginActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
         binding.activity = this
+
+
+        binding.btnLogin.setOnClickListener{
+            val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
+            startActivity(intent)
+            this@LoginActivity?.finish()
+        }
         /**
          * 이게 잡 포스팅 대략 하는거. 일단 edittext같은거랑 서브밋 버튼 만들어서
          * employer 화면에 이런식으로 만들어서 submit button 누를때 saveinbackground 해주면
