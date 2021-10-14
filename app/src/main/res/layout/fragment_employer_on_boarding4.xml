@@ -20,12 +20,12 @@
             android:text="Set up an account"
             android:textColor="#292929"
             android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintVertical_bias="0.10625"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.10625" />
 
 
         <TextView
@@ -36,21 +36,21 @@
             android:text="Budget?"
             android:textColor="#000000"
             android:textSize="14sp"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintVertical_bias="0.2015"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="200dp" />
+            app:layout_constraintVertical_bias="0.2015" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_company_size"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_budget"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/rectangle_edittext"
             android:padding="8dp"
+            android:hint="Budget (Numbers only)"
+            android:inputType="numberDecimal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
             app:layout_constraintHorizontal_bias="0.067"
@@ -68,7 +68,7 @@
             android:textColor="@color/buup_employer_onboarding_text_grey"
             app:layout_constraintBottom_toBottomOf="@+id/iv_next"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/container_company_size" />
+            app:layout_constraintTop_toBottomOf="@+id/et_budget" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/iv_next"
@@ -78,7 +78,7 @@
             android:background="@drawable/ic_bu_up_onboarding_next"
             android:tintMode="src_over"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/container_company_size" />
+            app:layout_constraintTop_toBottomOf="@+id/et_budget" />
 
 
         <TextView

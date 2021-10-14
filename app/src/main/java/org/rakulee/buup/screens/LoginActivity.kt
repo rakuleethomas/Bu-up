@@ -12,6 +12,7 @@ import com.parse.*
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
 import org.rakulee.buup.BaseActivity
+import org.rakulee.buup.Configs
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityLoginBinding
 import org.rakulee.buup.model.Job
@@ -22,6 +23,19 @@ class LoginActivity : BaseActivity() {
 
 
     lateinit var binding : ActivityLoginBinding
+    var MODE = Configs.BUUP_JOB_SEEKER
+    var flag = false
+
+
+    var blocking = false
+    fun testEmployer(view: View){
+        val intent = Intent(this, PartTimeEmployerActivity::class.java)
+        if(!blocking){
+            blocking = true;
+            startActivity(intent)
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +43,18 @@ class LoginActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
         binding.activity = this
-
-
+        binding.flag = flag
         binding.btnLogin.setOnClickListener{
             val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
             startActivity(intent)
             this@LoginActivity?.finish()
         }
+
+        binding.switchEmployer.setOnCheckedChangeListener { compoundButton, isChecked ->
+            flag = !flag
+            binding.flag = flag
+        }
+
         /**
          * 이게 잡 포스팅 대략 하는거. 일단 edittext같은거랑 서브밋 버튼 만들어서
          * employer 화면에 이런식으로 만들어서 submit button 누를때 saveinbackground 해주면
@@ -124,18 +143,18 @@ class LoginActivity : BaseActivity() {
     }
 
     fun createAccount(view: View) {
-        val intent = Intent(this, SignupActivity::class.java)
-        startActivity(intent)
-    }
 
-    var blocking = false;
-    fun testEmployer(view: View){
-        val intent = Intent(this, PartTimeEmployerActivity::class.java)
-        if(!blocking){
-            blocking = true;
+        // if the flag is set, employer mode.
+        // if not, it would be job_seeker mode.
+        if(flag){
+            val intent = Intent(this, EmployerSignupActivity::class.java)
+            startActivity(intent)
+        }else{
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 
     }
+
 
 }

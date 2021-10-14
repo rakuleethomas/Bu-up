@@ -20,12 +20,12 @@
             android:text="Set up an account"
             android:textColor="#292929"
             android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintVertical_bias="0.10625"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.10625" />
 
 
         <TextView
@@ -36,14 +36,12 @@
             android:text="Your name?"
             android:textColor="#000000"
             android:textSize="14sp"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintVertical_bias="0.2015"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="200dp" />
+            app:layout_constraintVertical_bias="0.2015" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_company_name"
@@ -52,6 +50,8 @@
             android:background="@drawable/rectangle_edittext"
             android:padding="8dp"
             android:hint="Your name?"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
             app:layout_constraintHorizontal_bias="0.067"

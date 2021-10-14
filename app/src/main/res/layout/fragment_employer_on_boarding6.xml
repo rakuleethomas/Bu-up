@@ -20,12 +20,12 @@
             android:text="Set up an account"
             android:textColor="#292929"
             android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintVertical_bias="0.10625"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.10625" />
 
 
         <TextView
@@ -36,12 +36,12 @@
             android:text="Address?"
             android:textColor="#000000"
             android:textSize="14sp"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintVertical_bias="0.2015"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2015" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +77,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rectangle_edittext"
                 android:hint="Address 2"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/et_zip_code"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rectangle_edittext"
                 android:hint="Zip Code"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/et_address4"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rectangle_edittext"
                 android:hint="State"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -5,9 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="org.rakulee.buup.adapters.BindingAdapters"/>
         <variable
             name="activity"
             type="org.rakulee.buup.screens.LoginActivity" />
+        <variable
+            name="flag"
+            type="Boolean" />
 
     </data>
 
@@ -51,6 +56,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/rectangle_edittext"
             android:text="Employer Test"
+            android:visibility="gone"
             android:onClick="testEmployer"
             android:backgroundTint="@color/buup_job_seeker"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:font="@font/inter_medium"
-            android:text="Find the part-time job \nthat's right for you"
+            android:text="@{flag? &quot;Find the part-time \nemployee&quot; :&quot;Find the part-time job \nthat's right for you&quot;}"
+            tools:text="Find the part-time job \nthat's right for you"
             android:textColor="#292929"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,10 +193,12 @@
             android:background="@drawable/login_button"
             android:fontFamily="@font/inter_semibold"
             android:text="Login"
+            tools:text="Login"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            app:backgroundTint="@null"
+            android:backgroundTint="@{flag? @color/buup_employer : @color/buup_job_seeker}"
+            tools:backgroundTint="@color/buup_job_seeker"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -252,7 +261,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_variablefont"
-            android:text="Are you an Employer?"
+            android:text="@{flag? &quot;Are you a jobSeeker?&quot; : &quot;Are you an Employer?&quot;}"
             android:textColor="#292929"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
