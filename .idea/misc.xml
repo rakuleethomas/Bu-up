@@ -16,6 +16,7 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_baseline_local_cafe_24.xml" value="0.1675213675213675" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_bg_drop_down.xml" value="0.19791666666666666" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_bg_search.xml" value="0.1811965811965812" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_bu_up_dropdown_long.xml" value="0.38229166666666664" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_bu_up_onboarding_next.xml" value="0.22604166666666667" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_bu_up_purple.xml" value="0.1641025641025641" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/ic_heart.xml" value="0.16296296296296298" />
@@ -59,7 +60,7 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding2.xml" value="0.5466562986003111" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding3.xml" value="0.2598958333333333" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding4.xml" value="0.2598958333333333" />
-        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding5.xml" value="0.2598958333333333" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding5.xml" value="0.5" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding6.xml" value="0.2598958333333333" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_saved.xml" value="0.2037037037037037" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_search.xml" value="0.23550724637681159" />
