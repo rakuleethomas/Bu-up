@@ -8,19 +8,37 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import com.google.gson.JsonObject
 import com.parse.*
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.Configs
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityLoginBinding
 import org.rakulee.buup.model.Job
+import org.rakulee.buup.model.JobSeekerSignInResponse
+import org.rakulee.buup.repo.BuupAPIRepo
+import retrofit2.Response
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity() {
 
+
+    @Inject
+    lateinit var buupAPIRepo : BuupAPIRepo
+
+    @Inject
+    lateinit var okHttpClient : OkHttpClient
 
     lateinit var binding : ActivityLoginBinding
     var MODE = Configs.BUUP_JOB_SEEKER
@@ -37,6 +55,45 @@ class LoginActivity : BaseActivity() {
 
     }
 
+    suspend fun login(){
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("loginId", binding.etEmail.text.toString())
+        jsonObject.addProperty("password", binding.etPassword.text.toString())
+        val jsonString = jsonObject.toString()
+        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+        val loginResponse : Response<JobSeekerSignInResponse> = buupAPIRepo.jobSeekerSignIn(requestBody)
+
+
+        /*
+        {
+            "loginId": "john.snow@email.com",
+            "password": "q1w2e3r4t5"
+        }
+         */
+
+        // if login is success
+        if(loginResponse.isSuccessful){
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                loginResponse.body()!!.message
+                val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
+                startActivity(intent)
+                this@LoginActivity?.finish()
+            }
+            Log.d("LOGIN", "login: ${loginResponse.body().toString()}")
+
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(applicationContext, "Incorrect login information!", Toast.LENGTH_SHORT).show()
+                Log.d("LOGIN", "login: Error")
+            }
+        }
+
+
+
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,9 +102,10 @@ class LoginActivity : BaseActivity() {
         binding.activity = this
         binding.flag = flag
         binding.btnLogin.setOnClickListener{
-            val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
-            startActivity(intent)
-            this@LoginActivity?.finish()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                login()
+            }
         }
 
         binding.switchEmployer.setOnCheckedChangeListener { compoundButton, isChecked ->
