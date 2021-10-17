@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="viewModel"
+            type="org.rakulee.buup.viewmodel.EmployerOnBoardingViewModel" />
 
     </data>
 
@@ -52,7 +55,9 @@
             android:padding="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:text="@{viewModel.buupEmployerProfile.companyInfo.name}"
             android:hint="Company name?"
+            android:textColor="#4A4A4A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
             app:layout_constraintHorizontal_bias="0.067"

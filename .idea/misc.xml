@@ -42,8 +42,8 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/switch_background.xml" value="0.38229166666666664" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/switch_thumb.xml" value="0.19791666666666666" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_employer_login.xml" value="0.18" />
-        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_employer_on_boarding.xml" value="0.17239583333333333" />
-        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_employer_signup.xml" value="0.18177083333333333" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_employer_on_boarding.xml" value="0.5" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_employer_signup.xml" value="0.5" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_job_seeker_on_boarding.xml" value="0.18177083333333333" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_job_seeker_on_bording.xml" value="0.1358974358974359" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_login.xml" value="0.20380434782608695" />
@@ -68,6 +68,7 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_job_seeker_map_view.xml" value="0.32546296296296295" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_job_seeker_on_boarding1.xml" value="0.18177083333333333" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_job_seeker_on_boarding2.xml" value="0.17239583333333333" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_job_seeker_on_boarding3.xml" value="0.18072916666666666" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_job_seeker_on_boarding4.xml" value="0.32546296296296295" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_job_seeker_profile.xml" value="0.18194444444444444" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_maps.xml" value="0.16794871794871793" />

@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerOnBoarding6Binding
+import org.rakulee.buup.model.BuupEmployerProfile
+import org.rakulee.buup.viewmodel.EmployerOnBoardingViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +31,7 @@ class EmployerOnBoarding6 : Fragment() {
     private var param2: String? = null
 
     lateinit var binding : FragmentEmployerOnBoarding6Binding
-
+    val viewModel : EmployerOnBoardingViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -44,10 +47,17 @@ class EmployerOnBoarding6 : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_on_boarding6, container, false)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         binding.tvSkip.setOnClickListener {
             skip()
         }
         binding.ivNext.setOnClickListener {
+            val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
+            buupEmployerProfile!!.companyInfo.address1 = binding.etAddress1.text.toString()
+            buupEmployerProfile!!.companyInfo.address2 = binding.etAddress2.text.toString()
+            buupEmployerProfile!!.companyInfo.zipCode = binding.etZipCode.text.toString()
+            buupEmployerProfile!!.companyInfo.state = binding.spinnerState.selectedItem.toString()
+            viewModel.updateBuupEmployerProfile(buupEmployerProfile)
             goNextStep()
         }
         return binding.root
@@ -62,6 +72,7 @@ class EmployerOnBoarding6 : Fragment() {
     fun goNextStep() {
         // move on to next step
         // need to save data to server
+
         val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToEmployerLoginActivity()
         findNavController().navigate(direction)
     }

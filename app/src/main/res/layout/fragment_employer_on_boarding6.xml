@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="org.rakulee.buup.viewmodel.EmployerOnBoardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,6 +65,8 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rectangle_edittext"
                 android:hint="Address 1"
+                android:text="@{viewModel.buupEmployerProfile.companyInfo.address1}"
+                android:textColor="#4A4A4A"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/et_address2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +81,8 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rectangle_edittext"
                 android:hint="Address 2"
+                android:text="@{viewModel.buupEmployerProfile.companyInfo.address2}"
+                android:textColor="#4A4A4A"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/et_zip_code"
@@ -90,21 +96,26 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rectangle_edittext"
                 android:hint="Zip Code"
+                android:text="@{viewModel.buupEmployerProfile.companyInfo.zipCode}"
+                android:textColor="#4A4A4A"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/et_address4"
+                android:inputType="number"
+                app:layout_constraintBottom_toTopOf="@+id/spinner_state"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_address2" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_address4"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/rectangle_edittext"
-                android:hint="State"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_state"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rectangle_edittext"
                 android:layout_marginTop="16dp"
+                android:entries="@array/states"
+                android:theme="@style/SpinnerTheme"
                 android:padding="8dp"
+                android:background="@drawable/ic_bu_up_dropdown_long"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -8,8 +8,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.rakulee.buup.BuildConfig
 import org.rakulee.buup.Configs
-import org.rakulee.buup.helper.ApiHelper
-import org.rakulee.buup.helper.ApiHelperImpl
+import org.rakulee.buup.helper.BuupApiHelper
+import org.rakulee.buup.helper.BuupApiHelperImpl
 import org.rakulee.buup.network.service.*
 import org.rakulee.buup.repo.PaymentRepo
 import retrofit2.Retrofit
@@ -54,7 +54,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiHelper(apiHelper: ApiHelperImpl) : ApiHelper = apiHelper
+    fun provideApiHelper(apiHelper: BuupApiHelperImpl) : BuupApiHelper = apiHelper
 
 
     @Singleton
@@ -104,4 +104,8 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideJobSeekerLoginService(retrofit: Retrofit) = retrofit.create(BuupJobSeekerLoginServiceAPI::class.java)
+
+    @Singleton
+    @Provides
+    fun provideEmployerSignupApiService(retrofit: Retrofit) = retrofit.create(BuupEmployerSignUpAPI::class.java)
 }

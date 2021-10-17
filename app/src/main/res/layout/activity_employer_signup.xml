@@ -130,7 +130,8 @@
                 android:layout_marginStart="6.17dp"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
-                android:textColor="#B1B1B1"
+                android:textColorHint="#B1B1B1"
+                android:textColor="#4A4A4A"
                 android:fontFamily="@font/inter_variablefont"
                 android:layout_gravity="center_vertical"
                 android:hint="Email address"
@@ -169,7 +170,8 @@
                 android:layout_marginStart="6.17dp"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
-                android:textColor="#B1B1B1"
+                android:textColorHint="#B1B1B1"
+                android:textColor="#4A4A4A"
                 android:fontFamily="@font/inter_variablefont"
                 android:layout_gravity="center_vertical"
                 android:hint="Password"
@@ -210,9 +212,10 @@
                 android:background="@null"
                 android:fontFamily="@font/inter_variablefont"
                 android:hint="Re-enter password"
+                android:textColorHint="#B1B1B1"
+                android:textColor="#4A4A4A"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:textColor="#B1B1B1"
                 android:textSize="14sp" />
 
         </LinearLayout>

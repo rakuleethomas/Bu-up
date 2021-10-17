@@ -3,8 +3,6 @@ package org.rakulee.buup
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.JsonObject
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.testing.CustomTestApplication
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
@@ -13,18 +11,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.rakulee.buup.helper.ApiHelper
-import org.rakulee.buup.model.JobSeekerSignInResponse
-import org.rakulee.buup.module.NetworkModule
 import org.rakulee.buup.repo.BuupAPIRepo
-import retrofit2.Response
 import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext

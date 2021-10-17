@@ -1,24 +1,28 @@
 package org.rakulee.buup.model
 
 data class BuupEmployerProfile(
-    val userId : String,
-    val firstName : String,
-    val lastName : String,
-    val email : String,
-    val loginId : String,
-    val password : String,      // hash
-    val verified : Boolean,
-    val photoUrl : String,
-    val socialMedia : String,
-    val timestamp : String,
-    val companyInfo : CompanyInfo
+    var userId : String = "",
+    var firstName : String = "",
+    var lastName : String = "",
+    var email : String = "",
+    var loginId : String = "",
+    var password : String = "",      // hash
+    var verified : Boolean = false,
+    var photoUrl : String = "",
+    var socialMedia : String = "",
+    var timestamp : String = "",
+    var companyInfo : CompanyInfo = CompanyInfo()
 ){
-
     data class CompanyInfo(
-        val name : String,
-        val logoUrl : String,
-        val address : String,
-        val description : String,
-        val industry : ArrayList<String>
+        var name : String = "",
+        var logoUrl : String = "",
+        var address1 : String = "",
+        var address2 : String = "",
+        var zipCode : String = "",
+        var state : String = "",
+        var description : String = "",
+        var companySize : String = "",
+        var budget : String = "",
+        var industry : ArrayList<String> = ArrayList<String>()
     )
 }

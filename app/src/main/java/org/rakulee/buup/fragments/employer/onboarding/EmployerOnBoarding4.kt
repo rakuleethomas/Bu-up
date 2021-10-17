@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerOnBoarding4Binding
+import org.rakulee.buup.model.BuupEmployerProfile
+import org.rakulee.buup.viewmodel.EmployerOnBoardingViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +30,7 @@ class EmployerOnBoarding4 : Fragment() {
     private var param2: String? = null
 
     lateinit var binding : FragmentEmployerOnBoarding4Binding
-
+    val viewModel : EmployerOnBoardingViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,10 +46,14 @@ class EmployerOnBoarding4 : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_on_boarding4, container, false)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         binding.tvSkip.setOnClickListener {
             skip()
         }
         binding.ivNext.setOnClickListener {
+            val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
+            buupEmployerProfile!!.companyInfo.budget = binding.etBudget.text.toString()
+            viewModel.updateBuupEmployerProfile(buupEmployerProfile)
             goNextStep()
         }
         return binding.root

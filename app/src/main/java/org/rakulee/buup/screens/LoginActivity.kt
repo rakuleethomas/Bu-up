@@ -61,36 +61,36 @@ class LoginActivity : BaseActivity() {
         jsonObject.addProperty("password", binding.etPassword.text.toString())
         val jsonString = jsonObject.toString()
         val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
-        val loginResponse : Response<JobSeekerSignInResponse> = buupAPIRepo.jobSeekerSignIn(requestBody)
 
+        // jobseeker login
+        if(!flag){
+            val loginResponse : Response<JobSeekerSignInResponse> = buupAPIRepo.jobSeekerSignIn(requestBody)
 
-        /*
-        {
-            "loginId": "john.snow@email.com",
-            "password": "q1w2e3r4t5"
-        }
-         */
-
-        // if login is success
-        if(loginResponse.isSuccessful){
-            CoroutineScope(Dispatchers.Main).launch {
-                Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
-                loginResponse.body()!!.message
-                val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
-                startActivity(intent)
-                this@LoginActivity?.finish()
+            /*
+            {
+                "loginId": "john.snow@email.com",
+                "password": "q1w2e3r4t5"
             }
-            Log.d("LOGIN", "login: ${loginResponse.body().toString()}")
+             */
 
-        }else{
-            CoroutineScope(Dispatchers.Main).launch {
-                Toast.makeText(applicationContext, "Incorrect login information!", Toast.LENGTH_SHORT).show()
-                Log.d("LOGIN", "login: Error")
+            // if login is success
+            if(loginResponse.isSuccessful){
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                    loginResponse.body()!!.message
+                    val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
+                    startActivity(intent)
+                    this@LoginActivity?.finish()
+                }
+                Log.d("LOGIN", "login: ${loginResponse.body().toString()}")
+
+            }else{
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(applicationContext, "Incorrect login information!", Toast.LENGTH_SHORT).show()
+                    Log.d("LOGIN", "login: Error")
+                }
             }
         }
-
-
-
 
     }
 
