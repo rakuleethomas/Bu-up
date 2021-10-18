@@ -31,11 +31,11 @@ object Util {
      * Pre: Plain password : String
      * Post: Encrypted password : ByteArray
      */
-    fun encryptPassword(password : String) : ByteArray{
+    fun encryptPassword(password : CharArray) : ByteArray{
         val random = SecureRandom()
         val salt = ByteArray(256)
         random.nextBytes(salt)
-        val pbKeySpec = PBEKeySpec(password.toCharArray(), salt, 1111, 256)
+        val pbKeySpec = PBEKeySpec(password, salt, 1111, 256)
         val secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
         val keyBytes = secretKeyFactory.generateSecret(pbKeySpec).encoded
         val keySpec = SecretKeySpec(keyBytes, "AES") // 4
@@ -47,7 +47,7 @@ object Util {
 
         val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
         cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec)
-        val encrypted = cipher.doFinal(password.toByteArray())
+        val encrypted = cipher.doFinal(keyBytes)
         return encrypted
     }
 
@@ -57,7 +57,7 @@ object Util {
      * Post: Decrypted password : ByteArray
      */
 
-    fun decryptPassword(password : String) : ByteArray{
+    fun decryptPassword(password : CharArray) : ByteArray{
 
         val map = HashMap<String, ByteArray>()
         val salt = map["salt"]
@@ -65,7 +65,7 @@ object Util {
         val encrypted = map["encrypted"]
 
         //regenerate key from password
-        val pbKeySpec = PBEKeySpec(password.toCharArray(), salt, 1111, 256)
+        val pbKeySpec = PBEKeySpec(password, salt, 1111, 256)
         val secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
         val keyBytes = secretKeyFactory.generateSecret(pbKeySpec).encoded
         val keySpec = SecretKeySpec(keyBytes, "AES")
@@ -76,5 +76,17 @@ object Util {
         val ivSpec = IvParameterSpec(iv)
         cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec)
         return cipher.doFinal(encrypted)
+    }
+
+    fun ByteArray.toHex(): String {
+        return joinToString("") { "%02x".format(it) }
+    }
+
+    fun String.decodeHex(): ByteArray {
+        check(length % 2 == 0) { "Must have an even length" }
+
+        return chunked(2)
+            .map { it.toInt(16).toByte() }
+            .toByteArray()
     }
 }

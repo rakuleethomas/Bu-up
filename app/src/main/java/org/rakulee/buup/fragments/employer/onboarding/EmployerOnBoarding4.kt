@@ -1,14 +1,18 @@
 package org.rakulee.buup.fragments.employer.onboarding
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerOnBoarding4Binding
 import org.rakulee.buup.model.BuupEmployerProfile
@@ -24,6 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [EmployerOnBoarding4.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class EmployerOnBoarding4 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -47,12 +52,33 @@ class EmployerOnBoarding4 : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_on_boarding4, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.etBudget.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                return
+            }
+
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                return
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                when {
+                    editable.isNullOrEmpty() -> return
+                    Regex("\\$\\d+").matches(editable.toString()) -> return
+                    editable.toString() == "$" -> editable.clear()
+                    editable.startsWith("$").not() -> editable.insert(0, "$")
+                }
+            }
+        })
+
+
         binding.tvSkip.setOnClickListener {
             skip()
         }
         binding.ivNext.setOnClickListener {
             val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
-            buupEmployerProfile!!.companyInfo.budget = binding.etBudget.text.toString()
+            val budget = binding.etBudget.text.toString()
+            buupEmployerProfile!!.companyInfo.budget = "$budget"
             viewModel.updateBuupEmployerProfile(buupEmployerProfile)
             goNextStep()
         }

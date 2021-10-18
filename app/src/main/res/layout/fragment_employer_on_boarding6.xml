@@ -91,6 +91,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/et_address1" />
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_city"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/rectangle_edittext"
+                android:hint="City"
+                android:text="@{viewModel.buupEmployerProfile.companyInfo.city}"
+                android:textColor="#4A4A4A"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/et_zip_code"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_address2" />
+
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_zip_code"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -104,7 +119,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/spinner_state"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_address2" />
+                app:layout_constraintTop_toBottomOf="@+id/et_city" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_state"

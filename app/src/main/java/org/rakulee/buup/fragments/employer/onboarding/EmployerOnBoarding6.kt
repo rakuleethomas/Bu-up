@@ -10,10 +10,23 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerOnBoarding6Binding
 import org.rakulee.buup.model.BuupEmployerProfile
+import org.rakulee.buup.repo.BuupAPIRepo
+import org.rakulee.buup.util.Util
+import org.rakulee.buup.util.Util.toHex
 import org.rakulee.buup.viewmodel.EmployerOnBoardingViewModel
+import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,10 +38,16 @@ private const val ARG_PARAM2 = "param2"
  * Use the [EmployerOnBoarding6.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class EmployerOnBoarding6 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    @Inject
+    lateinit var buupRepo : BuupAPIRepo
+    @Inject
+    lateinit var okHttpClient: OkHttpClient
 
     lateinit var binding : FragmentEmployerOnBoarding6Binding
     val viewModel : EmployerOnBoardingViewModel by activityViewModels()
@@ -55,26 +74,48 @@ class EmployerOnBoarding6 : Fragment() {
             val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
             buupEmployerProfile!!.companyInfo.address1 = binding.etAddress1.text.toString()
             buupEmployerProfile!!.companyInfo.address2 = binding.etAddress2.text.toString()
+            buupEmployerProfile!!.companyInfo.city = binding.etCity.text.toString()
             buupEmployerProfile!!.companyInfo.zipCode = binding.etZipCode.text.toString()
             buupEmployerProfile!!.companyInfo.state = binding.spinnerState.selectedItem.toString()
             viewModel.updateBuupEmployerProfile(buupEmployerProfile)
-            goNextStep()
+            doSignUp()
         }
         return binding.root
     }
 
     fun skip(){
         // skip to next page
+
         val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToEmployerLoginActivity()
         findNavController().navigate(direction)
     }
 
-    fun goNextStep() {
-        // move on to next step
-        // need to save data to server
+    fun doSignUp() {
+        // signup final step.
+        CoroutineScope(Dispatchers.IO).launch {
+            val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
+            val jsonObject = JsonObject()
+            val encryptedPassword = Util.encryptPassword(buupEmployerProfile!!.password.toCharArray())
+            val gson = Gson()
 
-        val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToEmployerLoginActivity()
-        findNavController().navigate(direction)
+            val companyInfo = buupEmployerProfile!!.companyInfo
+
+            jsonObject.addProperty("loginId", buupEmployerProfile.loginId)
+            jsonObject.addProperty("password", encryptedPassword.toHex())
+            jsonObject.addProperty("timestamp", System.currentTimeMillis())
+            jsonObject.add("companyInfo", gson.toJsonTree(companyInfo))
+            val jsonString = jsonObject.toString()
+            val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+            val result = buupRepo.employerSignUp(requestBody)
+            if(result.isSuccessful){
+                print(result.body())
+            }else{
+                print(result.errorBody())
+            }
+        }
+
+//        val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToEmployerLoginActivity()
+//        findNavController().navigate(direction)
     }
 
     companion object {

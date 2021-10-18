@@ -18,6 +18,7 @@ data class BuupEmployerProfile(
         var logoUrl : String = "",
         var address1 : String = "",
         var address2 : String = "",
+        var city : String = "",
         var zipCode : String = "",
         var state : String = "",
         var description : String = "",

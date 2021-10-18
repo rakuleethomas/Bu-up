@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentEmployerOnBoarding3Binding
 import org.rakulee.buup.model.BuupEmployerProfile
@@ -24,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [EmployerOnBoarding3.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class EmployerOnBoarding3 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
