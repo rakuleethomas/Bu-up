@@ -107,5 +107,5 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideEmployerSignupApiService(retrofit: Retrofit) = retrofit.create(BuupEmployerSignUpAPI::class.java)
+    fun provideEmployerApiService(retrofit: Retrofit) = retrofit.create(BuupEmployerAPI::class.java)
 }

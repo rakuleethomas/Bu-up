@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_emp_home"
-        android:icon="@drawable/ic_search"
+        android:id="@+id/main_emp_dashboard"
+        android:icon="@drawable/ic_bu_up_dashboard"
         android:title="@null"
         />
 

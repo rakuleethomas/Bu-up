@@ -19,6 +19,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.rakulee.buup.model.BuupEmployerProfile
+import org.rakulee.buup.model.EmployerSignIn
 import org.rakulee.buup.module.NetworkModule
 import org.rakulee.buup.repo.BuupAPIRepo
 import org.rakulee.buup.util.Util
@@ -31,6 +32,7 @@ import kotlin.coroutines.CoroutineContext
 import org.robolectric.annotation.Config
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.LooperMode
+import org.robolectric.shadows.ShadowLog
 import java.nio.charset.StandardCharsets
 
 
@@ -49,6 +51,7 @@ class BuupUserAPITest : CoroutineScope {
     @Before
     fun setUp() {
         hiltAndroidRule.inject()
+        ShadowLog.stream = System.out
     }
 
     @Inject lateinit var buupRepo : BuupAPIRepo
@@ -106,7 +109,7 @@ class BuupUserAPITest : CoroutineScope {
         val countDownLatch = CountDownLatch(1)
         launch {
             val jsonObject = JsonObject()
-            val encryptedPassword = Util.encryptPassword("1234".toCharArray())
+            val encryptedPassword = Util.encryptPassword("1234")
             val industryList = ArrayList<String>()
             industryList.add("Non-Profit/Volunteering")
             val companyInfo = BuupEmployerProfile.CompanyInfo("Rakulee, Inc.",
@@ -115,23 +118,40 @@ class BuupUserAPITest : CoroutineScope {
                 "$10000", industryList)
             val gson = Gson()
 
-            val encryptedHexString = encryptedPassword.toHex()
-            val decriptByteArray = encryptedHexString.decodeHex()
-            if(encryptedPassword.contentEquals(decriptByteArray)){
-                print("true")
-            }
+//            val encryptedHexString = encryptedPassword.toHex()
+//            val decriptByteArray = encryptedHexString.decodeHex()
+//            if(encryptedPassword.contentEquals(decriptByteArray)){
+//                print("true")
+//            }
 
-            jsonObject.addProperty("loginId", "test5@gmail.com")
-            jsonObject.addProperty("password", encryptedPassword.toHex())
+            jsonObject.addProperty("loginId", "buup@gmail.com")
+            jsonObject.addProperty("password", encryptedPassword)
             jsonObject.addProperty("timestamp", System.currentTimeMillis())
             jsonObject.add("companyInfo", gson.toJsonTree(companyInfo))
             val jsonString = jsonObject.toString()
             val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
             val result = buupRepo.employerSignUp(requestBody)
             print(result.body())
-            Log.d("TEST", "employerSignUp: ${jsonString}")
 //            val result = buupRepo.jobSeekerSignIn(requestBody)
 //            print(result.body())
+        }
+        countDownLatch.await()
+    }
+
+    @Test
+    fun employerSignIn(){
+        val countDownLatch = CountDownLatch(1)
+        launch {
+            val jsonObject = JsonObject()
+            val encryptedPassword = Util.encryptPassword("1234")
+            val decryptedPassword = Util.decryptPassword(encryptedPassword!!)
+            val loginId = "buup@gmail.com"
+            val employerSignIn = EmployerSignIn(loginId, encryptedPassword!!)
+            val gson = Gson()
+            val jsonString = gson.toJsonTree(employerSignIn).asJsonObject.toString()
+            val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+            val result = buupRepo.employerSignIn(requestBody)
+            print(result.body())
         }
         countDownLatch.await()
     }

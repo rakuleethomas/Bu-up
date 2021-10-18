@@ -1,18 +1,15 @@
 package org.rakulee.buup.screens
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.parse.*
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,9 +20,10 @@ import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.Configs
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityLoginBinding
-import org.rakulee.buup.model.Job
+import org.rakulee.buup.model.EmployerSignIn
 import org.rakulee.buup.model.JobSeekerSignInResponse
 import org.rakulee.buup.repo.BuupAPIRepo
+import org.rakulee.buup.util.Util
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -35,7 +33,7 @@ class LoginActivity : BaseActivity() {
 
 
     @Inject
-    lateinit var buupAPIRepo : BuupAPIRepo
+    lateinit var buupRepo : BuupAPIRepo
 
     @Inject
     lateinit var okHttpClient : OkHttpClient
@@ -56,15 +54,15 @@ class LoginActivity : BaseActivity() {
     }
 
     suspend fun login(){
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("loginId", binding.etEmail.text.toString())
-        jsonObject.addProperty("password", binding.etPassword.text.toString())
-        val jsonString = jsonObject.toString()
-        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
 
         // jobseeker login
         if(!flag){
-            val loginResponse : Response<JobSeekerSignInResponse> = buupAPIRepo.jobSeekerSignIn(requestBody)
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("loginId", binding.etEmail.text.toString())
+            jsonObject.addProperty("password", binding.etPassword.text.toString())
+            val jsonString = jsonObject.toString()
+            val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+            val loginResponse : Response<JobSeekerSignInResponse> = buupRepo.jobSeekerSignIn(requestBody)
 
             /*
             {
@@ -90,6 +88,30 @@ class LoginActivity : BaseActivity() {
                     Log.d("LOGIN", "login: Error")
                 }
             }
+        }else{  // employer login
+            CoroutineScope(Dispatchers.IO).launch{
+                val jsonObject = JsonObject()
+                val loginId = binding.etEmail.text.toString()
+                val plainPassword = binding.etPassword.text.toString()
+                val encryptedPassword = Util.encryptPassword(plainPassword)
+                val employerSignIn = EmployerSignIn(loginId, encryptedPassword!!)
+                val gson = Gson()
+                val jsonString = gson.toJsonTree(employerSignIn).asJsonObject.toString()
+                val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+                val loginResponse = buupRepo.employerSignIn(requestBody)
+                if(loginResponse.isSuccessful){
+                    CoroutineScope(Dispatchers.Main).launch{
+                        Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, PartTimeEmployerActivity::class.java)
+                        startActivity(intent)
+                    }
+                }else{
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Toast.makeText(applicationContext, "Incorrect login information!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
 
     }
@@ -197,7 +219,9 @@ class LoginActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        blocking = false;
+        blocking = false
+        binding.switchEmployer.isChecked = false
+        flag = false
     }
 
     fun createAccount(view: View) {
