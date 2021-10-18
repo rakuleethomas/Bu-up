@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -21,6 +23,7 @@ import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileUserEdit
 import org.rakulee.buup.model.JobSeekerExperiences
 import org.rakulee.buup.model.JobSeekerInterestItem
 import org.rakulee.buup.model.JobSeekerSkill
+import org.rakulee.buup.viewmodel.JobSeekerViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +40,7 @@ class JobSeekerProfile : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val viewModel: JobSeekerViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +60,7 @@ class JobSeekerProfile : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_profile, container, false)
         binding.lifecycleOwner = this
         binding.viewOnly = false
-
+        binding.viewModel = viewModel
 
         binding.btnDropdown.setOnClickListener{
             if(binding.constraintLayout9.visibility == View.VISIBLE){
@@ -65,6 +69,10 @@ class JobSeekerProfile : Fragment() {
                 binding.constraintLayout9.visibility = View.VISIBLE
             }
         }
+        if (viewModel.buupJobSeekerProfile.value!!.verified) {
+            binding.ivVerified.setImageResource(R.drawable.ic_verified)
+        }
+
 
 //        binding.tvName.text = ParseUser.getCurrentUser().get("FirstName").toString()
 //        binding.tvBio.text = ParseUser.getCurrentUser().get("JobTitle").toString()

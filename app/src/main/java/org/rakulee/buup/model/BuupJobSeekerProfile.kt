@@ -1,36 +1,36 @@
 package org.rakulee.buup.model
 
 data class BuupJobSeekerProfile(
-    val userId : String,
-    val firstName : String,
-    val lastName : String,
-    val email : String,
-    val loginId : String,
-    val password : String,      // hash
-    val verified : Boolean,
-    val industry : ArrayList<String>,
-    val badge : ArrayList<Badge>,
-    val photoUrl : String,
-    val buupCount : Int,
-    val skills : Skill,
-    val socialMedia : String,
-    val timestamp : String,
-    val wageMin : String,
-    val wageMax : String,
-    val zipCode : String
+    var userId : String = "",
+    var firstName : String = "",
+    var lastName : String  = "",
+    var email : String  = "",
+    var loginId : String  = "",
+    var password : String  = "",      // hash
+    var verified : Boolean = false,
+    var industry : ArrayList<String> = ArrayList<String>(),
+    var badge : List<JobSeekerSignInResponse.Message.Badge> = ArrayList<JobSeekerSignInResponse.Message.Badge>(),
+    var photoUrl : String = "",
+    var buupCount : Int = 0,
+    var skills : List<String> = ArrayList<String>(),
+    var socialMedia : String = "",
+    var timestamp : String = "",
+    var wageMin : String = "",
+    var wageMax : String = "",
+    var zipCode : String = ""
 ) {
     data class Badge(
-        val badgePhotoUrl : String,
-        val count : Int,
-        val name : String
+        val badgePhotoUrl : String = "",
+        val count : Int = 0,
+        val name : String = ""
     )
     data class Skill(
-        val name : String,
-        val proficiency : Int
+        val name : String = "",
+        val proficiency : Int = 0
     )
     data class Availability(
-        val date : String,
-        val result : Map<String, ArrayList<Boolean>>
+        val date : String = "",
+        val result : Map<String, ArrayList<Boolean>> = HashMap<String, ArrayList<Boolean>>()
     )
 }
 

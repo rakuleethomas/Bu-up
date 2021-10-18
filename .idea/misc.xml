@@ -48,7 +48,6 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_job_seeker_on_bording.xml" value="0.1358974358974359" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_login.xml" value="0.20380434782608695" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_on_boarding.xml" value="0.2109375" />
-        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_part_time_employer.xml" value="0.18072916666666666" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_part_time_job_seeker.xml" value="0.32546296296296295" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_signup.xml" value="0.18177083333333333" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_splash.xml" value="0.2558974358974359" />
@@ -79,6 +78,7 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_saved_position.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/bu_up_logo.xml" value="0.20185185185185187" />
         <entry key="app/src/main/res/drawable/ic_mail.xml" value="0.3527777777777778" />
+        <entry key="app/src/main/res/drawable/ic_verified.xml" value="0.1530701754385965" />
         <entry key="app/src/main/res/drawable/rectangle_edittext.xml" value="0.3527777777777778" />
         <entry key="app/src/main/res/drawable/spinner_rectangle.xml" value="0.2171875" />
         <entry key="app/src/main/res/layout/activity_job_seeker_on_boarding.xml" value="0.35885416666666664" />
@@ -91,12 +91,16 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employer_home.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_employer_job_posting.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/fragment_employer_on_boarding1.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/fragment_employer_profile.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/fragment_employer_saved.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/fragment_employer_search.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_home.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding1.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding2.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding3.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding4.xml" value="0.2833333333333333" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_search.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_profile_employer_edit.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_profile_employer_edit1.xml" value="0.20104166666666667" />
