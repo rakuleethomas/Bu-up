@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
@@ -72,13 +73,23 @@ class EmployerOnBoarding6 : Fragment() {
         }
         binding.ivNext.setOnClickListener {
             val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
+            val state = binding.spinnerState.selectedItem.toString()
             buupEmployerProfile!!.companyInfo.address1 = binding.etAddress1.text.toString()
             buupEmployerProfile!!.companyInfo.address2 = binding.etAddress2.text.toString()
             buupEmployerProfile!!.companyInfo.city = binding.etCity.text.toString()
             buupEmployerProfile!!.companyInfo.zipCode = binding.etZipCode.text.toString()
             buupEmployerProfile!!.companyInfo.state = binding.spinnerState.selectedItem.toString()
             viewModel.updateBuupEmployerProfile(buupEmployerProfile)
-            doSignUp()
+            if(binding.spinnerState.selectedItemPosition == 0){
+                AlertDialog.Builder(requireContext(), R.style.buup_employer_dialog_theme)
+                    .setTitle("Incorrect State!")
+                    .setMessage("Please choose a state!")
+                    .setPositiveButton("Confirm") { _, _ ->  }
+                    .create()
+                    .show()
+            }else{
+                doSignUp()
+            }
         }
         return binding.root
     }
@@ -86,7 +97,7 @@ class EmployerOnBoarding6 : Fragment() {
     fun skip(){
         // skip to next page
 
-        val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToEmployerLoginActivity()
+        val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToLoginActivity()
         findNavController().navigate(direction)
     }
 
@@ -95,13 +106,13 @@ class EmployerOnBoarding6 : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
             val jsonObject = JsonObject()
-            val encryptedPassword = Util.encryptPassword(buupEmployerProfile!!.password)
+            val password = buupEmployerProfile!!.password  // already encrypted
             val gson = Gson()
 
             val companyInfo = buupEmployerProfile!!.companyInfo
 
             jsonObject.addProperty("loginId", buupEmployerProfile.loginId)
-            jsonObject.addProperty("password", encryptedPassword)
+            jsonObject.addProperty("password", password)
             jsonObject.addProperty("timestamp", System.currentTimeMillis())
             jsonObject.add("companyInfo", gson.toJsonTree(companyInfo))
             val jsonString = jsonObject.toString()
@@ -109,13 +120,14 @@ class EmployerOnBoarding6 : Fragment() {
             val result = buupRepo.employerSignUp(requestBody)
             if(result.isSuccessful){
                 print(result.body())
+                val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToLoginActivity()
+                findNavController().navigate(direction)
             }else{
                 print(result.errorBody())
             }
         }
 
-//        val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToEmployerLoginActivity()
-//        findNavController().navigate(direction)
+
     }
 
     companion object {

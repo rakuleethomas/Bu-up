@@ -55,11 +55,11 @@
         android:label="fragment_employer_on_boarding6"
         tools:layout="@layout/fragment_employer_on_boarding6" >
         <action
-            android:id="@+id/action_employerOnBoarding6_to_employerLoginActivity"
-            app:destination="@id/employerLoginActivity" />
+            android:id="@+id/action_employerOnBoarding6_to_loginActivity"
+            app:destination="@id/loginActivity" />
     </fragment>
     <activity
-        android:id="@+id/employerLoginActivity"
-        android:name="org.rakulee.buup.screens.EmployerLoginActivity"
-        android:label="EmployerLoginActivity" />
+        android:id="@+id/loginActivity"
+        android:name="org.rakulee.buup.screens.LoginActivity"
+        android:label="LoginActivity" />
 </navigation>

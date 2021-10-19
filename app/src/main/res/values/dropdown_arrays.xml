@@ -24,6 +24,7 @@
     </string-array>
 
     <string-array name="states">
+        <item>Choose a state</item>
         <item>AL</item>
         <item>AR</item>
         <item>AZ</item>
