@@ -13,76 +13,70 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.employer.EmployerSaved">
+        tools:context=".fragments.jobseeker.JobSeekerHome">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/search_bar_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_bar"
-            android:layout_margin="16dp"
-            android:gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#fff"
+            android:elevation="2dp"
+            android:minHeight="48dp"
+            android:src="@drawable/bg_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023">
+            app:layout_constraintVertical_bias="0.04">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/background_light"
-                android:src="@drawable/ic_search"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.473" />
-
-            <EditText
-                android:id="@+id/editText5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:fontFamily="@font/poppins"
-                android:hint="Part-Time Jobs in {San Jose}"
-                android:maxLines="1"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.367"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.478" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="28dp"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:backgroundTint="@android:color/background_light"
-                android:src="@drawable/vector3"
+                android:background="#fff"
+                android:backgroundTint="#fff"
+                app:iconifiedByDefault="false"
+                app:defaultQueryHint="Part-Time Jobs in San Jose"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.845"
+                app:layout_constraintCircleRadius="0dp"
+                app:layout_constraintEnd_toStartOf="@id/btn_navigator"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:queryHint="Part-Time Jobs in San Jose"
+                app:searchIcon="@drawable/ic_search" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/background_light"
-                android:src="@drawable/ic_filter"
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_navigator"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#fff"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_search_navigator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_filter"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/search_bar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_filter"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#fff"
+                android:minHeight="48dp"
+                android:src="@drawable/ic_search_list"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.979"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/btn_navigator"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

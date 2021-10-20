@@ -89,7 +89,7 @@ class JobSeekerMapView : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReady
             val direction : NavDirections = JobSeekerMapViewDirections.actionMainSeekerHomeToMainSeekerListview3()
             findNavController().navigate(direction)
         }
-        binding.imageButton3.setOnClickListener{
+        binding.btnFilter.setOnClickListener{
             val directions : NavDirections = JobSeekerMapViewDirections.actionMainSeekerHomeToMainSeekerFilter()
             findNavController().navigate(directions);
         }

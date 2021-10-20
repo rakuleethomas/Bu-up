@@ -1,6 +1,7 @@
 package org.rakulee.buup.util
 
 import android.content.Context
+import android.util.Base64
 import android.util.DisplayMetrics
 import java.security.SecureRandom
 import javax.crypto.Cipher
@@ -31,24 +32,29 @@ object Util {
      * Pre: Plain password : String
      * Post: Encrypted password : ByteArray
      */
-    fun encryptPassword(password : CharArray) : ByteArray{
-        val random = SecureRandom()
-        val salt = ByteArray(256)
-        random.nextBytes(salt)
-        val pbKeySpec = PBEKeySpec(password, salt, 1111, 256)
-        val secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
-        val keyBytes = secretKeyFactory.generateSecret(pbKeySpec).encoded
-        val keySpec = SecretKeySpec(keyBytes, "AES") // 4
 
-        val ivRandom = SecureRandom()
-        val iv = ByteArray(16)
-        ivRandom.nextBytes(iv)
-        val ivSpec = IvParameterSpec(iv)
+    const val secretKey = "asdfasdfasdf"
+    const val salt = "1234NHNhMTJTQWZ2bGhpV3U=" // base64 decode => AiF4sa12SAfvlhiWu
+    const val iv = "bVQz2225RkQ1Njc4UUFaWA==" // base64 decode => mT34SaFD5678QAZX
 
-        val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec)
-        val encrypted = cipher.doFinal(keyBytes)
-        return encrypted
+    fun encryptPassword(password: String) :  String? {
+        try
+        {
+            val ivParameterSpec = IvParameterSpec(Base64.decode(iv, Base64.DEFAULT))
+
+            val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+            val spec =  PBEKeySpec(secretKey.toCharArray(), Base64.decode(salt, Base64.DEFAULT), 10000, 256)
+            val tmp = factory.generateSecret(spec)
+            val secretKey =  SecretKeySpec(tmp.encoded, "AES")
+
+            val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec)
+            return Base64.encodeToString(cipher.doFinal(password.toByteArray(Charsets.UTF_8)), Base64.DEFAULT)
+        }
+        catch (e: Exception){
+            println("Error while encrypting: $e")
+        }
+        return null
     }
 
 
@@ -57,26 +63,26 @@ object Util {
      * Post: Decrypted password : ByteArray
      */
 
-    fun decryptPassword(password : CharArray) : ByteArray{
+    fun decryptPassword(encryptedPassword : String) : String? {
+        try{
 
-        val map = HashMap<String, ByteArray>()
-        val salt = map["salt"]
-        val iv = map["iv"]
-        val encrypted = map["encrypted"]
+            val ivParameterSpec =  IvParameterSpec(Base64.decode(iv, Base64.DEFAULT))
 
-        //regenerate key from password
-        val pbKeySpec = PBEKeySpec(password, salt, 1111, 256)
-        val secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
-        val keyBytes = secretKeyFactory.generateSecret(pbKeySpec).encoded
-        val keySpec = SecretKeySpec(keyBytes, "AES")
+            val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+            val spec =  PBEKeySpec(secretKey.toCharArray(), Base64.decode(salt, Base64.DEFAULT), 10000, 256)
+            val tmp = factory.generateSecret(spec);
+            val secretKey =  SecretKeySpec(tmp.encoded, "AES")
 
-
-        //Decrypt
-        val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
-        val ivSpec = IvParameterSpec(iv)
-        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec)
-        return cipher.doFinal(encrypted)
+            val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
+            return  String(cipher.doFinal(Base64.decode(encryptedPassword, Base64.DEFAULT)))
+        }
+        catch (e : Exception) {
+            println("Error while decrypting: $e");
+        }
+        return null
     }
+
 
     fun ByteArray.toHex(): String {
         return joinToString("") { "%02x".format(it) }

@@ -1,18 +1,16 @@
 package org.rakulee.buup.screens
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.parse.*
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,9 +21,12 @@ import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.Configs
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityLoginBinding
-import org.rakulee.buup.model.Job
+import org.rakulee.buup.model.BuupJobSeekerProfile
+import org.rakulee.buup.model.EmployerSignIn
 import org.rakulee.buup.model.JobSeekerSignInResponse
 import org.rakulee.buup.repo.BuupAPIRepo
+import org.rakulee.buup.util.Util
+import org.rakulee.buup.viewmodel.JobSeekerViewModel
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -35,7 +36,7 @@ class LoginActivity : BaseActivity() {
 
 
     @Inject
-    lateinit var buupAPIRepo : BuupAPIRepo
+    lateinit var buupRepo : BuupAPIRepo
 
     @Inject
     lateinit var okHttpClient : OkHttpClient
@@ -43,7 +44,6 @@ class LoginActivity : BaseActivity() {
     lateinit var binding : ActivityLoginBinding
     var MODE = Configs.BUUP_JOB_SEEKER
     var flag = false
-
 
     var blocking = false
     fun testEmployer(view: View){
@@ -56,16 +56,15 @@ class LoginActivity : BaseActivity() {
     }
 
     suspend fun login(){
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("loginId", binding.etEmail.text.toString())
-        jsonObject.addProperty("password", binding.etPassword.text.toString())
-        val jsonString = jsonObject.toString()
-        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
 
         // jobseeker login
         if(!flag){
-            val loginResponse : Response<JobSeekerSignInResponse> = buupAPIRepo.jobSeekerSignIn(requestBody)
-
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("loginId", binding.etEmail.text.toString())
+            jsonObject.addProperty("password", binding.etPassword.text.toString())
+            val jsonString = jsonObject.toString()
+            val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+            val loginResponse : Response<JobSeekerSignInResponse> = buupRepo.jobSeekerSignIn(requestBody)
             /*
             {
                 "loginId": "john.snow@email.com",
@@ -78,7 +77,27 @@ class LoginActivity : BaseActivity() {
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
                     loginResponse.body()!!.message
+                    val buupJobSeekerProfile = BuupJobSeekerProfile()
+                    buupJobSeekerProfile.loginId = loginResponse.body()!!.message.loginId
+                    buupJobSeekerProfile.badge = loginResponse.body()!!.message.badge
+                    buupJobSeekerProfile.buupCount = loginResponse.body()!!.message.buupCount
+                    buupJobSeekerProfile.email = loginResponse.body()!!.message.email
+                    buupJobSeekerProfile.firstName = loginResponse.body()!!.message.firstName
+                    buupJobSeekerProfile.password = loginResponse.body()!!.message.password
+                    buupJobSeekerProfile.userId = loginResponse.body()!!.message.userId
+                    buupJobSeekerProfile.lastName = loginResponse.body()!!.message.lastName
+                    buupJobSeekerProfile.verified = loginResponse.body()!!.message.verified
+                    buupJobSeekerProfile.photoUrl = loginResponse.body()!!.message.photoUrl
+                    buupJobSeekerProfile.skills = loginResponse.body()!!.message.skills
+                    buupJobSeekerProfile.socialMedia = loginResponse.body()!!.message.socialMedia
+                    buupJobSeekerProfile.timestamp = loginResponse.body()!!.message.timestamp
+                    buupJobSeekerProfile.wageMin = loginResponse.body()!!.message.wageMin
+                    buupJobSeekerProfile.wageMax = loginResponse.body()!!.message.wageMax
+                    buupJobSeekerProfile.zipCode = loginResponse.body()!!.message.zipCode
+                    val gson = Gson()
+                    val temp = gson.toJson(buupJobSeekerProfile)
                     val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
+                    intent.putExtra("JobSeekerProfileJson", temp)
                     startActivity(intent)
                     this@LoginActivity?.finish()
                 }
@@ -90,6 +109,30 @@ class LoginActivity : BaseActivity() {
                     Log.d("LOGIN", "login: Error")
                 }
             }
+        }else{  // employer login
+            CoroutineScope(Dispatchers.IO).launch{
+                val jsonObject = JsonObject()
+                val loginId = binding.etEmail.text.toString()
+                val plainPassword = binding.etPassword.text.toString()
+                val encryptedPassword = Util.encryptPassword(plainPassword)
+                val employerSignIn = EmployerSignIn(loginId, encryptedPassword!!)
+                val gson = Gson()
+                val jsonString = gson.toJsonTree(employerSignIn).asJsonObject.toString()
+                val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+                val loginResponse = buupRepo.employerSignIn(requestBody)
+                if(loginResponse.isSuccessful){
+                    CoroutineScope(Dispatchers.Main).launch{
+                        Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, PartTimeEmployerActivity::class.java)
+                        startActivity(intent)
+                    }
+                }else{
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Toast.makeText(applicationContext, "Incorrect login information!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
 
     }
@@ -197,7 +240,9 @@ class LoginActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        blocking = false;
+        blocking = false
+        binding.switchEmployer.isChecked = false
+        flag = false
     }
 
     fun createAccount(view: View) {

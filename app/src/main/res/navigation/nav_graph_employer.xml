@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_employer"
     android:label="fragment_employer_test"
-    app:startDestination="@id/main_emp_home">
+    app:startDestination="@id/main_emp_dashboard">
 
     <fragment
-        android:id="@+id/main_emp_home"
+        android:id="@+id/main_emp_dashboard"
         android:name="org.rakulee.buup.fragments.employer.EmployerHome"
         android:label="main_emp_home"
         tools:layout="@layout/fragment_employer_home" >
@@ -25,7 +25,7 @@
         android:label="EmployerSaved" >
         <action
             android:id="@+id/action_employerSaved_to_main_emp_home"
-            app:destination="@id/main_emp_home" />
+            app:destination="@id/main_emp_dashboard" />
         <action
             android:id="@+id/action_main_emp_saved_to_employerJobDetail"
             app:destination="@id/employerJobDetail" />

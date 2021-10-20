@@ -95,13 +95,13 @@ class EmployerOnBoarding6 : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val buupEmployerProfile : BuupEmployerProfile? = viewModel.buupEmployerProfile.value
             val jsonObject = JsonObject()
-            val encryptedPassword = Util.encryptPassword(buupEmployerProfile!!.password.toCharArray())
+            val encryptedPassword = Util.encryptPassword(buupEmployerProfile!!.password)
             val gson = Gson()
 
             val companyInfo = buupEmployerProfile!!.companyInfo
 
             jsonObject.addProperty("loginId", buupEmployerProfile.loginId)
-            jsonObject.addProperty("password", encryptedPassword.toHex())
+            jsonObject.addProperty("password", encryptedPassword)
             jsonObject.addProperty("timestamp", System.currentTimeMillis())
             jsonObject.add("companyInfo", gson.toJsonTree(companyInfo))
             val jsonString = jsonObject.toString()

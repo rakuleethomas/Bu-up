@@ -36,7 +36,7 @@ class EmployerSignupActivity : BaseActivity(), Serializable {
         if(validate()){
             val buupEmployerProfile = BuupEmployerProfile()
             val plainPassword = binding.etPassword.text.toString()
-            val encryptedPassword = Util.encryptPassword(plainPassword.toCharArray())
+            val encryptedPassword = Util.encryptPassword(plainPassword)
             buupEmployerProfile.email = binding.etEmail.text.toString()
             buupEmployerProfile.loginId = binding.etEmail.text.toString()
             buupEmployerProfile.password = encryptedPassword.toString()
