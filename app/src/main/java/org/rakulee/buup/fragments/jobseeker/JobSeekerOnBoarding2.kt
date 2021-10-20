@@ -1,7 +1,9 @@
 package org.rakulee.buup.fragments.jobseeker
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -60,13 +62,15 @@ class JobSeekerOnBoarding2 : Fragment() {
         }
 
         var industryArray : Array<String> = resources.getStringArray(R.array.spinner_employer_industries)
-
+        val density = resources.displayMetrics.scaledDensity
         var selectedArray : MutableList<String> = ArrayList<String>()
 
         for (i in 0 until 147){
             val button = Button(context)
             button.text = industryArray[i]
-            button.textSize = 8F
+            button.typeface = resources.getFont(R.font.inter_medium)
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10F)
+            button.elevation = 0.5F
             button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
             button.setPadding(16,8,16,8)
             button.setOnClickListener{

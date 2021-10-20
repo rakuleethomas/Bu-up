@@ -111,8 +111,8 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/fab"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
@@ -122,6 +122,8 @@
 
             <com.nex3z.flowlayout.FlowLayout
                 android:id="@+id/flowLayout"
+                android:clipToPadding="false"
+                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:flChildSpacing="8dp"
