@@ -108,24 +108,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.415" />
 
-        <GridView
-            android:id="@+id/industry_grid"
+        <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="80dp"
-            android:numColumns="3"
-            android:verticalSpacing="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/fab"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_bias="1.0"
-            tools:listitem="@layout/item_industry">
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.nex3z.flowlayout.FlowLayout
+                android:id="@+id/flowLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flChildSpacing="8dp"
+                app:flChildSpacingForLastRow="8dp"
+                app:flRowSpacing="8dp">
 
 
-        </GridView>
+
+            </com.nex3z.flowlayout.FlowLayout>
+
+        </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
