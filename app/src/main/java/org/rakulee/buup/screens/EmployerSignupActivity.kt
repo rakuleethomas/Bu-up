@@ -39,7 +39,7 @@ class EmployerSignupActivity : BaseActivity(), Serializable {
             val encryptedPassword = Util.encryptPassword(plainPassword)
             buupEmployerProfile.email = binding.etEmail.text.toString()
             buupEmployerProfile.loginId = binding.etEmail.text.toString()
-            buupEmployerProfile.password = encryptedPassword.toString()
+            buupEmployerProfile.password = encryptedPassword!!
             // serialize buupEmployerProfile
             val gson = Gson()
             val temp = gson.toJson(buupEmployerProfile)
