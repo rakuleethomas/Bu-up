@@ -64,27 +64,23 @@ class JobSeekerOnBoarding2 : Fragment() {
         var selectedArray : MutableList<String> = ArrayList<String>()
 
         for (i in 0 until 147){
-            val button = ToggleButton(context)
-            button.textOn = industryArray[i]
-            button.textOff = industryArray[i]
+            val button = Button(context)
+            button.text = industryArray[i]
             button.textSize = 8F
-            button.isChecked = false
             button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
             button.setPadding(16,8,16,8)
             button.setOnClickListener{
+                button.isSelected = !button.isSelected
 //                Toast.makeText(context, "you clicked $i", Toast.LENGTH_SHORT).show()
                 if (selectedArray.size >= 5 && selectedArray.contains(industryArray[i])){
                     button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
-                    button.isChecked = false
                     selectedArray.remove(industryArray[i])
                 }
-                if(selectedArray.size < 5 && button.isChecked){
+                if(selectedArray.size < 5 && button.isSelected){
                     button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry_clicked )
-                    button.isChecked = true
                     selectedArray.add(industryArray[i])
-                } else if (selectedArray.size < 5 && !button.isChecked) {
+                } else if (selectedArray.size < 5 && !button.isSelected) {
                     button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
-                    button.isChecked = false
                     selectedArray.remove(industryArray[i])
                 }
                 Log.d("AAA", selectedArray.size.toString())
