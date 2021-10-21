@@ -9,7 +9,7 @@ data class JobSeekerSignInResponse(
 ) {
     data class Message(
         @SerializedName("badge")
-        val badge: List<Badge>,
+        val badge: ArrayList<Badge>,
         @SerializedName("buupCount")
         val buupCount: Int,
         @SerializedName("email")

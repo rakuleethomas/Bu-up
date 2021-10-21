@@ -79,7 +79,7 @@ class LoginActivity : BaseActivity() {
                     loginResponse.body()!!.message
                     val buupJobSeekerProfile = BuupJobSeekerProfile()
                     buupJobSeekerProfile.loginId = loginResponse.body()!!.message.loginId
-                    buupJobSeekerProfile.badge = loginResponse.body()!!.message.badge
+                    buupJobSeekerProfile.badgeList = loginResponse.body()!!.message.badge
                     buupJobSeekerProfile.buupCount = loginResponse.body()!!.message.buupCount
                     buupJobSeekerProfile.email = loginResponse.body()!!.message.email
                     buupJobSeekerProfile.firstName = loginResponse.body()!!.message.firstName

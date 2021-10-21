@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="org.rakulee.buup.model.EmployerHomeJobPostingItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="132dp"
+        android:layout_height="100dp"
+        android:minWidth="132dp"
+        android:minHeight="100dp"
+        android:elevation="16dp"
+        android:padding="8dp"
+        android:background="#ffffff">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_job_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#39445D"
+            android:text="@{item.title}"
+            app:layout_constraintHorizontal_weight="5"
+            app:layout_constraintEnd_toStartOf="@+id/iv_image_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Server" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bu_up_view_icon"
+
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_job_title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_view_count"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_job_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_job_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_view_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#888C9B"
+            android:text="@{String.valueOf(item.viewCount)}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_job_title"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="100" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_wage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#5B5F6E"
+            android:text="@{String.valueOf(item.wageMin + '-' + item.wageHigh)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_job_title"
+            tools:text="$20 - $28" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_expiry_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9F9F9F"
+            android:text="@{item.expDate}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Expires in 30 days" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

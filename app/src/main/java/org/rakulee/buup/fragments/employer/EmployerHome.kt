@@ -25,8 +25,16 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import okhttp3.internal.notifyAll
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.EmployerHomeJobPostingListAdapter
+import org.rakulee.buup.adapters.EmployerHomeRecommendedListAdapter
 import org.rakulee.buup.databinding.FragmentEmployerHomeBinding
+import org.rakulee.buup.fragments.jobseeker.JobSeekerProfile
+import org.rakulee.buup.model.BuupJobSeekerProfile
+import org.rakulee.buup.model.EmployerHomeJobPostingItem
+import org.rakulee.buup.model.EmployerHomeRecommendedItem
+import org.rakulee.buup.model.JobSeekerSignInResponse
 import org.rakulee.buup.util.Util
 import org.rakulee.buup.viewmodel.EmployerViewModel
 import kotlin.coroutines.coroutineContext
@@ -42,14 +50,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class EmployerHome : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReadyCallback{
+class EmployerHome : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var binding : FragmentEmployerHomeBinding
-    var mapFragment : SupportMapFragment? = SupportMapFragment()
-    val addressLists = ArrayList<Pair<String, String>>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,22 +64,6 @@ class EmployerHome : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReadyCall
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-
-        buildDummy("Chimek", "3597 Homestead Rd, Santa Clara, CA 95051")
-        buildDummy("Chungdam", "3180 El Camino Real, Santa Clara, CA 95051")
-        buildDummy("10 Butchers", "595 E El Camino Real, Sunnyvale, CA 94087")
-        buildDummy("SVKoreans", "3167 Impala Dr, #4, San Jose, CA 95117")
-
-        buildDummy("Chimek2", "94087")
-        buildDummy("Chungdam2", "94087")
-        buildDummy("10 Butchers2", "94087")
-        buildDummy("SVKoreans2", "95117")
-
-
-
-
-
     }
 
 
@@ -80,88 +71,6 @@ class EmployerHome : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReadyCall
     private val employerViewModel : EmployerViewModel by viewModels()
     val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     var markerSelected : Boolean = false
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.uiSettings.isMapToolbarEnabled = false
-//        val chimek = LatLng(37.338732, -121.994956)
-//        val elPolloLoco = LatLng(37.352901144915556, -121.97108295384102)
-//        val pokeatery = LatLng(37.3248567860572, -121.94719594156945)
-
-        val geoCoder = Geocoder(context)
-
-        // need to fetch store name & address info from the Bu-up server in the future
-
-        var latitude : Double = 0.0
-        var longitude : Double = 0.0
-
-
-        val width = Util.dpToPx( 32, requireContext()).toInt()
-        val height = Util.dpToPx(38, requireContext()).toInt()
-
-
-        for(address in addressLists){
-            val resultAddressList = geoCoder.getFromLocationName(address.second, 5)
-            for(item in resultAddressList){
-                latitude = item.latitude
-                longitude = item.longitude
-                val latLng = LatLng(latitude, longitude)
-                val buupPurpleIcon = getDrawable(requireContext(), R.drawable.ic_bu_up_purple)!!.toBitmap(width, height)
-                val buupMarkerOptions = MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(buupPurpleIcon))
-                googleMap.addMarker(buupMarkerOptions)
-                googleMap.setOnMarkerClickListener(this@EmployerHome)
-            }
-        }
-
-        GlobalScope.launch(Dispatchers.Main) {
-            googleMap.setMinZoomPreference(13.0f)
-            launch {
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(latitude, longitude)))
-            }
-        }
-
-//        googleMap.addMarker(MarkerOptions().position(chimek).title("Chimek"))
-//        googleMap.addMarker(MarkerOptions().position(elPolloLoco).title("El Pollo Loco"))
-//        googleMap.addMarker(MarkerOptions().position(pokeatery).title("Pokeatery"))
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f), 3000, null)
-    }
-
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-
-
-
-
-    }
-
-    lateinit var currentMarker : Marker
-    lateinit var oldMarker : Marker
-    override fun onMarkerClick(marker: Marker): Boolean {
-//        currentMarker = marker
-//        oldMarker = currentMarker
-//        if(oldMarker == currentMarker){
-//            binding.markerSelected = false
-//            return false
-//        }else{
-//            oldMarker = currentMarker
-//            currentMarker = marker
-//            binding.markerSelected = true
-//        }
-        binding.markerSelected = true
-        return true
-    }
-
-    fun showDetailFragment(marker: Marker){
-        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToEmployerSaved()
-        findNavController().navigate(directions)
-    }
 
 
 
@@ -182,27 +91,65 @@ class EmployerHome : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReadyCall
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_home, container, false)
         binding.lifecycleOwner = this
-        binding.vm = employerViewModel
-        binding.markerSelected = this.markerSelected
-
-        binding.fabMapMode.setOnClickListener{ showLists() }
-        binding.containerJobDetails.setOnClickListener { showDetail() }
 
 
+        // RecyclerView setup
+        val jobPostingAdapter = EmployerHomeJobPostingListAdapter()
+        binding.rvJobPosting.adapter = jobPostingAdapter
+        val jobPostingList = ArrayList<EmployerHomeJobPostingItem>()
+        jobPostingList.add(EmployerHomeJobPostingItem("Server", 100, "$20","$30", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Cashier", 101, "$21","$25", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Cleaner", 104, "$20","$26", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Server", 105, "$20","$30", "Expires in 30 days"))
+        jobPostingAdapter.updateItems(jobPostingList)
+        jobPostingAdapter.notifyDataSetChanged()
+
+
+        val recommendedAdapter = EmployerHomeRecommendedListAdapter()
+        binding.rvRecommended.adapter = recommendedAdapter
+        val recommendedItemList = ArrayList<EmployerHomeRecommendedItem>()
+        val jobSeekerProfileList = ArrayList<BuupJobSeekerProfile>()
+        val tempJobSeekerProfile = BuupJobSeekerProfile()
+        val tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
+        val tempIndustryList = ArrayList<String>()
+
+        for(i in 0..4){
+            tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",0,""))
+            tempIndustryList.add("Restaurant")
+            tempIndustryList.add("Design")
+            tempIndustryList.add("Research Industry")
+            tempJobSeekerProfile.badgeList = tempBadgeList
+            tempJobSeekerProfile.firstName = "Jake"
+            tempJobSeekerProfile.lastName = "Min"
+            tempJobSeekerProfile.email = "asdf@svkoreans.com"
+            tempJobSeekerProfile.industry = tempIndustryList
+            tempJobSeekerProfile.verified = (i%2==0)
+            tempJobSeekerProfile.wageMin = "$20"
+            tempJobSeekerProfile.wageMax = "$35"
+
+            jobSeekerProfileList.add(tempJobSeekerProfile)
+        }
+        recommendedItemList.add(EmployerHomeRecommendedItem("Restaurant", jobSeekerProfileList))
+        recommendedItemList.add(EmployerHomeRecommendedItem("Arts/Crafts", jobSeekerProfileList))
+        recommendedItemList.add(EmployerHomeRecommendedItem("Design", jobSeekerProfileList))
+        recommendedAdapter.update(recommendedItemList)
+        recommendedAdapter.notifyDataSetChanged()
+
+
+        binding.fabWritePost.setOnClickListener {
+            val directions : NavDirections = EmployerHomeDirections.actionMainEmpDashboardToEmployerJobPosting()
+            findNavController().navigate(directions)
+        }
 
 
         return binding.root
     }
 
-    fun buildDummy(storeName : String, address : String){
-        addressLists.add(Pair(storeName, address))
+    fun buildDummy(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding
-        mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(this@EmployerHome)
     }
 
     override fun onDestroy() {
