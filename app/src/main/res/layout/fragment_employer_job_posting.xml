@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.9" />
+                    app:layout_constraintGuide_percent="0.95" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -106,9 +106,11 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btn_title_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_job_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintTop_toTopOf="@+id/tv_job_title" />
@@ -222,9 +224,11 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btn_wage_work_hour_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_wage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintTop_toTopOf="@+id/tv_wage" />
@@ -256,10 +260,11 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btn_hiring_number_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hiring_number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintTop_toTopOf="@+id/tv_hiring_number" />
@@ -279,10 +284,11 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btn_edit_position_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_position_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintTop_toTopOf="@+id/tv_position_description" />

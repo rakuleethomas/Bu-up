@@ -109,31 +109,50 @@ class EmployerHome : Fragment(){
         binding.rvRecommended.adapter = recommendedAdapter
         val recommendedItemList = ArrayList<EmployerHomeRecommendedItem>()
         val jobSeekerProfileList = ArrayList<BuupJobSeekerProfile>()
-        val tempJobSeekerProfile = BuupJobSeekerProfile()
+        lateinit var tempJobSeekerProfile : BuupJobSeekerProfile
         val tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
         val tempIndustryList = ArrayList<String>()
 
-        for(i in 0..4){
-            tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",0,""))
-            tempIndustryList.add("Restaurant")
-            tempIndustryList.add("Design")
-            tempIndustryList.add("Research Industry")
-            tempJobSeekerProfile.badgeList = tempBadgeList
-            tempJobSeekerProfile.firstName = "Jake"
-            tempJobSeekerProfile.lastName = "Min"
-            tempJobSeekerProfile.email = "asdf@svkoreans.com"
-            tempJobSeekerProfile.industry = tempIndustryList
-            tempJobSeekerProfile.verified = (i%2==0)
-            tempJobSeekerProfile.wageMin = "$20"
-            tempJobSeekerProfile.wageMax = "$35"
+        val nameMap = HashMap<String, String>()
+        nameMap.put("Jake","Min")
+        nameMap.put("Thomas","Han")
+        nameMap.put("Sean","Jung")
+        nameMap.put("Peter","Stevenson")
+        nameMap.put("Jessica","Shin")
+        nameMap.put("Sylvia","Campbell")
+        nameMap.put("Paul","Simon")
+        nameMap.put("Sam","Hamilton")
 
+
+        for(i in 1..5){
+            tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",0,""))
+        }
+        tempIndustryList.add("Restaurant")
+        tempIndustryList.add("Design")
+        tempIndustryList.add("Research Industry")
+        tempIndustryList.add("Packaging/Containers")
+
+        var index = 0
+        for(name in nameMap){
+            tempJobSeekerProfile = BuupJobSeekerProfile()
+            tempJobSeekerProfile.badgeList = tempBadgeList
+            tempJobSeekerProfile.firstName = name.key
+            tempJobSeekerProfile.lastName = name.value
+            tempJobSeekerProfile.email = "${name.key}.${name.value}@svkoreans.com"
+            tempJobSeekerProfile.industry = tempIndustryList
+            tempJobSeekerProfile.verified = (index%2==0)
+            tempJobSeekerProfile.wageMin = "$${20+index}"
+            tempJobSeekerProfile.wageMax = "$${35+index}"
+            index++
             jobSeekerProfileList.add(tempJobSeekerProfile)
         }
+
         recommendedItemList.add(EmployerHomeRecommendedItem("Restaurant", jobSeekerProfileList))
         recommendedItemList.add(EmployerHomeRecommendedItem("Arts/Crafts", jobSeekerProfileList))
         recommendedItemList.add(EmployerHomeRecommendedItem("Design", jobSeekerProfileList))
+        recommendedItemList.add(EmployerHomeRecommendedItem("Packaging/Containers", jobSeekerProfileList))
         recommendedAdapter.update(recommendedItemList)
-        recommendedAdapter.notifyDataSetChanged()
+//        recommendedAdapter.notifyDataSetChanged()
 
 
         binding.fabWritePost.setOnClickListener {

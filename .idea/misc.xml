@@ -65,7 +65,7 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/activity_test_mode_helper.xml" value="0.1953125" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_home.xml" value="0.33" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_job_detail.xml" value="0.2109375" />
-        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_job_posting.xml" value="0.2" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_job_posting.xml" value="0.33" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_map_filter.xml" value="0.2109375" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding1.xml" value="0.5" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_employer_on_boarding2.xml" value="0.5466562986003111" />
@@ -92,6 +92,7 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_profile_interest_edit.xml" value="0.36614583333333334" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/fragment_test.xml" value="0.2598958333333333" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_ad_list.xml" value="0.2558974358974359" />
+        <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_employer_job_posting_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_employer_recommended.xml" value="0.44353312302839115" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_job_posting.xml" value="0.9" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_job_seeker_candidate.xml" value="0.36614583333333334" />
