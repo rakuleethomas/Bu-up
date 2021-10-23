@@ -1,154 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
     <data>
         <variable
-            name="JobPosting"
-            type="org.rakulee.buup.fragments.employer.employer_post.EmployerJobPosting"/>
+            name="editMode"
+            type="Boolean" />
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/iv_company_logo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_jobseeker"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toStartOf="parent"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publish"
+            app:icon="@drawable/ic_bu_up_verified"
+            app:iconTint="@color/white"
+            android:textColor="#ffffff"
+            android:backgroundTint="@color/buup_employer"
             app:layout_constraintTop_toTopOf="parent"
-            app:roundPercent="1"
-            tools:src="@drawable/ic_employer" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            android:layout_marginTop="72dp"
-            android:text="Pay"
-            android:textAppearance="@style/kuku_gmail_"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iv_company_logo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/et_pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:ems="6"
-            android:hint="25-45/hr"
-            app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_company_logo"
-            android:text="Chung Dam Restaurant" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:text="Location"
-            android:textAppearance="@style/kuku_gmail_"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Santa Clara"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Description"
-            android:textAppearance="@style/kuku_gmail_"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-        <EditText
-            android:id="@+id/editText6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/rectangle_3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:text="Skills &amp; Requirements"
-            android:textAppearance="@style/kuku_gmail_"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText6" />
-
-        <EditText
-            android:id="@+id/editText7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/rectangle_3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText7"
-            app:layout_constraintVertical_bias="0.166">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.96"/>
 
-        </Button>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="1000dp"
+                android:elevation="2dp"
+                tools:context=".fragments.employer.employerJobPosting">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_edit_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.9" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_job_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_posting_date"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_job_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Job Title"
+                    app:layout_constraintEnd_toStartOf="@+id/et_posting_date"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_job_title"
+                    tools:text="Cashier" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_posting_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_job_title"
+                    app:layout_constraintTop_toTopOf="@+id/tv_job_title" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_posting_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Posting date"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_title_edit"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/et_job_title"
+                    app:layout_constraintTop_toTopOf="@+id/et_job_title"
+                    tools:text="10/24/2021" />
+
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_title_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_edit_post"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintTop_toTopOf="@+id/tv_job_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_company_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="SVKoreans.com"
+                    android:textSize="@dimen/text_medium"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_job_title"
+                    tools:text="SVKoreans.com" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_company_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3167 Impala Dr, #4, San Jose, CA 95117"
+                    android:textSize="@dimen/text_small"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_company_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_company_name"
+                    tools:text="3167 Impala Dr, #4, San Jose, CA 95117" />
+
+
+                <!-- wage/hour/date section -->
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_wage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Wage /hr"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_shift"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_company_address" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_shift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shift"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_begin_date"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_wage"
+                    app:layout_constraintTop_toTopOf="@+id/tv_wage" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_begin_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Begin Date"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_wage_work_hour_edit"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_shift"
+                    app:layout_constraintTop_toTopOf="@+id/tv_wage" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_wage_hour_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="et_wage_range,et_hour,et_starting_date" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_wage_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="$20 - $25"
+                    app:layout_constraintEnd_toStartOf="@+id/et_hour"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_wage"
+                    tools:text="$20 - $25 /hr" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="1PM - 4PM"
+                    app:layout_constraintEnd_toStartOf="@+id/et_starting_date"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/et_wage_range"
+                    app:layout_constraintTop_toTopOf="@+id/et_wage_range"
+                    tools:text="1PM - 4PM" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_starting_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="MM/DD/YYYY"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/et_hour"
+                    app:layout_constraintTop_toTopOf="@+id/et_wage_range"
+                    tools:text="10/24/2021" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_wage_work_hour_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_edit_post"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintTop_toTopOf="@+id/tv_wage" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_hiring_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Hiring #"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/et_hiring_number"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_wage_range" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_hiring_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Hiring #"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_hiring_number"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_hiring_number_edit"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tv_hiring_number"
+                    app:layout_constraintTop_toTopOf="@+id/tv_hiring_number"
+                    tools:text="Hiring# 5 - 7" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_hiring_number_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_edit_post"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintTop_toTopOf="@+id/tv_hiring_number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_position_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Position Description"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hiring_number" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_edit_position_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/ic_edit_post"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintTop_toTopOf="@+id/tv_position_description" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_position_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="Please describe your position details"
+                    android:minHeight="250dp"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:textSize="@dimen/text_small"
+                    android:text="@string/sample_introduction"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_position_description"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:text="@string/sample_introduction" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </layout>
