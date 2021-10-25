@@ -9,16 +9,18 @@ class BuupGetJobPostingByDistanceResponse : ArrayList<BuupGetJobPostingByDistanc
         val city: String,
         @SerializedName("companyName")
         val companyName: String,
+        @SerializedName("employer")
+        val employer: String,
         @SerializedName("jobTitle")
         val jobTitle: String,
         @SerializedName("latitude")
-        val latitude: Double,
+        val latitude: String,
         @SerializedName("liked")
         val liked: Boolean,
         @SerializedName("logo")
         val logo: String,
         @SerializedName("longitude")
-        val longitude: Double,
+        val longitude: String,
         @SerializedName("payRateHigh")
         val payRateHigh: String,
         @SerializedName("payRateLow")

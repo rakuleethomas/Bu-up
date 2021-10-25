@@ -55,52 +55,8 @@ class EmployerProfile : Fragment() {
 
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_profile, container, false)
         binding.lifecycleOwner = this
-        binding.employerProfile = this
 
 
-        var EmployerimageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(EmployerimageUrl)){
-            EmployerimageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
-        }
-        Glide.with(requireContext()).load(EmployerimageUrl).into(binding.ivEmployer)
-
-        var companyImageUrl = ParseUser.getCurrentUser().get("CompanyImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(companyImageUrl)){
-            companyImageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
-        }
-        Glide.with(requireContext()).load(companyImageUrl).into(binding.ivCompanyLogo)
-        
-        val firstName = ParseUser.getCurrentUser().get("FirstName").toString()
-        val lastName = ParseUser.getCurrentUser().get("LastName").toString()
-        binding.tvEmployerName.text = "${firstName} ${lastName}"
-        binding.tvCompanyName.text = ParseUser.getCurrentUser().get("CompanyTitle").toString()
-        val adapter = JobPostingAdapter()
-        binding.rvPosting.adapter = adapter
-
-        val query = ParseQuery.getQuery<Job>("Job")
-        query.whereContains("Author", ParseUser.getCurrentUser().objectId)
-        query.findInBackground { jobs, e->
-            if (e == null) {
-                Joblists.addAll(jobs)
-                adapter.updateItems(Joblists)
-                Log.d("EmployerProfile", "onCreateView: " + adapter.itemCount)
-            } else {
-                Toast.makeText(requireContext(), "error : " + e.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-
-
-        binding.btnEdit.setOnClickListener{
-            val direction : NavDirections = EmployerProfileDirections.actionMainEmpProfileToProfileEdit()
-            findNavController().navigate(direction)
-        }
-
-        binding.button.setOnClickListener{
-            val direction : NavDirections = EmployerProfileDirections.actionMainEmpProfileToJobPosting()
-            findNavController().navigate(direction)
-        }
 
         return binding.root
     }

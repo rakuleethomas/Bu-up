@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,6 +35,9 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowLog
 import java.nio.charset.StandardCharsets
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 @HiltAndroidTest
@@ -69,6 +73,30 @@ class BuupUserAPITest : CoroutineScope {
             val result = buupRepo.jobSeekerSignIn(requestBody)
             print(result.body())
         }
+        countDownLatch.await()
+    }
+
+    @Test
+    fun regexText(){
+        val countDownLatch = CountDownLatch(1)
+        launch {
+            val regex = "[\\\$]((\\d{1,3}(,\\d{3})*)|\\d{1,3})((\\s)?-(\\s)?[\\\$]((\\d{1,3}(,\\d{3})*)|\\d{1,3}))?"
+            val str = "$20 - $25"
+            val pattern = Regex(regex)
+            val temp : Sequence<MatchResult> = pattern.findAll(str)
+            var low = "$0"
+            var high = "$25"
+
+            val pattern2 = Regex("-")
+            val ans : List<String> = pattern2.split(str)
+            ans.forEach{
+                print(it.trim())
+            }
+
+
+
+        }
+
         countDownLatch.await()
     }
 

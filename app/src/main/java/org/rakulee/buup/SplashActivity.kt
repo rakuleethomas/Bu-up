@@ -8,6 +8,7 @@ import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.screens.LoginActivity
 import org.rakulee.buup.screens.OnBoardingActivity
+import org.rakulee.buup.screens.PartTimeEmployerActivity
 import org.rakulee.buup.screens.TestModeHelper
 
 @AndroidEntryPoint

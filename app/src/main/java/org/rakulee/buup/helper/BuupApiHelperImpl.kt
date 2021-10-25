@@ -1,6 +1,7 @@
 package org.rakulee.buup.helper
 
 import okhttp3.RequestBody
+import org.rakulee.buup.model.BuupAddJobPostingResponse
 import org.rakulee.buup.model.EmployerSignInResponse
 import org.rakulee.buup.model.EmployerSignupResponse
 import org.rakulee.buup.model.JobSeekerSignInResponse
@@ -16,4 +17,5 @@ class BuupApiHelperImpl @Inject constructor(
     override suspend fun buupJobSeekerSignIn(body: RequestBody): Response<JobSeekerSignInResponse> = jobSeekerLoginApiService.jobSeekerLogin(body)
     override suspend fun buupEmployerSignup(body: RequestBody): Response<EmployerSignupResponse> = employerApiService.employerSignUp(body)
     override suspend fun buupEmployerSignIn(body: RequestBody): Response<EmployerSignInResponse> = employerApiService.employerSignIn(body)
+    override suspend fun buupEmployerAddJobPosting(body: RequestBody): Response<BuupAddJobPostingResponse> = employerApiService.employerAddJobPosting(body)
 }

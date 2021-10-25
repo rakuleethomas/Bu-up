@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
     <data>
+        <import type="org.rakulee.buup.fragments.employer.employer_post.EmployerJobPosting.Edit"/>
+        <import type="org.rakulee.buup.fragments.employer.employer_post.EmployerJobPosting"/>
+        <import type="java.util.HashMap"/>
         <variable
-            name="editMode"
-            type="Boolean" />
+        name="fragment"
+        type="EmployerJobPosting" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="org.rakulee.buup.fragments.employer.employer_post.EmployerJobPosting">
 
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -21,6 +25,7 @@
             android:text="Publish"
             app:icon="@drawable/ic_bu_up_verified"
             app:iconTint="@color/white"
+            android:onClick="@{() -> fragment.publishJobPost()}"
             android:textColor="#ffffff"
             android:backgroundTint="@color/buup_employer"
             app:layout_constraintTop_toTopOf="parent"
@@ -97,6 +102,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Posting date"
+                    android:inputType="date"
+                    android:focusable="false"
                     app:layout_constraintEnd_toStartOf="@+id/btn_title_edit"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/et_job_title"
@@ -110,6 +117,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    android:onClick="@{() -> fragment.updateStatus(Edit.Title)}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_job_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
@@ -181,12 +189,6 @@
                     app:layout_constraintStart_toEndOf="@+id/tv_shift"
                     app:layout_constraintTop_toTopOf="@+id/tv_wage" />
 
-                <androidx.constraintlayout.widget.Group
-                    android:id="@+id/group_wage_hour_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="et_wage_range,et_hour,et_starting_date" />
-
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_wage_range"
@@ -216,6 +218,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="MM/DD/YYYY"
+                    android:inputType="date"
+                    android:focusable="false"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/et_hour"
@@ -228,6 +232,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    android:onClick="@{() -> fragment.updateStatus(Edit.WageShiftDate)}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_wage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
@@ -264,6 +269,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    android:onClick="@{() -> fragment.updateStatus(Edit.HiringNumber)}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_hiring_number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
@@ -288,6 +294,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="W, 1:1"
                     android:background="@drawable/ic_edit_post"
+                    android:onClick="@{() -> fragment.updateStatus(Edit.PositionDescription)}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_position_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline_edit_btn"
@@ -302,7 +309,6 @@
                     android:minHeight="250dp"
                     android:scrollbarStyle="outsideOverlay"
                     android:textSize="@dimen/text_small"
-                    android:text="@string/sample_introduction"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_position_description"

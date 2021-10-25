@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -21,12 +20,12 @@ import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.Configs
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityLoginBinding
+import org.rakulee.buup.model.BuupEmployerProfile
 import org.rakulee.buup.model.BuupJobSeekerProfile
 import org.rakulee.buup.model.EmployerSignIn
 import org.rakulee.buup.model.JobSeekerSignInResponse
 import org.rakulee.buup.repo.BuupAPIRepo
 import org.rakulee.buup.util.Util
-import org.rakulee.buup.viewmodel.JobSeekerViewModel
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -99,7 +98,7 @@ class LoginActivity : BaseActivity() {
                     val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
                     intent.putExtra("JobSeekerProfileJson", temp)
                     startActivity(intent)
-                    this@LoginActivity?.finish()
+                    this@LoginActivity.finish()
                 }
                 Log.d("LOGIN", "login: ${loginResponse.body().toString()}")
 
@@ -123,8 +122,30 @@ class LoginActivity : BaseActivity() {
                 if(loginResponse.isSuccessful){
                     CoroutineScope(Dispatchers.Main).launch{
                         Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
+                        val buupEmployerProfile = BuupEmployerProfile()
+
+                        buupEmployerProfile.loginId = loginResponse.body()!!.message.loginId
+                        buupEmployerProfile.email = loginResponse.body()!!.message.loginId
+                        buupEmployerProfile.userId = loginResponse.body()!!.message.userId.toString()
+                        buupEmployerProfile.verified = loginResponse.body()!!.message.verified
+                        buupEmployerProfile.timestamp = loginResponse.body()!!.message.timestamp
+                        buupEmployerProfile.companyInfo.state = loginResponse.body()!!.message.companyInfo.state
+                        buupEmployerProfile.companyInfo.zipCode = loginResponse.body()!!.message.companyInfo.zipCode
+                        buupEmployerProfile.companyInfo.address1 = loginResponse.body()!!.message.companyInfo.address1
+                        buupEmployerProfile.companyInfo.address2 = loginResponse.body()!!.message.companyInfo.address2
+                        buupEmployerProfile.companyInfo.industry = loginResponse.body()!!.message.companyInfo.industry
+                        buupEmployerProfile.companyInfo.city = loginResponse.body()!!.message.companyInfo.city
+                        buupEmployerProfile.companyInfo.budget = loginResponse.body()!!.message.companyInfo.budget
+                        buupEmployerProfile.companyInfo.companySize = loginResponse.body()!!.message.companyInfo.companySize
+                        buupEmployerProfile.companyInfo.description = loginResponse.body()!!.message.companyInfo.description
+                        buupEmployerProfile.companyInfo.name = loginResponse.body()!!.message.companyInfo.name
+                        buupEmployerProfile.companyInfo.logoUrl = loginResponse.body()!!.message.companyInfo.logoUrl
+
+                        val temp = gson.toJson(buupEmployerProfile)
                         val intent = Intent(this@LoginActivity, PartTimeEmployerActivity::class.java)
+                        intent.putExtra("EmployerProfileJson", temp)
                         startActivity(intent)
+                        this@LoginActivity.finish()
                     }
                 }else{
                     CoroutineScope(Dispatchers.Main).launch {

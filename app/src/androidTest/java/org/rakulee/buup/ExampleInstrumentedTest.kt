@@ -1,21 +1,14 @@
 package org.rakulee.buup
 
-import android.location.Geocoder
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
-import org.rakulee.buup.model.BuupGetJobPostingByDistanceResponse
-import org.rakulee.buup.model.JobPostingItem
-import org.rakulee.buup.module.NetworkModule
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

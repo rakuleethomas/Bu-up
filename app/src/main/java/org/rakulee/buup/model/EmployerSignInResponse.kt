@@ -45,7 +45,7 @@ data class EmployerSignInResponse(
             @SerializedName("description")
             val description: String,
             @SerializedName("industry")
-            val industry: List<String>,
+            val industry: ArrayList<String>,
             @SerializedName("logoUrl")
             val logoUrl: String,
             @SerializedName("name")
