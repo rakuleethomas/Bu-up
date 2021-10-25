@@ -247,33 +247,45 @@
                 app:layout_constraintVertical_bias="0.02" />
 
             <ImageButton
+                android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@drawable/ic_edit_pencil"
-                app:layout_constraintBottom_toTopOf="@+id/industry_gridView"
+                app:layout_constraintBottom_toTopOf="@+id/industry_scrollview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView24"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5" />
 
-            <GridView
-                android:id="@+id/industry_gridView"
+            <ScrollView
+                android:id="@+id/industry_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="3"
-                android:orientation="horizontal"
-                android:paddingTop="16dp"
-                android:verticalSpacing="8dp"
+                android:paddingTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView24">
 
 
-            </GridView>
+
+                <com.nex3z.flowlayout.FlowLayout
+                    android:id="@+id/industry_flowlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    app:flChildSpacing="4dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
+
+
+                </com.nex3z.flowlayout.FlowLayout>
+
+
+            </ScrollView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -309,29 +321,43 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@drawable/ic_edit_pencil"
-                app:layout_constraintBottom_toTopOf="@+id/skills_gridView"
+                app:layout_constraintBottom_toTopOf="@+id/skills_scrollview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/tv_skills"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5" />
 
-            <GridView
-                android:id="@+id/skills_gridView"
+
+            <ScrollView
+                android:id="@+id/skills_scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="3"
-                android:orientation="horizontal"
-                android:paddingTop="16dp"
-                android:verticalSpacing="8dp"
+                android:paddingTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_skills">
 
 
-            </GridView>
+                <com.nex3z.flowlayout.FlowLayout
+                    android:id="@+id/skills_flowlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    app:flChildSpacing="4dp"
+                    app:flChildSpacingForLastRow="align"
+                    app:flRowSpacing="8dp">
+
+
+                </com.nex3z.flowlayout.FlowLayout>
+
+
+            </ScrollView>
+
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -342,6 +368,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingBottom="16dp"
+            android:paddingTop="10dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"

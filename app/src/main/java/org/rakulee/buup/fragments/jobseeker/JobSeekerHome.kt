@@ -1,5 +1,6 @@
 package org.rakulee.buup.fragments.jobseeker
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,21 +9,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.parse.ParseQuery
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.rakulee.buup.R
 import org.rakulee.buup.adapters.EmployerSavedListAdapter
 import org.rakulee.buup.adapters.JobListAdapter
 import org.rakulee.buup.databinding.FragmentJobSeekerHomeBinding
-import org.rakulee.buup.model.EmployerSavedListItem
-import org.rakulee.buup.model.Job
-import org.rakulee.buup.model.JobItem
+import org.rakulee.buup.fragments.employer.EmployerSaved
+import org.rakulee.buup.model.*
+import org.rakulee.buup.repo.BuupAPIRepo
+import org.rakulee.buup.screens.PartTimeJobSeekerActivity
+import org.rakulee.buup.viewmodel.JobSeekerViewModel
+import retrofit2.Response
+import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,8 +48,14 @@ class JobSeekerHome : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding : FragmentJobSeekerHomeBinding
+    private val viewModel: JobSeekerViewModel by activityViewModels()
     private var TAG = "JobSeekerHome"
-    var list = ArrayList<Job>()
+    val list = ArrayList<EmployerSavedListItem>()
+    val adapter = EmployerSavedListAdapter()
+
+
+    @Inject
+    lateinit var buupRepo : BuupAPIRepo
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +64,48 @@ class JobSeekerHome : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+    }
+
+    suspend fun getPostings(list: ArrayList<EmployerSavedListItem>){
+
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("latitude", viewModel.buupJobSeekerProfile.value!!.latitude)
+        jsonObject.addProperty("longitude", viewModel.buupJobSeekerProfile.value!!.longitude)
+        jsonObject.addProperty("distance", 100)
+        val jsonString = jsonObject.toString()
+        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+        val postingResponse : Response<BuupGetJobPostingByDistanceResponse> = buupRepo.getJobByDistance(requestBody)
+
+
+        if(postingResponse.isSuccessful){
+            CoroutineScope(Dispatchers.Main).launch {
+                var i = 0
+                for (body in postingResponse.body()!!){
+
+                    var savedItem : EmployerSavedListItem = EmployerSavedListItem(
+                        body.jobTitle,
+                        body.companyName,
+                        body.payRateLow,
+                        body.payRateHigh,
+                        body.city,
+                        "${i}",
+                        body.liked
+                    )
+                    i+=1
+                    list.add(savedItem)
+                }
+            }
+            Log.d("Job Postings", "posting size: ${postingResponse.body()!!.size}")
+
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(context, "Incorrect login information!", Toast.LENGTH_SHORT).show()
+                Log.d("LOGIN", "login: Error")
+            }
+        }
+
+
     }
 
     override fun onCreateView(
@@ -73,42 +129,18 @@ class JobSeekerHome : Fragment() {
         )
          */
 
-        val list = ArrayList<EmployerSavedListItem>()
-        val adapter = EmployerSavedListAdapter()
-        var savedItem : EmployerSavedListItem
+        CoroutineScope(Dispatchers.Main).launch{
+            getPostings(list)
+            delay(500)
+            adapter.update(list)
+//            adapter.setHasStableIds(true)
 
-        for(i : Int in 1 .. 15){
-            savedItem = if(i%2 == 1){
-                EmployerSavedListItem(
-                    "Warehouse Part-Time Worker",
-                    "Amazon",
-                    "${25+i}",
-                    "${50+i}",
-                    "Santa Clara",
-                    "${19+i*0.1}",
-                    true
-                )
-            }else{
-                EmployerSavedListItem(
-                    "Warehouse Part-Time Worker",
-                    "Amazon",
-                    "${25+i}",
-                    "${50+i}",
-                    "Santa Clara",
-                    "${19+i*0.1}",
-                    false
-                )
+            binding.rvSavedJob.adapter = adapter
+            binding.rvSavedJob.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            binding.fabMapMode.setOnClickListener {
+                val direction : NavDirections = JobSeekerHomeDirections.actionMainSeekerListviewToMainSeekerHome2()
+                findNavController().navigate(direction)
             }
-            list.add(savedItem)
-        }
-        adapter.update(list)
-        adapter.setHasStableIds(true)
-
-        binding.rvSavedJob.adapter = adapter
-        binding.rvSavedJob.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        binding.fabMapMode.setOnClickListener {
-            val direction : NavDirections = JobSeekerHomeDirections.actionMainSeekerListviewToMainSeekerHome2()
-            findNavController().navigate(direction)
         }
 
         return binding.root

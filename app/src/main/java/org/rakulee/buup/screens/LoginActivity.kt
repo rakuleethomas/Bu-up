@@ -85,6 +85,7 @@ class LoginActivity : BaseActivity() {
                     buupJobSeekerProfile.password = loginResponse.body()!!.message.password
                     buupJobSeekerProfile.userId = loginResponse.body()!!.message.userId
                     buupJobSeekerProfile.lastName = loginResponse.body()!!.message.lastName
+                    buupJobSeekerProfile.industry = loginResponse.body()!!.message.industry
                     buupJobSeekerProfile.verified = loginResponse.body()!!.message.verified
                     buupJobSeekerProfile.photoUrl = loginResponse.body()!!.message.photoUrl
                     buupJobSeekerProfile.skills = loginResponse.body()!!.message.skills
@@ -93,6 +94,9 @@ class LoginActivity : BaseActivity() {
                     buupJobSeekerProfile.wageMin = loginResponse.body()!!.message.wageMin
                     buupJobSeekerProfile.wageMax = loginResponse.body()!!.message.wageMax
                     buupJobSeekerProfile.zipCode = loginResponse.body()!!.message.zipCode
+                    buupJobSeekerProfile.availability = loginResponse.body()!!.message.availability
+                    buupJobSeekerProfile.latitude = loginResponse.body()!!.message.latitude
+                    buupJobSeekerProfile.longitude = loginResponse.body()!!.message.longitude
                     val gson = Gson()
                     val temp = gson.toJson(buupJobSeekerProfile)
                     val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
