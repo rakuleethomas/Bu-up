@@ -25,7 +25,7 @@ data class JobSeekerSignInResponse(
         @SerializedName("photoUrl")
         val photoUrl: String,
         @SerializedName("skills")
-        val skills: List<String>,
+        val skills: ArrayList<String>,
         @SerializedName("socialMedia")
         val socialMedia: String,
         @SerializedName("timestamp")
@@ -39,7 +39,11 @@ data class JobSeekerSignInResponse(
         @SerializedName("wageMin")
         val wageMin: String,
         @SerializedName("zipCode")
-        val zipCode: String
+        val zipCode: String,
+        @SerializedName("industry")
+        val industry: ArrayList<String>,
+        @SerializedName("availability")
+        val availability : ArrayList<ArrayList<Boolean>>
     ) {
         data class Badge(
             @SerializedName("badgePhotoUrl")
