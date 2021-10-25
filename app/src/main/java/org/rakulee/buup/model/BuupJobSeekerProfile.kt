@@ -9,7 +9,7 @@ data class BuupJobSeekerProfile(
     var password : String  = "",      // hash
     var verified : Boolean = false,
     var industry : ArrayList<String> = ArrayList<String>(),
-    var badge : List<JobSeekerSignInResponse.Message.Badge> = ArrayList<JobSeekerSignInResponse.Message.Badge>(),
+    var badgeList : ArrayList<JobSeekerSignInResponse.Message.Badge> = ArrayList<JobSeekerSignInResponse.Message.Badge>(),
     var photoUrl : String = "",
     var buupCount : Int = 0,
     var skills : List<String> = ArrayList<String>(),
@@ -19,11 +19,6 @@ data class BuupJobSeekerProfile(
     var wageMax : String = "",
     var zipCode : String = ""
 ) {
-    data class Badge(
-        val badgePhotoUrl : String = "",
-        val count : Int = 0,
-        val name : String = ""
-    )
     data class Skill(
         val name : String = "",
         val proficiency : Int = 0

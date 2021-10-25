@@ -6,11 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import dagger.hilt.android.AndroidEntryPoint
+import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityPartTimeEmployerBinding
 
 @AndroidEntryPoint
-class PartTimeEmployerActivity : AppCompatActivity() {
+class PartTimeEmployerActivity : BaseActivity() {
     lateinit var binding : ActivityPartTimeEmployerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

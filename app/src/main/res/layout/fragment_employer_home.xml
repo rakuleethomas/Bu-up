@@ -4,270 +4,143 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="vm"
-            type="org.rakulee.buup.viewmodel.EmployerViewModel" />
 
-        <variable
-            name="markerSelected"
-            type="Boolean" />
+
+
         <import type="android.view.View"/>
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.employer.EmployerHome">
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_bar_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#fff"
-        android:elevation="2dp"
-        android:minHeight="48dp"
-        android:src="@drawable/bg_search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04">
+        android:layout_height="match_parent"
+        tools:context=".fragments.employer.EmployerHome">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_bar"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_job_posting"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#fff"
-            android:backgroundTint="#fff"
-            app:iconifiedByDefault="false"
-            app:defaultQueryHint="Part-Time Jobs in San Jose"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintCircleRadius="0dp"
-            app:layout_constraintEnd_toStartOf="@id/btn_navigator"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintHorizontal_weight="7"
-            app:layout_constraintStart_toStartOf="parent"
+            android:minHeight="228dp"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/container_recommend"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Part-Time Jobs in San Jose"
-            app:searchIcon="@drawable/ic_search" />
+            app:layout_constraintVertical_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_job_posting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Job Posting"
+                android:textSize="21sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_view_all"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_job_posting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_job_posting"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_navigator"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_job_posting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:itemCount="5"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/item_employer_job_posting_list" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_recommend"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#fff"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_search_navigator"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_list_view"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/search_bar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/container_job_posting"
+            app:layout_constraintVertical_weight="2">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_list_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#fff"
-            android:minHeight="48dp"
-            android:src="@drawable/ic_search_list"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_recommended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommended"
+                android:textSize="21sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_recommended"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recommended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_employer_recommended" />
+
+            </ScrollView>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_write_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:src="@drawable/ic_bu_up_pencil"
+            app:backgroundTint="#797ED1"
+            app:tint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@id/btn_navigator"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.976" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!-- Job detail container -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_job_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxHeight="144dp"
-        android:minHeight="144dp"
-        android:elevation="2dp"
-        android:src="@drawable/rectangle_3"
-        android:background="@drawable/rectangle_border"
-        android:visibility="@{markerSelected? View.VISIBLE: View.GONE}"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintVertical_bias="0.96"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_company_logo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:maxWidth="80dp"
-            android:maxHeight="80dp"
-            app:layout_constraintWidth_percent="0.2"
-            app:layout_constraintDimensionRatio="W,1:1"
-            android:src="@drawable/bu_up_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_job_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="Uber Driver Jobs"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_marginStart="16dp"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintBottom_toTopOf="@+id/tv_company_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/group" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_company_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="Uber"
-            android:textSize="14sp"
-            android:textColor="#737272"
-            app:layout_constraintBottom_toTopOf="@+id/iv_current_place_logo"
-            app:layout_constraintStart_toStartOf="@+id/tv_job_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_job_title" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_current_place_logo"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_location"
-            app:layout_constraintBottom_toTopOf="@+id/tv_wage"
-            app:layout_constraintStart_toStartOf="@+id/tv_job_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/poppins"
-            android:text="Cupertino, CA"
-            android:textSize="11sp"
-            android:textColor="#5B5F6E"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
-            app:layout_constraintEnd_toStartOf="@+id/iv_divider"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/iv_current_place_logo"
-            app:layout_constraintTop_toTopOf="@+id/iv_current_place_logo" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_divider"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_divider"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
-            app:layout_constraintEnd_toEndOf="@id/tv_distance"
-            app:layout_constraintStart_toStartOf="@id/tv_location"
-            app:layout_constraintTop_toTopOf="@+id/iv_current_place_logo" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/poppins"
-            android:text="13 miles away"
-            android:textSize="11sp"
-            android:textColor="#5B5F6E"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
-            app:layout_constraintStart_toEndOf="@+id/iv_divider"
-            app:layout_constraintTop_toTopOf="@+id/iv_current_place_logo" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="iv_current_place_logo,tv_location,iv_divider,tv_distance"
-            app:layout_constraintBottom_toTopOf="@+id/tv_job_title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_wage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$20 per an hour"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/tv_part_full"
-            app:layout_constraintStart_toStartOf="@+id/tv_job_title"
-            app:layout_constraintTop_toBottomOf="@+id/iv_current_place_logo" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_part_full"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="Part-time, Full-time"
-            android:textSize="11sp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_job_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_wage" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="left"
-            app:constraint_referenced_ids="tv_job_title"
-            tools:layout_editor_absoluteX="129dp"
-            tools:layout_editor_absoluteY="68dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_map_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_list_view"
-        android:elevation="2dp"
-        app:backgroundTint="#797ED1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        app:tint="@null" />
-
-
-    <fragment
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        map:mapType="normal"
-        map:zOrderOnTop="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-         />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

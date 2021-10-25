@@ -48,50 +48,13 @@ class EmployerJobPosting : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_job_posting, container, false)
         binding.lifecycleOwner = this
-        binding.jobPosting= this
 
 
-        var companyImageUrl = ParseUser.getCurrentUser().get("CompanyImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(companyImageUrl)){
-            companyImageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
-        }
-        Glide.with(requireContext()).load(companyImageUrl).into(binding.ivCompanyLogo)
-        val companyTitle = ParseUser.getCurrentUser().get("CompanyTitle").toString()
-        binding.textView17.text = companyTitle
-
-
-        binding.btnSubmit.setOnClickListener{
-            androidx.appcompat.app.AlertDialog.Builder(requireContext())
-                .setTitle("Submit test")
-                .setMessage("submit test")
-                .setPositiveButton(android.R.string.ok, object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        val currentPoint = ParseUser.getCurrentUser().get("Points") as Int
-                        ParseUser.getCurrentUser().put("Points", currentPoint - 100)
-                        ParseUser.getCurrentUser().saveInBackground()
-
-                        val exampleJob  = Job()
-
-                        exampleJob.ImageUrl = companyImageUrl
-                        exampleJob.author = ParseUser.getCurrentUser()
-                        exampleJob.companyTitle = companyTitle
-                        exampleJob.jobLocation = binding.editText.text.toString()
-                        exampleJob.jobDescription = binding.editText6.text.toString()
-                        exampleJob.jobPay = binding.etPay.text.toString()
-                        exampleJob.jobRequirement = binding.editText7.text.toString()
-
-                        exampleJob.saveInBackground { e ->
-                            if (e == null) {
-                                // success
-                            } else {
-                                Toast.makeText(requireContext(), "error : " + e.message, Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                })
-                .show()
-        }
+//        var companyImageUrl = ParseUser.getCurrentUser().get("CompanyImageUrl").toString()
+////            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+//        if("".equals(companyImageUrl)){
+//            companyImageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+//        }
 
 
 

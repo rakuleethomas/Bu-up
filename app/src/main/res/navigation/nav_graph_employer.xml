@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_main_emp_home_to_employerJobDetail"
             app:destination="@id/employerJobDetail" />
+        <action
+            android:id="@+id/action_main_emp_dashboard_to_employer_job_posting"
+            app:destination="@id/employer_job_posting" />
     </fragment>
 
     <fragment
@@ -76,6 +79,9 @@
             android:id="@+id/action_employer_job_posting_to_Profile"
             app:destination="@id/main_emp_profile">
         </action>
+        <action
+            android:id="@+id/action_employer_job_posting_to_main_emp_dashboard"
+            app:destination="@id/main_emp_dashboard" />
     </fragment>
     <action
         android:id="@+id/action_global_paymentActivity"
