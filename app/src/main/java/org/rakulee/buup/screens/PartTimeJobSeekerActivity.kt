@@ -8,6 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityPartTimeJobSeekerBinding
 import org.rakulee.buup.model.BuupJobSeekerProfile
@@ -22,9 +25,11 @@ class PartTimeJobSeekerActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_part_time_job_seeker)
         binding.lifecycleOwner = this
 
-        val gson = Gson()
-        val buupJobseekerProfile = gson.fromJson<BuupJobSeekerProfile>(intent.getStringExtra("JobSeekerProfileJson"), BuupJobSeekerProfile::class.java)
-        viewModel.updateBuupJobSeekerProfile(buupJobseekerProfile)
+        CoroutineScope(Dispatchers.Main).launch {
+            val gson = Gson()
+            val buupJobseekerProfile = gson.fromJson<BuupJobSeekerProfile>(intent.getStringExtra("JobSeekerProfileJson"), BuupJobSeekerProfile::class.java)
+            viewModel.updateBuupJobSeekerProfile(buupJobseekerProfile)
+        }
 
         NavigationUI.setupWithNavController(binding.bottomNavigationJobSeeker, findNavController(R.id.nav_host_job_seeker))
     }

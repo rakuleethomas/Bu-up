@@ -1,4 +1,4 @@
-package org.rakulee.buup.fragmets.jobseeker
+package org.rakulee.buup.fragments.jobseeker
 
 import android.graphics.Color
 import android.os.Bundle

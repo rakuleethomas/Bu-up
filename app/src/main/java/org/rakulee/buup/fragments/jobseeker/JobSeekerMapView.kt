@@ -197,7 +197,6 @@ class JobSeekerMapView : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReady
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding
         mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this@JobSeekerMapView)
     }

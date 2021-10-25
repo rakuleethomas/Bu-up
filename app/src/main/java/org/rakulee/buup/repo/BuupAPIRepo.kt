@@ -12,4 +12,5 @@ class BuupAPIRepo @Inject constructor(
     suspend fun jobSeekerSignIn(body: RequestBody) = buupApiHelper.buupJobSeekerSignIn(body)
     suspend fun employerSignUp(body: RequestBody) = buupApiHelper.buupEmployerSignup(body)
     suspend fun employerSignIn(body: RequestBody) = buupApiHelper.buupEmployerSignIn(body)
+    suspend fun getJobByDistance(body : RequestBody) = buupApiHelper.buupGetJobByDistance(body)
 }

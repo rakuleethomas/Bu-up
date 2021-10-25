@@ -96,6 +96,8 @@ class LoginActivity : BaseActivity() {
                     buupJobSeekerProfile.wageMax = loginResponse.body()!!.message.wageMax
                     buupJobSeekerProfile.zipCode = loginResponse.body()!!.message.zipCode
                     buupJobSeekerProfile.availability = loginResponse.body()!!.message.availability
+                    buupJobSeekerProfile.latitude = loginResponse.body()!!.message.latitude
+                    buupJobSeekerProfile.longitude = loginResponse.body()!!.message.longitude
                     val gson = Gson()
                     val temp = gson.toJson(buupJobSeekerProfile)
                     val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)

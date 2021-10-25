@@ -1,5 +1,7 @@
 package org.rakulee.buup.model
 
+import java.math.BigDecimal
+
 data class BuupJobSeekerProfile(
     var userId : String = "",
     var firstName : String = "",
@@ -16,6 +18,8 @@ data class BuupJobSeekerProfile(
     var socialMedia : String = "",
     var timestamp : String = "",
     var wageMin : String = "",
+    var latitude : Double = 0.0,
+    var longitude : Double = 0.0,
     var wageMax : String = "",
     var zipCode : String = "",
     var availability : ArrayList<ArrayList<Boolean>> = ArrayList<ArrayList<Boolean>>()

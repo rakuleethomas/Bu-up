@@ -1,12 +1,34 @@
 package org.rakulee.buup.fragments.jobseeker
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.gson.JsonObject
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.rakulee.buup.R
+import org.rakulee.buup.adapters.EmployerSavedListAdapter
+import org.rakulee.buup.databinding.FragmentJobSeekerSavedJobsBinding
+import org.rakulee.buup.model.BuupGetJobPostingByDistanceResponse
+import org.rakulee.buup.model.EmployerSavedListItem
+import org.rakulee.buup.repo.BuupAPIRepo
+import org.rakulee.buup.viewmodel.JobSeekerViewModel
+import retrofit2.Response
+import javax.inject.Inject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +45,61 @@ class JobSeekerSavedJobs : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var binding: FragmentJobSeekerSavedJobsBinding
+
+    private val viewModel: JobSeekerViewModel by activityViewModels()
+    private var TAG = "JobSeekerSaved"
+    val list = ArrayList<EmployerSavedListItem>()
+    val adapter = EmployerSavedListAdapter()
+
+
+    @Inject
+    lateinit var buupRepo: BuupAPIRepo
+
+    suspend fun getPostings(list: ArrayList<EmployerSavedListItem>) {
+
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("latitude", viewModel.buupJobSeekerProfile.value!!.latitude)
+        jsonObject.addProperty("longitude", viewModel.buupJobSeekerProfile.value!!.longitude)
+        jsonObject.addProperty("distance", 100)
+        val jsonString = jsonObject.toString()
+        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+        val postingResponse: Response<BuupGetJobPostingByDistanceResponse> =
+            buupRepo.getJobByDistance(requestBody)
+
+
+        if (postingResponse.isSuccessful) {
+            CoroutineScope(Dispatchers.Main).launch {
+                var i = 0
+                for (body in postingResponse.body()!!) {
+                    if (body.liked) {
+                        var savedItem: EmployerSavedListItem = EmployerSavedListItem(
+                            body.jobTitle,
+                            body.companyName,
+                            body.payRateLow,
+                            body.payRateHigh,
+                            body.city,
+                            "${i}",
+                            body.liked
+                        )
+                        i += 1
+                        list.add(savedItem)
+                    }
+                }
+                Log.d("Job Postings", "posting size: ${postingResponse.body()!!.size}")
+            }
+
+        } else {
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(context, "Incorrect login information!", Toast.LENGTH_SHORT)
+                    .show()
+                Log.d("LOGIN", "login: Error")
+            }
+        }
+
+
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +114,26 @@ class JobSeekerSavedJobs : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_job_seeker_saved_jobs, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_job_seeker_saved_jobs,
+            container,
+            false
+        )
+        binding.lifecycleOwner = this
+
+        CoroutineScope(Dispatchers.Main).launch{
+            getPostings(list)
+            delay(500)
+            adapter.update(list)
+//            adapter.setHasStableIds(true)
+
+            binding.rvSavedJob.adapter = adapter
+            binding.rvSavedJob.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        }
+
+
+        return binding.root
     }
 
     companion object {

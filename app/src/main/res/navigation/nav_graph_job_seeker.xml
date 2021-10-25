@@ -148,4 +148,9 @@
     <action
         android:id="@+id/action_global_paymentActivity2"
         app:destination="@id/paymentActivity2" />
+    <fragment
+        android:id="@+id/main_seeker_message"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerMessage"
+        android:label="fragment_job_seeker_message"
+        tools:layout="@layout/fragment_job_seeker_message" />
 </navigation>

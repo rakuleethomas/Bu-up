@@ -43,7 +43,11 @@ data class JobSeekerSignInResponse(
         @SerializedName("industry")
         val industry: ArrayList<String>,
         @SerializedName("availability")
-        val availability : ArrayList<ArrayList<Boolean>>
+        val availability : ArrayList<ArrayList<Boolean>>,
+        @SerializedName("longitude")
+        val longitude : Double,
+        @SerializedName("latitude")
+        val latitude : Double,
     ) {
         data class Badge(
             @SerializedName("badgePhotoUrl")

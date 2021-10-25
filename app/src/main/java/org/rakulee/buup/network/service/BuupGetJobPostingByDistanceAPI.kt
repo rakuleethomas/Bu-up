@@ -14,6 +14,6 @@ interface BuupGetJobPostingByDistanceAPI {
     suspend fun queryJobPosting(
         @Query("latitude") latitude : Double,
         @Query("longitude") longitude : Double,
-        @Query("distance") distance : String
+        @Query("distance") distance : Int
     ) : Response<BuupGetJobPostingByDistanceResponse>
 }

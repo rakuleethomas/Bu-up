@@ -6,6 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivityPartTimeEmployerBinding
