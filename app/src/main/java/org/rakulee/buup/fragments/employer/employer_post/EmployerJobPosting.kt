@@ -3,6 +3,8 @@ package org.rakulee.buup.fragments.employer.employer_post
 import android.app.DatePickerDialog
 import android.location.Geocoder
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -93,7 +95,7 @@ class EmployerJobPosting : Fragment(), PartTimeEmployerActivity.EmployerJobPosti
         val pattern2 = Regex("-")
         val ans : List<String> = pattern2.split(binding.etWageRange.text.toString())
         wageLow = ans[0].trim()
-        wageHigh = ans[1].trim()
+        wageHigh = wageLow
 
         var latitude = 0.0
         var longitude = 0.0
@@ -158,7 +160,24 @@ class EmployerJobPosting : Fragment(), PartTimeEmployerActivity.EmployerJobPosti
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         }
 
+        binding.etWageRange.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                return
+            }
 
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                return
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                when {
+                    editable.isNullOrEmpty() -> return
+                    Regex("\\$\\d+").matches(editable.toString()) -> return
+                    editable.toString() == "$" -> editable.clear()
+                    editable.startsWith("$").not() -> editable.insert(0, "$")
+                }
+            }
+        })
 
         binding.etPostingDate.setOnClickListener {
             DatePickerDialog(requireContext(), date,

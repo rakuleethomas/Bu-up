@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/main_emp_dashboard"
-        android:icon="@drawable/ic_dashboard"
+        android:icon="@drawable/ic_bu_up_dashboard"
         android:title="@null"
         />
 
@@ -14,7 +15,7 @@
         />
 
     <item
-        android:id="@+id/main_emp_search"
+        android:id="@+id/main_emp_message"
         android:icon="@drawable/ic_message"
         android:title="@null"/>
 

@@ -37,6 +37,9 @@ import org.rakulee.buup.model.EmployerHomeRecommendedItem
 import org.rakulee.buup.model.JobSeekerSignInResponse
 import org.rakulee.buup.util.Util
 import org.rakulee.buup.viewmodel.EmployerViewModel
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.coroutines.coroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
@@ -74,6 +77,10 @@ class EmployerHome : Fragment(){
 
 
 
+    enum class BadgeStatus{
+        Healthcare, Airline, ArtMedia, Automotive, Cleaner, Hotel, Law, Manufacture, Moving, Pharmacy, Policy, Childcare
+    }
+
     override fun onResume() {
         super.onResume()
 //        employerViewModel.fetchEmployerData()
@@ -110,7 +117,7 @@ class EmployerHome : Fragment(){
         val recommendedItemList = ArrayList<EmployerHomeRecommendedItem>()
         val jobSeekerProfileList = ArrayList<BuupJobSeekerProfile>()
         lateinit var tempJobSeekerProfile : BuupJobSeekerProfile
-        val tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
+        var tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
         val tempIndustryList = ArrayList<String>()
 
         val nameMap = HashMap<String, String>()
@@ -123,19 +130,34 @@ class EmployerHome : Fragment(){
         nameMap.put("Paul","Simon")
         nameMap.put("Sam","Hamilton")
 
-
+//        Healthcare, Airline, ArtMedia, Automotive, Cleaner, Hotel, Law, Manufacture, Moving, Pharmacy, Policy, Childcare
         for(i in 1..5){
-            tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",0,""))
+            tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",1,BadgeStatus.Healthcare.toString()))
         }
+
+        val badgeMap = HashMap<String, ArrayList<JobSeekerSignInResponse.Message.Badge>>()
+        var badgePos = 0
+        for(name in nameMap){
+            tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
+            for(i in 1..5){
+                tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",1, BadgeStatus.values()[badgePos%12].toString()))
+                badgePos++
+            }
+            badgeMap.put(name.key, tempBadgeList)
+        }
+
+
+
         tempIndustryList.add("Restaurant")
         tempIndustryList.add("Design")
         tempIndustryList.add("Research Industry")
         tempIndustryList.add("Packaging/Containers")
 
         var index = 0
+        val availabilityList = ArrayList<ArrayList<Boolean>>()
         for(name in nameMap){
             tempJobSeekerProfile = BuupJobSeekerProfile()
-            tempJobSeekerProfile.badgeList = tempBadgeList
+            tempJobSeekerProfile.badgeList = badgeMap.get(name.key)!!
             tempJobSeekerProfile.firstName = name.key
             tempJobSeekerProfile.lastName = name.value
             tempJobSeekerProfile.email = "${name.key}.${name.value}@svkoreans.com"

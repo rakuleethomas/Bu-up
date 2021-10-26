@@ -6,64 +6,118 @@
 
     <data>
         <variable
-            name="editMode"
-            type="Boolean" />
+            name="employerInfo"
+            type="org.rakulee.buup.model.BuupEmployerProfile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="16dp"
         tools:context=".fragments.employer.EmployerProfile">
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_company_email"
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="@null"
+            android:lineSpacingExtra="2sp"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            />
-
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/iv_company_logo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="#c4c4c4"
-            app:layout_constraintDimensionRatio="W, 1:1"
-            app:layout_constraintBottom_toBottomOf="@id/et_email"
-            app:layout_constraintCircleRadius="1.0dp"
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company Name"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/et_company_name"
-            app:layout_constraintVertical_bias="0.04"
-            app:roundPercent="1" />
+            app:layout_constraintVertical_bias="0.13999999"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_company_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company name"
+            android:text="@{employerInfo.companyInfo.name}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_company_address"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+        <TextView
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Email"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/et_email"
-            app:layout_constraintTop_toTopOf="@+id/iv_company_logo"
-            app:layout_constraintVertical_bias="0.00"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:layout_editor_absoluteX="122dp"
-            tools:text="SVKorans.com" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_zip_code" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_company_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_company_name"
-            tools:layout_editor_absoluteX="122dp"
-            tools:text="info@svkoreans.com" />
+            android:text="Company Address"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_address1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_name" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_profile_edit"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ic_edit_post"
-            app:layout_constraintDimensionRatio="W, 1:1"
-            app:layout_constraintTop_toTopOf="@+id/iv_company_logo"
-            tools:layout_editor_absoluteX="355dp" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_address1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address 1"
+            android:text="@{employerInfo.companyInfo.address1}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_address2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_address"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_address2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address2"
+            android:text="@{employerInfo.companyInfo.address2}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_zip_code"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_address1"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_zip_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Zip code"
+            android:text="@{employerInfo.companyInfo.zipCode}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_address2"
+            tools:layout_editor_absoluteX="16dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

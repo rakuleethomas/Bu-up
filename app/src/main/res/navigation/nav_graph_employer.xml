@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_main_emp_dashboard_to_employer_job_posting"
             app:destination="@id/employer_job_posting" />
+        <action
+            android:id="@+id/action_main_emp_dashboard_to_employerPositionCandidate"
+            app:destination="@id/employerPositionCandidate" />
     </fragment>
 
     <fragment
@@ -92,6 +95,28 @@
         android:id="@+id/employerJobDetail"
         android:name="org.rakulee.buup.fragments.employer.EmployerJobDetail"
         android:label="EmployerJobDetail" />
+    <fragment
+        android:id="@+id/main_emp_message"
+        android:name="org.rakulee.buup.fragments.employer.EmployerMessage"
+        android:label="EmployerMessage" >
+        <argument
+            android:name="jobSeekerProfile"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_main_emp_message_to_employerPositionCandidate"
+            app:destination="@id/employerPositionCandidate" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerPositionCandidate"
+        android:name="org.rakulee.buup.fragments.employer.EmployerPositionCandidate"
+        android:label="EmployerPositionCandidate" >
+        <argument
+            android:name="jobSeekerProfile"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_employerPositionCandidate_to_main_emp_message"
+            app:destination="@id/main_emp_message" />
+    </fragment>
 
 
 </navigation>
