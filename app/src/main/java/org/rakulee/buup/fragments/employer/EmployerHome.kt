@@ -105,10 +105,10 @@ class EmployerHome : Fragment(){
         val jobPostingAdapter = EmployerHomeJobPostingListAdapter()
         binding.rvJobPosting.adapter = jobPostingAdapter
         val jobPostingList = ArrayList<EmployerHomeJobPostingItem>()
-        jobPostingList.add(EmployerHomeJobPostingItem("Server", 100, "$20","$30", "Expires in 30 days"))
-        jobPostingList.add(EmployerHomeJobPostingItem("Cashier", 101, "$21","$25", "Expires in 30 days"))
-        jobPostingList.add(EmployerHomeJobPostingItem("Cleaner", 104, "$20","$26", "Expires in 30 days"))
-        jobPostingList.add(EmployerHomeJobPostingItem("Server", 105, "$20","$30", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Server", 100, "$100","$100", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Cashier", 101, "$100","$100", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Cleaner", 104, "$100","$100", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Server", 105, "$100","$100", "Expires in 30 days"))
         jobPostingAdapter.updateItems(jobPostingList)
         jobPostingAdapter.notifyDataSetChanged()
 

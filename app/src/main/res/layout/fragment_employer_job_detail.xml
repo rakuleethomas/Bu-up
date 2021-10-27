@@ -126,7 +126,7 @@
                 android:layout_marginTop="16dp"
                 android:background="#F4F7FB"
                 android:fontFamily="@font/poppins"
-                android:text="$20 - $50 (Per Hour)"
+                android:text="$100 - $100 (Per Hour)"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_company_logo" />
 
@@ -234,7 +234,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Test"
+                android:text="I need a server immediately!!!"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_job_description" />
 
@@ -256,7 +256,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Server"
+                android:text="No experience required. Just come!"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_skills"
