@@ -13,97 +13,16 @@
         tools:context=".fragments.employer.EmployerSaved">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/search_bar_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#fff"
-            android:elevation="2dp"
-            android:minHeight="48dp"
-            android:src="@drawable/bg_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.04">
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_bar"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#fff"
-                android:backgroundTint="#fff"
-                app:iconifiedByDefault="false"
-                app:defaultQueryHint="Part-Time Jobs in San Jose"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintCircleRadius="0dp"
-                app:layout_constraintEnd_toStartOf="@id/btn_navigator"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintHorizontal_weight="7"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="Part-Time Jobs in San Jose"
-                app:searchIcon="@drawable/ic_search" />
-
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_navigator"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#fff"
-                android:minHeight="48dp"
-                android:src="@drawable/ic_search_navigator"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_list_view"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/search_bar"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_list_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#fff"
-                android:minHeight="48dp"
-                android:src="@drawable/ic_search_list"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/btn_navigator"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_saved_job"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar_container"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintVertical_weight="8"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="10"
             tools:layout_editor_absoluteX="0dp"
-            tools:listitem="@layout/item_saved_position" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_map_mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_map"
-            app:backgroundTint="#797ED1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.976"
-            app:tint="@null" />
+            tools:listitem="@layout/item_saved_job_seeekers" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

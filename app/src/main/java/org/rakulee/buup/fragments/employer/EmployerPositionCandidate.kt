@@ -171,7 +171,7 @@ class EmployerPositionCandidate : Fragment() {
 
         val gson = Gson()
         val jsonObj = gson.toJsonTree(jobSeekerProfile)
-        val directions : NavDirections = EmployerPositionCandidateDirections.actionEmployerPositionCandidateToMainEmpMessage(jsonObj.toString())
+        val directions : NavDirections = EmployerPositionCandidateDirections.actionEmployerPositionCandidateToEmployerMessage(jsonObj.toString())
         findNavController().navigate(directions)
     }
 

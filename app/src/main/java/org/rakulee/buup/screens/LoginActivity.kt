@@ -102,7 +102,7 @@ class LoginActivity : BaseActivity() {
                     val intent = Intent(this@LoginActivity, PartTimeJobSeekerActivity::class.java)
                     intent.putExtra("JobSeekerProfileJson", temp)
                     startActivity(intent)
-                    this@LoginActivity.finish()
+//                    this@LoginActivity.finish()
                 }
                 Log.d("LOGIN", "login: ${loginResponse.body().toString()}")
 
@@ -149,7 +149,7 @@ class LoginActivity : BaseActivity() {
                         val intent = Intent(this@LoginActivity, PartTimeEmployerActivity::class.java)
                         intent.putExtra("EmployerProfileJson", temp)
                         startActivity(intent)
-                        this@LoginActivity.finish()
+//                        this@LoginActivity.finish()
                     }
                 }else{
                     CoroutineScope(Dispatchers.Main).launch {

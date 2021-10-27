@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ItemSavedPositionBinding
+import org.rakulee.buup.fragments.jobseeker.JobSeekerSavedJobsDirections
 import org.rakulee.buup.model.EmployerSavedListItem
 
 class EmployerSavedListAdapter : RecyclerView.Adapter<EmployerSavedListAdapter.ViewHolder>() {
@@ -37,7 +39,10 @@ class EmployerSavedListAdapter : RecyclerView.Adapter<EmployerSavedListAdapter.V
         val binding = ItemSavedPositionBinding.bind(itemView)
         init {
             // initialize event listeners if needed
-
+            itemView.setOnClickListener{
+                val direction = JobSeekerSavedJobsDirections.actionMainSeekerSavedJobsToJobSeekerJobDetail()
+                binding.root.findNavController().navigate(direction)
+            }
         }
 
         fun bind(item: EmployerSavedListItem){

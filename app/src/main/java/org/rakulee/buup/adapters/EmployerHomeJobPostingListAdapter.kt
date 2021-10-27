@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ItemEmployerJobPostingListBinding
+import org.rakulee.buup.fragments.employer.EmployerHomeDirections
 import org.rakulee.buup.model.EmployerHomeJobPostingItem
 
 class EmployerHomeJobPostingListAdapter : RecyclerView.Adapter<EmployerHomeJobPostingListAdapter.ViewHolder>() {
@@ -38,7 +40,10 @@ class EmployerHomeJobPostingListAdapter : RecyclerView.Adapter<EmployerHomeJobPo
         val binding = ItemEmployerJobPostingListBinding.bind(itemView)
         init {
             // initialize event listeners if needed
-
+            itemView.setOnClickListener{
+                val direction = EmployerHomeDirections.actionMainEmpHomeToEmployerJobDetail()
+                it.findNavController().navigate(direction)
+            }
         }
 
         fun bind(item : EmployerHomeJobPostingItem){

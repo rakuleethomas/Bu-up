@@ -1,4 +1,4 @@
-package org.rakulee.buup.fragments.employer
+package org.rakulee.buup.fragments.employer.message
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,16 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.fragment.navArgs
+import com.google.gson.Gson
 import org.rakulee.buup.R
-import org.rakulee.buup.adapters.EmployerSavedJobSeekersAdapter
-import org.rakulee.buup.adapters.EmployerSavedListAdapter
-import org.rakulee.buup.databinding.FragmentEmployerSavedBinding
+import org.rakulee.buup.adapters.EmployerMessageGroupDetailAdapter
+import org.rakulee.buup.databinding.FragmentEmployerMessageGroupDetailBinding
 import org.rakulee.buup.model.BuupJobSeekerProfile
-import org.rakulee.buup.model.EmployerSavedListItem
+import org.rakulee.buup.model.EmployerMessageGroupItemDetail
 import org.rakulee.buup.viewmodel.EmployerViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,18 +23,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [EmployerSaved.newInstance] factory method to
+ * Use the [EmployerMessageDetail.newInstance] factory method to
  * create an instance of this fragment.
  */
-@AndroidEntryPoint
-class EmployerSaved : Fragment() {
+class EmployerMessageDetail : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
-    lateinit var binding : FragmentEmployerSavedBinding
+    lateinit var binding : FragmentEmployerMessageGroupDetailBinding
+    val args : EmployerMessageGroupArgs by navArgs()
     val viewModel : EmployerViewModel by activityViewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -51,24 +46,24 @@ class EmployerSaved : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_message_group_detail, container, false)
+        binding.lifecycleOwner = this
+        val gson = Gson()
+//        var jobSeeker = gson.fromJson<BuupJobSeekerProfile>(args.jobSeekerProfile, BuupJobSeekerProfile::class.java)
+//        var jobSeeker = gson.fromJson<BuupJobSeekerProfile>(args.jobSeekerProfile, BuupJobSeekerProfile::class.java)
+        val adapter = EmployerMessageGroupDetailAdapter()
+        binding.rvMessageGroup.adapter = adapter
+        val jobSeekerList = viewModel.jobSeekerList.value
+        val list = ArrayList<EmployerMessageGroupItemDetail>()
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_saved, container, false)
+        for(jobSeeker in jobSeekerList!!){
+            list.add(EmployerMessageGroupItemDetail("", "${jobSeeker.firstName}  ${jobSeeker.lastName}", "Hello, I am interest in this position", 2))
+        }
 
 
-        val list : ArrayList<BuupJobSeekerProfile> = viewModel.jobSeekerList.value!!
-        val adapter = EmployerSavedJobSeekersAdapter()
         adapter.update(list)
 
-
-        binding.rvSavedJob.adapter = adapter
-        binding.rvSavedJob.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-
         return binding.root
-    }
-
-    fun showDetail(){
-        val directions : NavDirections = EmployerSavedDirections.actionMainEmpSavedToEmployerJobDetail()
-        findNavController().navigate(directions)
     }
 
     companion object {
@@ -78,12 +73,12 @@ class EmployerSaved : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment EmployerSaved.
+         * @return A new instance of fragment EmployerMessageDetail.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            EmployerSaved().apply {
+            EmployerMessageDetail().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

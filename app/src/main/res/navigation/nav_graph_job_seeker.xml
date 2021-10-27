@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_main_seeker_home_to_main_seeker_filter"
             app:destination="@id/main_seeker_filter" />
+        <action
+            android:id="@+id/action_main_seeker_home_to_jobSeekerJobDetail"
+            app:destination="@id/jobSeekerJobDetail" />
     </fragment>
 
     <fragment
@@ -44,6 +47,9 @@
         <action
             android:id="@+id/action_main_seeker_listview_to_main_seeker_filter"
             app:destination="@id/main_seeker_filter" />
+        <action
+            android:id="@+id/action_main_seeker_listview_to_jobSeekerJobDetail"
+            app:destination="@id/jobSeekerJobDetail" />
     </fragment>
 
     <fragment
@@ -51,7 +57,11 @@
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerSavedJobs"
         android:label="main_seeker_saved_jobs"
         tools:layout="@layout/fragment_job_seeker_saved_jobs"
-        />
+        >
+        <action
+            android:id="@+id/action_main_seeker_saved_jobs_to_jobSeekerJobDetail"
+            app:destination="@id/jobSeekerJobDetail" />
+    </fragment>
 
     <fragment
         android:id="@+id/main_seeker_search"
@@ -153,4 +163,12 @@
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerMessage"
         android:label="fragment_job_seeker_message"
         tools:layout="@layout/fragment_job_seeker_message" />
+    <fragment
+        android:id="@+id/jobSeekerJobDetail"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerJobDetail"
+        android:label="JobSeekerJobDetail" >
+        <action
+            android:id="@+id/action_jobSeekerJobDetail_to_main_seeker_message"
+            app:destination="@id/main_seeker_message" />
+    </fragment>
 </navigation>

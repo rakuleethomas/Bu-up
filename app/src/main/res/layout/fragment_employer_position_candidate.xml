@@ -100,6 +100,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:src="@drawable/ic_edit_pencil"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.877"
@@ -109,10 +110,12 @@
 
                 <ImageButton
                     android:id="@+id/imageButton4"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@null"
-                    android:src="@drawable/ic_settings"
+                    android:src="@drawable/ic_heart"
+                    android:tintMode="src_in"
+                    android:tint="@color/buup_job_saved_heart_like"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"

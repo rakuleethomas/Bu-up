@@ -69,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="email"
+            android:text="@{employerInfo.email}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
@@ -104,8 +105,21 @@
             android:hint="Address2"
             android:text="@{employerInfo.companyInfo.address2}"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/et_company_zip_code"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_city"
             app:layout_constraintTop_toBottomOf="@+id/et_company_address1"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:text="@{employerInfo.companyInfo.city}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_zip_code"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_address2"
+            app:layout_constraintVertical_chainStyle="packed"
             tools:layout_editor_absoluteX="16dp" />
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -116,7 +130,7 @@
             android:text="@{employerInfo.companyInfo.zipCode}"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/et_company_address2"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_city"
             tools:layout_editor_absoluteX="16dp" />
 
 

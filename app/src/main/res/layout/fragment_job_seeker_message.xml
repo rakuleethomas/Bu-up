@@ -56,6 +56,7 @@
             android:backgroundTint="#797ED1"
             android:fontFamily="@font/inter_medium"
             android:text="Send"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

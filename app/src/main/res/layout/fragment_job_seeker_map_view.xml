@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="vm"
+            name="fragment"
             type="org.rakulee.buup.fragments.jobseeker.JobSeekerMapView" />
 
         <variable
@@ -193,6 +193,7 @@
             android:elevation="2dp"
             android:src="@drawable/rectangle_3"
             android:background="@drawable/rectangle_border"
+            android:onClick="@{() -> fragment.goJobDetail()}"
             android:visibility="@{selectedMarker? View.VISIBLE: View.GONE}"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
@@ -223,14 +224,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Uber Driver Jobs"
+                android:text="Server"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginStart="16dp"
-                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintBottom_toTopOf="@+id/tv_company_name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_company_logo"
                 app:layout_constraintTop_toBottomOf="@+id/group" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -238,7 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Uber"
+                android:text="Rakulee, Inc."
                 android:textSize="14sp"
                 android:textColor="#737272"
                 app:layout_constraintBottom_toTopOf="@+id/iv_current_place_logo"
@@ -330,8 +331,8 @@
             <androidx.constraintlayout.widget.Barrier
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:barrierDirection="left"
-                app:constraint_referenced_ids="tv_job_title"
+                app:barrierDirection="right"
+                app:constraint_referenced_ids="iv_company_logo"
                 tools:layout_editor_absoluteX="129dp"
                 tools:layout_editor_absoluteY="68dp" />
 

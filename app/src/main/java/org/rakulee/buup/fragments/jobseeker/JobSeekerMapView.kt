@@ -79,7 +79,7 @@ class JobSeekerMapView : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReady
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_map_view, container, false)
         binding.lifecycleOwner = this
-        binding.vm = this
+        binding.fragment = this
 
         binding.selectedMarker = this.selectedMarker;
 //        binding.containerJobDetails.setOnClickListener { showDetail() }
@@ -97,6 +97,11 @@ class JobSeekerMapView : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReady
 
         return binding.root
 
+    }
+
+    fun goJobDetail(){
+        val directions : NavDirections = JobSeekerMapViewDirections.actionMainSeekerHomeToJobSeekerJobDetail()
+        findNavController().navigate(directions)
     }
 
 

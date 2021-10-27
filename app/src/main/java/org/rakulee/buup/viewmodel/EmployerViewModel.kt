@@ -8,6 +8,7 @@ import com.parse.ParseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.rakulee.buup.fragments.employer.EmployerProfile
 import org.rakulee.buup.model.BuupEmployerProfile
+import org.rakulee.buup.model.BuupJobSeekerProfile
 import org.rakulee.buup.model.EmpInfo
 import javax.inject.Inject
 
@@ -32,6 +33,14 @@ class EmployerViewModel @Inject constructor(
     val employerInfo : LiveData<BuupEmployerProfile> get() = _employerInfo
     fun updateEmployerInfo(empInfo: BuupEmployerProfile){
         _employerInfo.postValue(empInfo)
+    }
+
+    private val _jobSeekerList : MutableLiveData<ArrayList<BuupJobSeekerProfile>> by lazy {
+        MutableLiveData<ArrayList<BuupJobSeekerProfile>>()
+    }
+    val jobSeekerList : LiveData<ArrayList<BuupJobSeekerProfile>> get() = _jobSeekerList
+    fun updateJobSeekerList(list: ArrayList<BuupJobSeekerProfile>){
+        _jobSeekerList.postValue(list)
     }
 
     fun fetchCurrentPoint() {

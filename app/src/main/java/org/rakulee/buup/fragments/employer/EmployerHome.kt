@@ -11,6 +11,7 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
@@ -60,7 +61,7 @@ class EmployerHome : Fragment(){
 
     private lateinit var binding : FragmentEmployerHomeBinding
 
-
+    val viewModel : EmployerViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -168,7 +169,7 @@ class EmployerHome : Fragment(){
             index++
             jobSeekerProfileList.add(tempJobSeekerProfile)
         }
-
+        viewModel.updateJobSeekerList(jobSeekerProfileList)
         recommendedItemList.add(EmployerHomeRecommendedItem("Restaurant", jobSeekerProfileList))
         recommendedItemList.add(EmployerHomeRecommendedItem("Arts/Crafts", jobSeekerProfileList))
         recommendedItemList.add(EmployerHomeRecommendedItem("Design", jobSeekerProfileList))
