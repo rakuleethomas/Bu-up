@@ -1,10 +1,19 @@
 package org.rakulee.buup.fragments.jobseeker
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import android.widget.ToggleButton
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -51,6 +60,39 @@ class JobSeekerOnBoarding2 : Fragment() {
             val direction : NavDirections = JobSeekerOnBoarding2Directions.actionJobSeekerOnBoarding2ToJobSeekerOnBoarding3()
             findNavController().navigate(direction)
         }
+
+        var industryArray : Array<String> = resources.getStringArray(R.array.spinner_employer_industries)
+        val density = resources.displayMetrics.scaledDensity
+        var selectedArray : MutableList<String> = ArrayList<String>()
+
+        for (i in 0 until 147){
+            val button = Button(context)
+            button.text = industryArray[i]
+            button.typeface = resources.getFont(R.font.inter_medium)
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10F)
+            button.elevation = 0.5F
+            button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
+            button.setPadding(16,8,16,8)
+            button.setOnClickListener{
+                button.isSelected = !button.isSelected
+//                Toast.makeText(context, "you clicked $i", Toast.LENGTH_SHORT).show()
+                if (selectedArray.size >= 5 && selectedArray.contains(industryArray[i])){
+                    button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
+                    selectedArray.remove(industryArray[i])
+                }
+                if(selectedArray.size < 5 && button.isSelected){
+                    button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry_clicked )
+                    selectedArray.add(industryArray[i])
+                } else if (selectedArray.size < 5 && !button.isSelected) {
+                    button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
+                    selectedArray.remove(industryArray[i])
+                }
+                Log.d("AAA", selectedArray.size.toString())
+            }
+            binding.flowLayout.addView(button)
+        }
+
+
 
         return binding.root
     }

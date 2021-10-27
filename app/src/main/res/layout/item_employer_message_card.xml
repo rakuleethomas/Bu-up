@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="org.rakulee.buup.model.EmployerMessageGroupItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        android:padding="16dp"
+        android:elevation="2dp"
+        android:background="#FFFFFF"
+        android:clipToPadding="false"
+        android:layout_marginBottom="16dp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_job_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#39445D"
+            android:textSize="@dimen/text_small"
+            android:text="@{item.title}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_posted_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Warehouse Part-Time Worker" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_posted_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#39445D"
+            android:textSize="12sp"
+            android:text="@{item.postedDate}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_job_title"
+            tools:text="Posted on: Oct 25, 2021" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_msg_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_bg_message_background"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="@{String.valueOf(item.cnt)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

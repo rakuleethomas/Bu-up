@@ -4,106 +4,146 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="vm"
-            type="org.rakulee.buup.viewmodel.EmployerViewModel" />
+
+
+
+        <import type="android.view.View"/>
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.employer.EmployerHome">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_emp_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_8dp"
-        android:theme="@style/CardView"
-        app:layout_constraintBottom_toTopOf="@id/rv_job_seeker_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".fragments.employer.EmployerHome">
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/iv_profile"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_job_posting"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/ic_employer"
-            android:scaleType="fitCenter"
-            android:src="@drawable/border_circle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="H, 1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.2"
+            android:minHeight="228dp"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/container_recommend"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_job_posting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Job Posting"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/tv_view_all"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_job_posting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tv_job_posting"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_job_posting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:itemCount="5"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/item_employer_job_posting_list" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_recommend"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/container_job_posting"
+            app:layout_constraintVertical_weight="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_recommended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommended"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_recommended"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recommended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_employer_recommended" />
+
+            </ScrollView>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_write_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:src="@drawable/ic_bu_up_pencil"
+            app:backgroundTint="#797ED1"
+            app:tint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.2"
-            app:roundPercent="1">
+            app:layout_constraintVertical_bias="0.976" />
 
-        </androidx.constraintlayout.utils.widget.ImageFilterView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_emp_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxEms="8"
-            android:text="@{vm.emp.empName}"
-            android:textSize="@dimen/text_medium"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_points"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/iv_profile"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="SVKoreans">
-
-        </com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_points"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{@string/format_emp_point(vm.emp.point)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_charge_points"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_emp_name"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1,000,000pts">
-
-        </com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_charge_points"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_baseline_add_box_24"
-            app:layout_constraintBottom_toBottomOf="@id/tv_points"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_points"
-            app:layout_constraintTop_toTopOf="@id/tv_points"
-            app:layout_constraintDimensionRatio="W, 1:1"
-            app:layout_constraintWidth_percent="0.1">
-
-        </com.google.android.material.button.MaterialButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_job_seeker_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container_emp_info"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_job_seekers_list">
-    </androidx.recyclerview.widget.RecyclerView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

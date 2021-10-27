@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="org.rakulee.buup.model.BuupJobSeekerProfile" />
+        <variable
+            name="liked"
+            type="Boolean" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:minHeight="131dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="131dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_company_logo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/owl_logo"
+                android:minWidth="34dp"
+                android:minHeight="34dp"
+                app:layout_constraintDimensionRatio="W, 1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.0944" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{item.firstName + ' ' + item.lastName}"
+                android:textColor="#39445D"
+
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_company_logo"
+                app:layout_constraintTop_toTopOf="@+id/iv_company_logo"
+                tools:text="Warehouse Part-Time Worker" />
+
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Amazon"
+                android:text="@{item.email}"
+                android:textColor="#99A0AE"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_company_logo"
+                app:layout_constraintStart_toStartOf="@+id/tv_name" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_heart"
+                android:tint="@{liked?@color/buup_job_saved_heart_like:@color/buup_job_saved_heart_normal}"
+                app:tintMode="src_in"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.04" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_wage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F4F7FB"
+                tools:text="$25 - $50 (per hour)"
+                android:text="@{String.valueOf(item.wageMin) + &quot; - &quot; + String.valueOf(item.wageMax)+ &quot;(per Hour) &quot; }"
+                android:textColor="#586389"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/iv_company_logo"
+                app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_current_place_logo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_location"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/iv_company_logo"
+                app:layout_constraintTop_toBottomOf="@+id/tv_wage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_zip_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:fontFamily="@font/poppins"
+                android:text="@{item.zipCode}"
+                android:textColor="#5B5F6E"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_current_place_logo"
+                app:layout_constraintVertical_bias="0.428"
+                tools:text="Cupertino, CA" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_divider"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/ic_divider"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
+                app:layout_constraintStart_toEndOf="@+id/tv_zip_code"
+                app:layout_constraintTop_toTopOf="@+id/iv_current_place_logo"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@{item.verified?@drawable/ic_verified:@drawable/ic_not_verified}"
+                tools:src="@drawable/ic_verified"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
+                app:layout_constraintStart_toEndOf="@+id/iv_divider"
+                app:layout_constraintTop_toTopOf="@+id/iv_current_place_logo"
+                app:layout_constraintVertical_bias="0.428"
+                tools:text="13 miles away" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

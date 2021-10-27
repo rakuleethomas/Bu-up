@@ -7,4 +7,12 @@ object Configs {
     val SQUARE_CHARGE_SERVER_HOST : String = "bu-up.herokuapp.com/"
     val SQUARE_CHARGE_SERVER_URL : String = "Https://" + SQUARE_CHARGE_SERVER_HOST + "/"
 
+    val BUUP_ONBOARDING = 1000
+    val BUUP_EMPLOYER = 1004
+    val BUUP_JOB_SEEKER = 1008
+
+    var currentThemeMode = BUUP_ONBOARDING
+
+    val BUUP_BASE_URL = "https://q6qmpnkerg.execute-api.us-east-1.amazonaws.com/dev-2/"
+
 }

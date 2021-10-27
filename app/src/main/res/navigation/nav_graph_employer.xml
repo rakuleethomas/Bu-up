@@ -4,17 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_employer"
     android:label="fragment_employer_test"
-    app:startDestination="@id/main_emp_home">
+    app:startDestination="@id/main_emp_dashboard">
 
     <fragment
-        android:id="@+id/main_emp_home"
+        android:id="@+id/main_emp_dashboard"
         android:name="org.rakulee.buup.fragments.employer.EmployerHome"
         android:label="main_emp_home"
         tools:layout="@layout/fragment_employer_home" >
         <action
-            android:id="@+id/action_main_emp_home_to_paymentActivity"
-            app:destination="@id/paymentActivity" />
+            android:id="@+id/action_main_emp_home_to_employerSaved"
+            app:destination="@id/main_emp_saved" />
+        <action
+            android:id="@+id/action_main_emp_home_to_employerJobDetail"
+            app:destination="@id/employerJobDetail" />
+        <action
+            android:id="@+id/action_main_emp_dashboard_to_employer_job_posting"
+            app:destination="@id/employer_job_posting" />
+        <action
+            android:id="@+id/action_main_emp_dashboard_to_employerPositionCandidate"
+            app:destination="@id/employerPositionCandidate" />
     </fragment>
+
+    <fragment
+        android:id="@+id/main_emp_saved"
+        android:name="org.rakulee.buup.fragments.employer.EmployerSaved"
+        android:label="EmployerSaved" >
+        <action
+            android:id="@+id/action_employerSaved_to_main_emp_home"
+            app:destination="@id/main_emp_dashboard" />
+        <action
+            android:id="@+id/action_main_emp_saved_to_employerJobDetail"
+            app:destination="@id/employerJobDetail" />
+        <action
+            android:id="@+id/action_main_emp_saved_to_employerPositionCandidate"
+            app:destination="@id/employerPositionCandidate" />
+    </fragment>
+
     <fragment
         android:id="@+id/main_emp_search"
         android:name="org.rakulee.buup.fragments.employer.EmployerSearch"
@@ -53,18 +78,79 @@
 
     <fragment
         android:id="@+id/employer_job_posting"
-        android:name="org.rakulee.buup.fragments.employer.employerPost.EmployerJobPosting"
+        android:name="org.rakulee.buup.fragments.employer.employer_post.EmployerJobPosting"
         android:label="Employer_Job_Posting"
         tools:layout="@layout/fragment_employer_job_posting">
         <action
             android:id="@+id/action_employer_job_posting_to_Profile"
             app:destination="@id/main_emp_profile">
         </action>
+        <action
+            android:id="@+id/action_employer_job_posting_to_main_emp_dashboard"
+            app:destination="@id/main_emp_dashboard" />
     </fragment>
     <action
         android:id="@+id/action_global_paymentActivity"
         app:destination="@id/paymentActivity"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim" />
+    <fragment
+        android:id="@+id/employerJobDetail"
+        android:name="org.rakulee.buup.fragments.employer.EmployerJobDetail"
+        android:label="EmployerJobDetail" />
+    <fragment
+        android:id="@+id/main_emp_message"
+        android:name="org.rakulee.buup.fragments.employer.message.EmployerMessageGroup"
+        android:label="EmployerMessage" >
+        <argument
+            android:name="jobSeekerProfile"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_main_emp_message_to_employerPositionCandidate"
+            app:destination="@id/employerPositionCandidate" />
+        <action
+            android:id="@+id/action_main_emp_message_to_employerMessage"
+            app:destination="@id/employerMessage" />
+        <action
+            android:id="@+id/action_main_emp_message_to_employerMessageDetail"
+            app:destination="@id/employerMessageGroupDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerPositionCandidate"
+        android:name="org.rakulee.buup.fragments.employer.EmployerPositionCandidate"
+        android:label="EmployerPositionCandidate" >
+        <argument
+            android:name="jobSeekerProfile"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_employerPositionCandidate_to_main_emp_message"
+            app:destination="@id/main_emp_message" />
+        <action
+            android:id="@+id/action_employerPositionCandidate_to_employerMessageDetail"
+            app:destination="@id/employerMessageGroupDetail" />
+        <action
+            android:id="@+id/action_employerPositionCandidate_to_employerMessage"
+            app:destination="@id/employerMessage" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerMessage"
+        android:name="org.rakulee.buup.fragments.employer.message.EmployerMessage"
+        android:label="EmployerMessage" >
+        <argument
+            android:name="jobSeekerProfile"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerMessageGroupDetail"
+        android:name="org.rakulee.buup.fragments.employer.message.EmployerMessageDetail"
+        android:label="EmployerMessageDetail" >
+        <action
+            android:id="@+id/action_employerMessageDetail_to_employerMessage"
+            app:destination="@id/employerMessage" />
+    </fragment>
+
 
 </navigation>

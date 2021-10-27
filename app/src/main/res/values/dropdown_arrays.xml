@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="spinner_employer_number_of_employees">
+        <item>1 to 24</item>
+        <item>25 to 49</item>
+        <item>50 to 149</item>
+        <item>150 to 249</item>
+        <item>250 to 499</item>
+        <item>500 to 999</item>
+        <item>1000+</item>
+    </string-array>
+
+    <string-array name="spinner_employer_how_many_hires">
+        <item>1 to 5</item>
+        <item>6 to 10</item>
+        <item>11 to 15</item>
+        <item>16 to 19</item>
+        <item>20+</item>
+        <item>Not Sure</item>
+        <item>Always Open for Interviewing</item>
+
+    </string-array>
+
+    <string-array name="states">
+        <item>Choose a state</item>
+        <item>AL</item>
+        <item>AR</item>
+        <item>AZ</item>
+        <item>CA</item>
+        <item>CO</item>
+        <item>CT</item>
+        <item>DE</item>
+        <item>DC</item>
+        <item>FL</item>
+        <item>GA</item>
+        <item>HI</item>
+        <item>ID</item>
+        <item>IL</item>
+        <item>IN</item>
+        <item>IA</item>
+        <item>KS</item>
+        <item>KY</item>
+        <item>LA</item>
+        <item>ME</item>
+        <item>MD</item>
+        <item>MA</item>
+        <item>MI</item>
+        <item>MN</item>
+        <item>MS</item>
+        <item>MO</item>
+        <item>MT</item>
+        <item>NE</item>
+        <item>NV</item>
+        <item>NH</item>
+        <item>NJ</item>
+        <item>NM</item>
+        <item>NY</item>
+        <item>NC</item>
+        <item>ND</item>
+        <item>OH</item>
+        <item>OK</item>
+        <item>OR</item>
+        <item>PA</item>
+        <item>RI</item>
+        <item>SC</item>
+        <item>SD</item>
+        <item>TN</item>
+        <item>TX</item>
+        <item>UT</item>
+        <item>VT</item>
+        <item>VA</item>
+        <item>WA</item>
+        <item>WV</item>
+        <item>WI</item>
+        <item>WY</item>
+    </string-array>
+
+    <string-array name="spinner_employer_industries">
+        <item>Accounting</item>
+        <item>Airlines/Aviation</item>
+        <item>Alternative Dispute Resolution</item>
+        <item>Alternative Medicine</item>
+        <item>Animation</item>
+        <item>Apparel/Fashion</item>
+        <item>Architecture/Planning</item>
+        <item>Arts/Crafts</item>
+        <item>Automotive</item>
+        <item>Aviation/Aerospace</item>
+        <item>Banking/Mortgage</item>
+        <item>Biotechnology/Greentech</item>
+        <item>Broadcast Media</item>
+        <item>Building Materials</item>
+        <item>Business Supplies/Equipment</item>
+        <item>Capital Markets/Hedge Fund/Private Equity</item>
+        <item>Chemicals</item>
+        <item>Civic/Social Organization</item>
+        <item>Civil Engineering</item>
+        <item>Commercial Real Estate</item>
+        <item>Computer Games</item>
+        <item>Computer Hardware</item>
+        <item>Computer Networking</item>
+        <item>Computer Software/Engineering</item>
+        <item>Computer/Network Security</item>
+        <item>Construction</item>
+        <item>Consumer Electronics</item>
+        <item>Consumer Goods</item>
+        <item>Consumer Services</item>
+        <item>Cosmetics</item>
+        <item>Dairy</item>
+        <item>Defense/Space</item>
+        <item>Design</item>
+        <item>E-Learning</item>
+        <item>Education Management</item>
+        <item>Electrical/Electronic Manufacturing</item>
+        <item>Entertainment/Movie Production</item>
+        <item>Environmental Services</item>
+        <item>Events Services</item>
+        <item>Executive Office</item>
+        <item>Facilities Services</item>
+        <item>Farming</item>
+        <item>Financial Services</item>
+        <item>Fine Art</item>
+        <item>Fishery</item>
+        <item>Food Production</item>
+        <item>Food/Beverages</item>
+        <item>Fundraising</item>
+        <item>Furniture</item>
+        <item>Gambling/Casinos</item>
+        <item>Glass/Ceramics/Concrete</item>
+        <item>Government Administration</item>
+        <item>Government Relations</item>
+        <item>Graphic Design/Web Design</item>
+        <item>Health/Fitness</item>
+        <item>Higher Education/Acadamia</item>
+        <item>Hospital/Health Care</item>
+        <item>Hospitality</item>
+        <item>Human Resources/HR</item>
+        <item>Import/Export</item>
+        <item>Individual/Family Services</item>
+        <item>Industrial Automation</item>
+        <item>Information Services</item>
+        <item>Information Technology/IT</item>
+        <item>Insurance</item>
+        <item>International Affairs</item>
+        <item>International Trade/Development</item>
+        <item>Internet</item>
+        <item>Investment Banking/Venture</item>
+        <item>Investment Management/Hedge Fund/Private Equity</item>
+        <item>Judiciary</item>
+        <item>Law Enforcement</item>
+        <item>Law Practice/Law Firms</item>
+        <item>Legal Services</item>
+        <item>Legislative Office</item>
+        <item>Leisure/Travel</item>
+        <item>Library</item>
+        <item>Logistics/Procurement</item>
+        <item>Luxury Goods/Jewelry</item>
+        <item>Machinery</item>
+        <item>Management Consulting</item>
+        <item>Maritime</item>
+        <item>Market Research</item>
+        <item>Marketing/Advertising/Sales</item>
+        <item>Mechanical or Industrial Engineering</item>
+        <item>Media Production</item>
+        <item>Medical Equipment</item>
+        <item>Medical Practice</item>
+        <item>Mental Health Care</item>
+        <item>Military Industry</item>
+        <item>Mining/Metals</item>
+        <item>Motion Pictures/Film</item>
+        <item>Museums/Institutions</item>
+        <item>Music</item>
+        <item>Nanotechnology</item>
+        <item>Newspapers/Journalism</item>
+        <item>Non-Profit/Volunteering</item>
+        <item>Oil/Energy/Solar/Greentech</item>
+        <item>Online Publishing</item>
+        <item>Other Industry</item>
+        <item>Outsourcing/Offshoring</item>
+        <item>Package/Freight Delivery</item>
+        <item>Packaging/Containers</item>
+        <item>Paper/Forest Products</item>
+        <item>Performing Arts</item>
+        <item>Pharmaceuticals</item>
+        <item>Philanthropy</item>
+        <item>Photography</item>
+        <item>Plastics</item>
+        <item>Political Organization</item>
+        <item>Primary/Secondary Education</item>
+        <item>Printing</item>
+        <item>Professional Training</item>
+        <item>Program Development</item>
+        <item>Public Relations/PR</item>
+        <item>Public Safety</item>
+        <item>Publishing Industry</item>
+        <item>Railroad Manufacture</item>
+        <item>Ranching</item>
+        <item>Real Estate/Mortgage</item>
+        <item>Recreational Facilities/Services</item>
+        <item>Religious Institutions</item>
+        <item>Renewables/Environment</item>
+        <item>Research Industry</item>
+        <item>Restaurants</item>
+        <item>Retail Industry</item>
+        <item>Security/Investigations</item>
+        <item>Semiconductors</item>
+        <item>Shipbuilding</item>
+        <item>Sporting Goods</item>
+        <item>Sports</item>
+        <item>Staffing/Recruiting</item>
+        <item>Supermarkets</item>
+        <item>Telecommunications</item>
+        <item>Textiles</item>
+        <item>Think Tanks</item>
+        <item>Tobacco</item>
+        <item>Translation/Localization</item>
+        <item>Transportation</item>
+        <item>Utilities</item>
+        <item>Venture Capital/VC</item>
+        <item>Veterinary</item>
+        <item>Warehousing</item>
+        <item>Wholesale</item>
+        <item>Wine/Spirits</item>
+        <item>Wireless</item>
+        <item>Writing/Editing</item>
+    </string-array>
+
+</resources>

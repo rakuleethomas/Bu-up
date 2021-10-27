@@ -1,25 +1,47 @@
 package org.rakulee.buup.fragments.employer
 
+import android.graphics.Point
+import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenStarted
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.work.WorkManager
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import okhttp3.internal.notifyAll
 import org.rakulee.buup.R
-import org.rakulee.buup.adapters.JobSeekerListAdapter
+import org.rakulee.buup.adapters.EmployerHomeJobPostingListAdapter
+import org.rakulee.buup.adapters.EmployerHomeRecommendedListAdapter
 import org.rakulee.buup.databinding.FragmentEmployerHomeBinding
-import org.rakulee.buup.model.EmpInfo
-import org.rakulee.buup.model.JobSeekerItem
+import org.rakulee.buup.fragments.jobseeker.JobSeekerProfile
+import org.rakulee.buup.model.BuupJobSeekerProfile
+import org.rakulee.buup.model.EmployerHomeJobPostingItem
+import org.rakulee.buup.model.EmployerHomeRecommendedItem
+import org.rakulee.buup.model.JobSeekerSignInResponse
+import org.rakulee.buup.util.Util
 import org.rakulee.buup.viewmodel.EmployerViewModel
-import org.rakulee.buup.viewmodel.PaymentViewModel
-import javax.inject.Inject
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
+import kotlin.coroutines.coroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,13 +54,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class EmployerHome : Fragment(), View.OnClickListener {
+class EmployerHome : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var binding : FragmentEmployerHomeBinding
 
+    val viewModel : EmployerViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -48,12 +71,25 @@ class EmployerHome : Fragment(), View.OnClickListener {
     }
 
 
-    private val employerViewModel : EmployerViewModel by viewModels()
 
+    private val employerViewModel : EmployerViewModel by viewModels()
+    val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    var markerSelected : Boolean = false
+
+
+
+    enum class BadgeStatus{
+        Healthcare, Airline, ArtMedia, Automotive, Cleaner, Hotel, Law, Manufacture, Moving, Pharmacy, Policy, Childcare
+    }
 
     override fun onResume() {
         super.onResume()
-        employerViewModel.fetchEmployerData()
+//        employerViewModel.fetchEmployerData()
+
+//        scope.launch {
+//            mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+//            mapFragment.getMapAsync(callback)
+//        }
     }
 
     override fun onCreateView(
@@ -63,43 +99,120 @@ class EmployerHome : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employer_home, container, false)
         binding.lifecycleOwner = this
-        binding.vm = employerViewModel
 
-        /**
-         * create dummy data
-         */
 
-        var list = ArrayList<JobSeekerItem>()
-        for(i : Int in 1..20){
-            var data = if(i%2 == 1){
-                JobSeekerItem("Jake","svkoreans@gmail.com", "Bay Area Professional Realtor")
-            }else{
-                JobSeekerItem("Thomas", "thomas@rakulee.org", "Android Developer")
-            }
-            list.add(data)
+        // RecyclerView setup
+        val jobPostingAdapter = EmployerHomeJobPostingListAdapter()
+        binding.rvJobPosting.adapter = jobPostingAdapter
+        val jobPostingList = ArrayList<EmployerHomeJobPostingItem>()
+        jobPostingList.add(EmployerHomeJobPostingItem("Server", 100, "$20","$30", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Cashier", 101, "$21","$25", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Cleaner", 104, "$20","$26", "Expires in 30 days"))
+        jobPostingList.add(EmployerHomeJobPostingItem("Server", 105, "$20","$30", "Expires in 30 days"))
+        jobPostingAdapter.updateItems(jobPostingList)
+        jobPostingAdapter.notifyDataSetChanged()
+
+
+        val recommendedAdapter = EmployerHomeRecommendedListAdapter()
+        binding.rvRecommended.adapter = recommendedAdapter
+        val recommendedItemList = ArrayList<EmployerHomeRecommendedItem>()
+        val jobSeekerProfileList = ArrayList<BuupJobSeekerProfile>()
+        lateinit var tempJobSeekerProfile : BuupJobSeekerProfile
+        var tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
+        val tempIndustryList = ArrayList<String>()
+
+        val nameMap = HashMap<String, String>()
+        nameMap.put("Jake","Min")
+        nameMap.put("Thomas","Han")
+        nameMap.put("Sean","Jung")
+        nameMap.put("Peter","Stevenson")
+        nameMap.put("Jessica","Shin")
+        nameMap.put("Sylvia","Campbell")
+        nameMap.put("Paul","Simon")
+        nameMap.put("Sam","Hamilton")
+
+//        Healthcare, Airline, ArtMedia, Automotive, Cleaner, Hotel, Law, Manufacture, Moving, Pharmacy, Policy, Childcare
+        for(i in 1..5){
+            tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",1,BadgeStatus.Healthcare.toString()))
         }
 
-        val adapter = JobSeekerListAdapter()
-        adapter.setHasStableIds(true)       // prevent blinking recyclerview items
-        adapter.updateItems(list)
-        binding.rvJobSeekerList.adapter = adapter
-        binding.rvJobSeekerList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        binding.btnChargePoints.setOnClickListener(this)
+        val badgeMap = HashMap<String, ArrayList<JobSeekerSignInResponse.Message.Badge>>()
+        var badgePos = 0
+        for(name in nameMap){
+            tempBadgeList = ArrayList<JobSeekerSignInResponse.Message.Badge>()
+            for(i in 1..5){
+                tempBadgeList.add(JobSeekerSignInResponse.Message.Badge("",1, BadgeStatus.values()[badgePos%12].toString()))
+                badgePos++
+            }
+            badgeMap.put(name.key, tempBadgeList)
+        }
+
+
+
+        tempIndustryList.add("Restaurant")
+        tempIndustryList.add("Design")
+        tempIndustryList.add("Research Industry")
+        tempIndustryList.add("Packaging/Containers")
+
+        var index = 0
+        val availabilityList = ArrayList<ArrayList<Boolean>>()
+        for(name in nameMap){
+            tempJobSeekerProfile = BuupJobSeekerProfile()
+            tempJobSeekerProfile.badgeList = badgeMap.get(name.key)!!
+            tempJobSeekerProfile.firstName = name.key
+            tempJobSeekerProfile.lastName = name.value
+            tempJobSeekerProfile.email = "${name.key}.${name.value}@svkoreans.com"
+            tempJobSeekerProfile.industry = tempIndustryList
+            tempJobSeekerProfile.verified = (index%2==0)
+            tempJobSeekerProfile.wageMin = "$${20+index}"
+            tempJobSeekerProfile.wageMax = "$${35+index}"
+            index++
+            jobSeekerProfileList.add(tempJobSeekerProfile)
+        }
+        viewModel.updateJobSeekerList(jobSeekerProfileList)
+        recommendedItemList.add(EmployerHomeRecommendedItem("Restaurant", jobSeekerProfileList))
+        recommendedItemList.add(EmployerHomeRecommendedItem("Arts/Crafts", jobSeekerProfileList))
+        recommendedItemList.add(EmployerHomeRecommendedItem("Design", jobSeekerProfileList))
+        recommendedItemList.add(EmployerHomeRecommendedItem("Packaging/Containers", jobSeekerProfileList))
+        recommendedAdapter.update(recommendedItemList)
+//        recommendedAdapter.notifyDataSetChanged()
+
+
+        binding.fabWritePost.setOnClickListener {
+            val directions : NavDirections = EmployerHomeDirections.actionMainEmpDashboardToEmployerJobPosting()
+            findNavController().navigate(directions)
+        }
+
 
         return binding.root
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id){
-            binding.btnChargePoints.id -> doChargePoint()
-        }
+    fun buildDummy(){
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        scope.cancel()
     }
 
     private fun doChargePoint(){
-        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentActivity()
+//        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToPaymentActivity()
+//        findNavController().navigate(directions)
+    }
+
+    private fun showDetail(){
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToEmployerJobDetail()
         findNavController().navigate(directions)
     }
 
+    private fun showLists(){
+        val directions : NavDirections = EmployerHomeDirections.actionMainEmpHomeToEmployerSaved()
+        findNavController().navigate(directions)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -118,5 +231,6 @@ class EmployerHome : Fragment(), View.OnClickListener {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
     }
 }

@@ -8,9 +8,11 @@ import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.screens.LoginActivity
 import org.rakulee.buup.screens.OnBoardingActivity
+import org.rakulee.buup.screens.PartTimeEmployerActivity
+import org.rakulee.buup.screens.TestModeHelper
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

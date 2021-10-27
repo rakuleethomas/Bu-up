@@ -1,14 +1,23 @@
 package org.rakulee.buup.fragments.jobseeker
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
@@ -20,6 +29,7 @@ import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileUserEdit
 import org.rakulee.buup.model.JobSeekerExperiences
 import org.rakulee.buup.model.JobSeekerInterestItem
 import org.rakulee.buup.model.JobSeekerSkill
+import org.rakulee.buup.viewmodel.JobSeekerViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +46,10 @@ class JobSeekerProfile : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val viewModel: JobSeekerViewModel by activityViewModels()
+    private lateinit var morningImageViewList : ArrayList<ImageView>
+    private lateinit var afternoonImageViewList : ArrayList<ImageView>
+    private lateinit var nightImageViewList : ArrayList<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,19 +69,110 @@ class JobSeekerProfile : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_profile, container, false)
         binding.lifecycleOwner = this
         binding.viewOnly = false
+        binding.viewModel = viewModel
 
-        binding.tvName.text = ParseUser.getCurrentUser().get("FirstName").toString()
-        binding.tvBio.text = ParseUser.getCurrentUser().get("JobTitle").toString()
-        val minSalary = ParseUser.getCurrentUser().get("MinSalary") as Int
-        val maxSalary = ParseUser.getCurrentUser().get("MaxSalary") as Int
-        binding.tvWageValue.text = "$${minSalary} - $${maxSalary} /hr"
+        morningImageViewList = ArrayList()
+        afternoonImageViewList = ArrayList()
+        nightImageViewList = ArrayList()
 
-        var imageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(imageUrl)){
-            imageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+        morningImageViewList.add(binding.imageView4)
+        morningImageViewList.add(binding.imageView5)
+        morningImageViewList.add(binding.imageView6)
+        morningImageViewList.add(binding.imageView7)
+        morningImageViewList.add(binding.imageView8)
+        morningImageViewList.add(binding.imageView9)
+        morningImageViewList.add(binding.imageView10)
+
+
+
+        afternoonImageViewList.add(binding.iv1)
+        afternoonImageViewList.add(binding.iv2)
+        afternoonImageViewList.add(binding.iv3)
+        afternoonImageViewList.add(binding.iv4)
+        afternoonImageViewList.add(binding.iv5)
+        afternoonImageViewList.add(binding.iv6)
+        afternoonImageViewList.add(binding.iv7)
+
+        nightImageViewList.add(binding.ivNight1)
+        nightImageViewList.add(binding.ivNight2)
+        nightImageViewList.add(binding.ivNight3)
+        nightImageViewList.add(binding.ivNight4)
+        nightImageViewList.add(binding.ivNight5)
+        nightImageViewList.add(binding.ivNight6)
+        nightImageViewList.add(binding.ivNight7)
+
+        binding.btnDropdown.setOnClickListener{
+            if(binding.constraintLayout9.visibility == View.VISIBLE){
+                binding.constraintLayout9.visibility = View.GONE
+            } else{
+                binding.constraintLayout9.visibility = View.VISIBLE
+            }
         }
-        Glide.with(requireContext()).load(imageUrl).into(binding.ivProfile)
+        if (viewModel.buupJobSeekerProfile.value!!.verified) {
+            binding.ivVerified.setImageResource(R.drawable.ic_verified)
+        }
+
+
+        for ( industry in viewModel.buupJobSeekerProfile.value!!.industry){
+            val textView = TextView(context)
+            textView.text = industry
+            textView.typeface = resources.getFont(R.font.inter_medium)
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
+            textView.setTextColor(Color.parseColor("#797ED1"))
+            textView.elevation = 0.5F
+            textView.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry_profile )
+            textView.setPadding(16,8,16,8)
+
+
+            binding.industryFlowlayout.addView(textView)
+        }
+
+        for ( skill in viewModel.buupJobSeekerProfile.value!!.skills){
+            val textView = TextView(context)
+            textView.text = skill
+            textView.typeface = resources.getFont(R.font.inter_medium)
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14F)
+            textView.setTextColor(Color.parseColor("#797ED1"))
+            textView.elevation = 0.5F
+            textView.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry_profile )
+            textView.setPadding(16,8,16,8)
+
+
+            binding.skillsFlowlayout.addView(textView)
+        }
+
+        for (i in 0..6){
+            for (x in 0..2)
+            if (viewModel.buupJobSeekerProfile.value!!.availability[i][x]){
+                if (x == 0){
+                    morningImageViewList[i].setImageResource(R.drawable.ic_availability_morning_checked)
+                }
+                if (x == 1){
+                    afternoonImageViewList[i].setImageResource(R.drawable.ic_availability_sun_checked)
+                }
+                if (x == 2){
+                    afternoonImageViewList[i].setImageResource(R.drawable.ic_availability_night_checked)
+                }
+            }
+        }
+
+
+
+//        binding.tvName.text = ParseUser.getCurrentUser().get("FirstName").toString()
+//        binding.tvBio.text = ParseUser.getCurrentUser().get("JobTitle").toString()
+//        val minSalary = ParseUser.getCurrentUser().get("MinSalary") as Int
+//        val maxSalary = ParseUser.getCurrentUser().get("MaxSalary") as Int
+//        binding.tvWageValue.text = "$${minSalary} - $${maxSalary} /hr"
+//
+//        var imageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
+////            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
+//        if("".equals(imageUrl)){
+//            imageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
+//        }
+        var imageUrl = "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80";
+        Glide.with(requireContext()).load(imageUrl)
+            .apply(RequestOptions.circleCropTransform())
+            .into(binding.ivProfile)
 
         var interestList = ArrayList<JobSeekerInterestItem>()
         var skillsList = ArrayList<JobSeekerSkill>()
@@ -102,31 +207,31 @@ class JobSeekerProfile : Fragment() {
         val experiencesListAdapter = JobSeekerProfileExperiencesListAdapter()
         experiencesListAdapter.updateItems(expList)
 
-        binding.rvInterest.adapter = interestListAdapter
-        binding.rvSkills.adapter = skillsListAdapter
-        binding.rvExpList.adapter = experiencesListAdapter
-
-        binding.tvEditProfile.setOnClickListener {
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditUser()
-            findNavController().navigate(direction)
-
-        }
-
-        binding.tvEditInterest.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditInterest()
-            findNavController().navigate(direction)
-        }
-
-        binding.tvEditSkills.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditSkill()
-            findNavController().navigate(direction)
-        }
-
-        binding.tvEditExperience.setOnClickListener{
-            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditExperience()
-            findNavController().navigate(direction)
-        }
-
+//        binding.rvInterest.adapter = interestListAdapter
+//        binding.rvSkills.adapter = skillsListAdapter
+//        binding.rvExpList.adapter = experiencesListAdapter
+//
+//        binding.tvEditProfile.setOnClickListener {
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditUser()
+//            findNavController().navigate(direction)
+//
+//        }
+//
+//        binding.tvEditInterest.setOnClickListener{
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditInterest()
+//            findNavController().navigate(direction)
+//        }
+//
+//        binding.tvEditSkills.setOnClickListener{
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditSkill()
+//            findNavController().navigate(direction)
+//        }
+//
+//        binding.tvEditExperience.setOnClickListener{
+//            val direction : NavDirections = JobSeekerProfileDirections.actionProfileToEditExperience()
+//            findNavController().navigate(direction)
+//        }
+//
 
         return binding.root
     }

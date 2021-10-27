@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="org.rakulee.buup.model.BuupJobSeekerProfile" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_job_seeker_candidate"
+        android:layout_width="132dp"
+        android:layout_height="100dp"
+        android:clipToPadding="false"
+        android:elevation="1dp"
+        android:outlineProvider="bounds"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:theme="@style/CardView">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="0.5 mi"
+            android:textColor="#5B5F6E"
+            app:layout_constraintBottom_toTopOf="@+id/tv_name"
+            app:layout_constraintEnd_toStartOf="@+id/iv_verified"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_weight="4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0.5mi" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_verified"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:baselineAlignBottom="true"
+            android:src="@{item.verified? @drawable/ic_bu_up_verified : @drawable/ic_bu_up_unverified}"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_distance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_distance"
+            app:layout_constraintTop_toTopOf="@id/tv_distance"
+            tools:src="@drawable/ic_bu_up_verified" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.firstName}"
+            android:textColor="#39445D"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_wage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_distance"
+            tools:text="Jake" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_wage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.wageMin + &quot; - &quot; + item.wageMax}"
+            android:textColor="#5B5F6E"
+            app:layout_constraintBottom_toTopOf="@+id/rv_badge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="$20 - $25" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_badge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_extra_count"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_weight="4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wage"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_rv_badge_list" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_extra_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:text="@{String.valueOf(item.badgeList.size())}"
+            android:textColor="#000000"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_badge"
+            app:layout_constraintEnd_toEndOf="@id/iv_verified"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/rv_badge"
+            app:layout_constraintTop_toTopOf="@+id/rv_badge"
+            tools:text="1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

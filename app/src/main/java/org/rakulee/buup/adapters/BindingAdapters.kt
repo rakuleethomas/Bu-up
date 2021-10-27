@@ -1,6 +1,8 @@
 package org.rakulee.buup.adapters
 
 import android.view.View
+import android.widget.ImageView
+import androidx.annotation.ColorInt
 import androidx.databinding.BindingAdapter
 
 object BindingAdapters {
@@ -17,5 +19,11 @@ object BindingAdapters {
         }else{
             view.visibility = View.VISIBLE
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:tint")
+    fun ImageView.setImageTint(@ColorInt color: Int) {
+        setColorFilter(color)
     }
 }

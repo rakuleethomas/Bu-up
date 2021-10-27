@@ -1,122 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
-            name="EmployerProfile"
-            type="org.rakulee.buup.fragments.employer.EmployerProfile" />
+            name="employerInfo"
+            type="org.rakulee.buup.model.BuupEmployerProfile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".fragments.employer.EmployerProfile">
 
 
-        <LinearLayout
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="@null"
+            android:lineSpacingExtra="2sp"
+            android:text="Save"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:id="@+id/iv_company_logo"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_jobseeker"
-                app:roundPercent="1"
-                tools:src="@drawable/ic_employer"
-                android:layout_marginRight="20dp"/>
-
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:id="@+id/iv_employer"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_jobseeker"
-                app:roundPercent="1"
-                tools:src="@drawable/ic_employer" />
-
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_edit"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="372dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/experience_edit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></Button>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_employerName"
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="204dp"
-            android:text="James Heldens"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:text="Company Name"
+            android:textAppearance="@style/kuku_gmail_"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13999999"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company name"
+            android:text="@{employerInfo.companyInfo.name}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_company_address"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            tools:layout_editor_absoluteX="16dp" />
+
 
         <TextView
-            android:id="@+id/tv_company_name"
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Chung Dam Restaurant"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Email"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_email"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_employerName" />
+            app:layout_constraintTop_toBottomOf="@+id/et_company_zip_code" />
 
-
-        <Button
-            android:id="@+id/button"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:padding="10dp"
-            android:text="Create Job Posting"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_posting"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="380dp"
-            android:layout_marginBottom="50dp"
+            android:hint="email"
+            android:text="@{employerInfo.email}"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_company_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company Address"
+            android:textAppearance="@style/kuku_gmail_"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_address1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
-            app:layout_constraintVertical_bias="0.209"
-            android:orientation="vertical"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_card_job_posting" />
+            app:layout_constraintTop_toBottomOf="@+id/et_company_name" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_address1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address 1"
+            android:text="@{employerInfo.companyInfo.address1}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_address2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_address"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_address2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address2"
+            android:text="@{employerInfo.companyInfo.address2}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_city"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_address1"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:text="@{employerInfo.companyInfo.city}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_company_zip_code"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_address2"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_company_zip_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Zip code"
+            android:text="@{employerInfo.companyInfo.zipCode}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_city"
+            tools:layout_editor_absoluteX="16dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
+
+

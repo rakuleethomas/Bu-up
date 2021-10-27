@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -19,6 +20,7 @@ import org.rakulee.buup.adapters.JobPostingAdapter
 import org.rakulee.buup.databinding.FragmentEmployerProfileBinding
 import org.rakulee.buup.fragments.jobseeker.profileEdit.ProfileInterestEditDirections
 import org.rakulee.buup.model.Job
+import org.rakulee.buup.viewmodel.EmployerViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,6 +40,7 @@ class EmployerProfile : Fragment() {
     val Joblists = ArrayList<Job>()
 
     lateinit var binding : FragmentEmployerProfileBinding
+    val viewModel : EmployerViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,52 +58,8 @@ class EmployerProfile : Fragment() {
 
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_employer_profile, container, false)
         binding.lifecycleOwner = this
-        binding.employerProfile = this
+        binding.employerInfo = viewModel.employerInfo.value
 
-
-        var EmployerimageUrl = ParseUser.getCurrentUser().get("ImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(EmployerimageUrl)){
-            EmployerimageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
-        }
-        Glide.with(requireContext()).load(EmployerimageUrl).into(binding.ivEmployer)
-
-        var companyImageUrl = ParseUser.getCurrentUser().get("CompanyImageUrl").toString()
-//            val uri = Uri.parse("https://svkoreans.com/img/svlogo1-1.jpg");
-        if("".equals(companyImageUrl)){
-            companyImageUrl = "https://svkoreans.com/img/svlogo1-1.jpg";
-        }
-        Glide.with(requireContext()).load(companyImageUrl).into(binding.ivCompanyLogo)
-        
-        val firstName = ParseUser.getCurrentUser().get("FirstName").toString()
-        val lastName = ParseUser.getCurrentUser().get("LastName").toString()
-        binding.tvEmployerName.text = "${firstName} ${lastName}"
-        binding.tvCompanyName.text = ParseUser.getCurrentUser().get("CompanyTitle").toString()
-        val adapter = JobPostingAdapter()
-        binding.rvPosting.adapter = adapter
-
-        val query = ParseQuery.getQuery<Job>("Job")
-        query.whereContains("Author", ParseUser.getCurrentUser().objectId)
-        query.findInBackground { jobs, e->
-            if (e == null) {
-                Joblists.addAll(jobs)
-                adapter.updateItems(Joblists)
-                Log.d("EmployerProfile", "onCreateView: " + adapter.itemCount)
-            } else {
-                Toast.makeText(requireContext(), "error : " + e.message, Toast.LENGTH_SHORT).show()
-            }
-        }
-
-
-        binding.btnEdit.setOnClickListener{
-            val direction : NavDirections = EmployerProfileDirections.actionMainEmpProfileToProfileEdit()
-            findNavController().navigate(direction)
-        }
-
-        binding.button.setOnClickListener{
-            val direction : NavDirections = EmployerProfileDirections.actionMainEmpProfileToJobPosting()
-            findNavController().navigate(direction)
-        }
 
         return binding.root
     }

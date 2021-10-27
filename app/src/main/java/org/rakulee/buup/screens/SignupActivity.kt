@@ -10,11 +10,12 @@ import androidx.databinding.DataBindingUtil
 import com.parse.Parse
 import com.parse.ParseUser
 import dagger.hilt.android.AndroidEntryPoint
+import org.rakulee.buup.BaseActivity
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.ActivitySignupBinding
 
 @AndroidEntryPoint
-class SignupActivity : AppCompatActivity() {
+class SignupActivity : BaseActivity() {
 
     lateinit var binding : ActivitySignupBinding
 
