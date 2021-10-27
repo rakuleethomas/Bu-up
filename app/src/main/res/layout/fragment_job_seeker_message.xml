@@ -30,7 +30,7 @@
             android:background="@drawable/message_box"
             android:fontFamily="@font/inter_medium"
             android:padding="10dp"
-            android:text="Hooooooo, \nThank you for applying! \nCompany: Walgreen \nJob Title: Cashier \nSalary: $15-25 / hr \nLocation: Santa Clara \nThe Employer will contact you soon!"
+            android:text="Hooooooo, \nThank you for applying! \nCompany: Rakulee, Inc. \nJob Title: Server \nSalary: $100-100 / hr \nLocation: Campbell \nThe Employer will contact you soon!"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent">
 

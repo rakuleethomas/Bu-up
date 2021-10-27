@@ -66,10 +66,11 @@
                     android:text="Title"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold"
+
                     app:layout_constraintEnd_toStartOf="@+id/tv_posting_date"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/et_job_title"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -93,8 +94,8 @@
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_job_title"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/et_posting_date"
                     app:layout_constraintTop_toTopOf="@+id/tv_job_title" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -128,25 +129,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="SVKoreans.com"
-                    android:textSize="@dimen/text_medium"
+                    android:text="Rakulee, inc."
+                    android:textSize="@dimen/text_small"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintHorizontal_bias="0.1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_job_title"
-                    tools:text="SVKoreans.com" />
+                    tools:text="Rakulee, inc." />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_company_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3167 Impala Dr, #4, San Jose, CA 95117"
+                    android:text="155 E. Campbell Ave, Suite 111, CA 95008"
                     android:textSize="@dimen/text_small"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="@+id/tv_company_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_company_name"
-                    tools:text="3167 Impala Dr, #4, San Jose, CA 95117" />
+                    tools:text="155 E. Campbell Ave, Suite 111, CA 95008" />
 
 
                 <!-- wage/hour/date section -->
@@ -157,8 +158,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Wage/hr"
-                    android:textAlignment="center"
+                    android:text="   Wage/hr"
+                    android:textAlignment="viewStart"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/tv_shift"
@@ -170,8 +171,8 @@
                     android:id="@+id/tv_shift"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Shift"
+                    android:text="   Shift"
+                    android:textAlignment="viewStart"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/tv_begin_date"
@@ -183,7 +184,7 @@
                     android:id="@+id/tv_begin_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
+                    android:textAlignment="viewStart"
                     android:text="Start Date"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold"
@@ -195,15 +196,15 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_wage_range"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:flow_horizontalGap="8dp"
-                    android:minEms="5"
-                    android:inputType="numberDecimal"
                     android:hint="$"
+                    android:inputType="numberDecimal"
+                    android:minEms="5"
+                    app:flow_horizontalGap="8dp"
                     app:flow_horizontalStyle="packed"
-                    app:layout_constraintEnd_toStartOf="@+id/et_hour"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_wage"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_wage"
@@ -211,13 +212,14 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_hour"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="AM PM"
+                    android:hint="11am to 5pm"
                     app:flow_horizontalStyle="packed"
-                    app:layout_constraintEnd_toStartOf="@+id/et_starting_date"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_shift"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/et_wage_range"
+                    app:layout_constraintStart_toEndOf="@+id/tv_wage"
+                    app:layout_constraintStart_toStartOf="@+id/tv_shift"
                     app:layout_constraintTop_toTopOf="@+id/et_wage_range"
                     tools:text="1PM - 4PM" />
 
@@ -225,13 +227,13 @@
                     android:id="@+id/et_starting_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="MM/DD/YYYY"
                     android:inputType="date"
-                    android:focusable="false"
                     app:flow_horizontalStyle="packed"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline_edit_btn"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_wage_work_hour_edit"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/et_hour"
+                    app:layout_constraintStart_toEndOf="@+id/tv_shift"
                     app:layout_constraintTop_toTopOf="@+id/et_wage_range"
                     tools:text="10/24/2021" />
 
@@ -253,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="# of position"
-                    android:textSize="@dimen/text_small"
+                    android:textSize="@dimen/text_medium"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/et_hiring_number"
                     app:layout_constraintHorizontal_bias="0.5"

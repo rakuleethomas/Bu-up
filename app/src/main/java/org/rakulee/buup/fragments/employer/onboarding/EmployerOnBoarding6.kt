@@ -124,6 +124,8 @@ class EmployerOnBoarding6 : Fragment() {
                 findNavController().navigate(direction)
             }else{
                 print(result.errorBody())
+                val direction : NavDirections = EmployerOnBoarding6Directions.actionEmployerOnBoarding6ToLoginActivity()
+                findNavController().navigate(direction)
             }
         }
 

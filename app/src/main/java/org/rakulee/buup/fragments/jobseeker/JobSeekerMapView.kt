@@ -59,11 +59,14 @@ class JobSeekerMapView : Fragment(), GoogleMap.OnMarkerClickListener, OnMapReady
         buildDummy("Chungdam", "3180 El Camino Real, Santa Clara, CA 95051")
         buildDummy("10 Butchers", "595 E El Camino Real, Sunnyvale, CA 94087")
         buildDummy("SVKoreans", "3167 Impala Dr, #4, San Jose, CA 95117")
+        buildDummy("Rakulee", "155 E. Campbell Ave, #111, Campbell, CA 95008")
 
         buildDummy("Chimek2", "94087")
         buildDummy("Chungdam2", "94087")
         buildDummy("10 Butchers2", "94087")
         buildDummy("SVKoreans2", "95117")
+        buildDummy("Rakulee", "95008")
+
 
 
     }

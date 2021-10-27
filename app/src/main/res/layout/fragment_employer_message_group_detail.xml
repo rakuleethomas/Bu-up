@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:background="#F4F7FB"
             android:fontFamily="@font/poppins"
-            android:text="$20 - $50 (Per Hour)"
+            android:text="$100 - $100 (Per Hour)"
             app:layout_constraintBottom_toBottomOf="@+id/iv_company_logo"
             app:layout_constraintStart_toStartOf="@+id/tv_company_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
