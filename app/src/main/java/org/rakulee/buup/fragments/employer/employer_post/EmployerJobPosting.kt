@@ -106,7 +106,7 @@ class EmployerJobPosting : Fragment(), PartTimeEmployerActivity.EmployerJobPosti
             longitude = item.longitude
         }
 
-        jsonObject.addProperty("postId", (employerInfo.value!!.timestamp+employerInfo.value!!.email).hashCode().toString())
+        jsonObject.addProperty("postId", (System.currentTimeMillis().toString()+employerInfo.value!!.email).hashCode().toString())
         jsonObject.addProperty("employer", employerInfo.value!!.loginId)
         jsonObject.addProperty("jobTitle", binding.etJobTitle.text.toString())
         jsonObject.addProperty("companyName", employerInfo.value!!.companyInfo.name)

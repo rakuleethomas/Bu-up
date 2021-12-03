@@ -13,6 +13,9 @@
         <variable
             name="flag"
             type="Boolean" />
+        <variable
+            name="vm"
+            type="org.rakulee.buup.viewmodel.LoginViewModel" />
 
     </data>
 
@@ -21,6 +24,11 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         tools:context=".screens.LoginActivity">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"

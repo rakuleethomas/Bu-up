@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -26,6 +27,7 @@ import org.rakulee.buup.model.EmployerSignIn
 import org.rakulee.buup.model.JobSeekerSignInResponse
 import org.rakulee.buup.repo.BuupAPIRepo
 import org.rakulee.buup.util.Util
+import org.rakulee.buup.viewmodel.LoginViewModel
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -45,6 +47,8 @@ class LoginActivity : BaseActivity() {
     var flag = false
 
     var blocking = false
+
+    private val viewModel : LoginViewModel by viewModels<LoginViewModel>()
     fun testEmployer(view: View){
         val intent = Intent(this, PartTimeEmployerActivity::class.java)
         if(!blocking){
@@ -57,6 +61,7 @@ class LoginActivity : BaseActivity() {
     suspend fun login(){
 
         // jobseeker login
+        viewModel.updateIsLoading(true)
         if(!flag){
             val jsonObject = JsonObject()
             jsonObject.addProperty("loginId", binding.etEmail.text.toString())
@@ -73,6 +78,7 @@ class LoginActivity : BaseActivity() {
 
             // if login is success
             if(loginResponse.isSuccessful){
+                viewModel.updateIsLoading(false)
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(applicationContext, "Success", Toast.LENGTH_SHORT).show()
                     loginResponse.body()!!.message
@@ -169,6 +175,7 @@ class LoginActivity : BaseActivity() {
         binding.lifecycleOwner = this
         binding.activity = this
         binding.flag = flag
+        binding.vm = viewModel
         binding.btnLogin.setOnClickListener{
 
             CoroutineScope(Dispatchers.IO).launch {
