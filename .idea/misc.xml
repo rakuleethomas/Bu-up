@@ -141,6 +141,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employer_home.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_employer_job_posting.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/fragment_employer_message_group.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/fragment_employer_profile.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_employer_search.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_home.xml" value="0.35885416666666664" />
@@ -156,7 +157,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

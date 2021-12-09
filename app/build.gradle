@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion '30.0.3'
     apply plugin: "androidx.navigation.safeargs.kotlin"
     apply plugin: 'kotlin-kapt'
     apply plugin: 'com.android.application'
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "org.rakulee.buup"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -48,19 +48,23 @@ android {
 
 dependencies {
 
+    def hilt_android_version = '2.40.4'
+    def robolectric_version = '4.7.3'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
     testImplementation 'junit:junit:4.+'
-    testImplementation 'org.robolectric:robolectric:4.6'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'org.robolectric:robolectric:4.7.3'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -70,8 +74,7 @@ dependencies {
 
     def nav_version = "2.3.5"
 
-    def hilt_android_version = '2.36'
-    def robolectric_version = '4.6'
+
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -84,20 +87,20 @@ dependencies {
 
 
     /** android hilt */
-    implementation 'com.google.dagger:hilt-android:2.36'
-    kapt 'com.google.dagger:hilt-compiler:2.36'
+    implementation "com.google.dagger:hilt-android:$hilt_android_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_android_version"
 
     // For instrumentation tests
-    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.36'
-    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.36'
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_android_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_android_version"
 
     // For local unit tests
-    testImplementation 'com.google.dagger:hilt-android-testing:2.36'
-    kaptTest 'com.google.dagger:hilt-compiler:2.36'
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_android_version"
+    kaptTest "com.google.dagger:hilt-compiler:$hilt_android_version"
     testImplementation "com.google.dagger:hilt-android-testing:$hilt_android_version" // 1
     testImplementation "org.robolectric:robolectric:$robolectric_version" // 2
     androidTestImplementation "org.robolectric:robolectric:$robolectric_version"
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.36")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:$hilt_android_version")
 
     // hilt for navigation component
     implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
@@ -109,8 +112,8 @@ dependencies {
 
     /** Android View Model */
     //ViewModel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0'
 
 
     /** Square */
@@ -123,7 +126,14 @@ dependencies {
     /** Retrofit */
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+
+    /** Moshi Converter for Retrofit */
+    def moshiVersion = "1.10.0"
+    implementation("com.squareup.moshi:moshi:$moshiVersion")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
+
 
     /** Glide */
     implementation 'com.github.bumptech.glide:glide:4.12.0'
