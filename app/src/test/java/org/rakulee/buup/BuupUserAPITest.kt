@@ -1,7 +1,6 @@
 package org.rakulee.buup
 
 
-import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -14,19 +13,14 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.rakulee.buup.model.BuupEmployerProfile
 import org.rakulee.buup.model.EmployerSignIn
-import org.rakulee.buup.module.NetworkModule
 import org.rakulee.buup.repo.BuupAPIRepo
 import org.rakulee.buup.util.Util
-import org.rakulee.buup.util.Util.decodeHex
-import org.rakulee.buup.util.Util.decryptPassword
-import org.rakulee.buup.util.Util.toHex
 import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -34,9 +28,6 @@ import org.robolectric.annotation.Config
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.LooperMode
 import org.robolectric.shadows.ShadowLog
-import java.nio.charset.StandardCharsets
-import java.text.NumberFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -71,6 +62,20 @@ class BuupUserAPITest : CoroutineScope {
             val jsonString = jsonObject.toString()
             val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
             val result = buupRepo.jobSeekerSignIn(requestBody)
+            print(result.body())
+        }
+        countDownLatch.await()
+    }
+
+    @Test
+    fun fetchJobList(){
+        val countDownLatch = CountDownLatch(1)
+        launch {
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("loginId", "john.snow@email.com")
+            val jsonString = jsonObject.toString()
+            val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+            val result = buupRepo.getJobByDistance(37.323906, -121.9440293, 50)
             print(result.body())
         }
         countDownLatch.await()

@@ -48,7 +48,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".screens.JobSeekerOnBordingActivity" />
+        <activity android:name=".screens.JobSeekerOnBoardingActivity" />
         <activity
             android:name=".screens.OnBoardingActivity"
             android:exported="true" />

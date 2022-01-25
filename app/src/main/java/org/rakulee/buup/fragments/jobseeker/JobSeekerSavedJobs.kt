@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.gson.JsonObject
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,14 +56,11 @@ class JobSeekerSavedJobs : Fragment() {
 
     suspend fun getPostings(list: ArrayList<EmployerSavedListItem>) {
 
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("latitude", viewModel.buupJobSeekerProfile.value!!.latitude)
-        jsonObject.addProperty("longitude", viewModel.buupJobSeekerProfile.value!!.longitude)
-        jsonObject.addProperty("distance", 100)
-        val jsonString = jsonObject.toString()
-        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
+        val latitude =  viewModel.buupJobSeekerProfile.value!!.latitude
+        val longitude = viewModel.buupJobSeekerProfile.value!!.longitude
+        val distance = 100
         val postingResponse: Response<BuupGetJobPostingByDistanceResponse> =
-            buupRepo.getJobByDistance(requestBody)
+            buupRepo.getJobByDistance(latitude, longitude, distance)
 
 
         if (postingResponse.isSuccessful) {

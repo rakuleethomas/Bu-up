@@ -13,6 +13,6 @@ object Configs {
 
     var currentThemeMode = BUUP_ONBOARDING
 
-    val BUUP_BASE_URL = "https://q6qmpnkerg.execute-api.us-east-1.amazonaws.com/dev-2/"
+    val BUUP_BASE_URL = "https://970rkwj34h.execute-api.us-east-1.amazonaws.com/dev-3/"
 
 }

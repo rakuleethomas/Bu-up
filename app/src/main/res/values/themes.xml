@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Buup" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Buup" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
@@ -38,5 +38,16 @@
 
     <style name="buup_employer_dialog_theme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/design_default_color_primary_dark</item>
+    </style>
+
+    <style name="ZipCodeInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/edit_text_box_border_job_seeker</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+    <style name="JobSeekerSignUpEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">@color/buup_job_saved_heart_like</item>
+        <item name="boxStrokeColor">#D5D5D5</item>
+        <item name="background">@drawable/rectangle_edittext</item>
     </style>
 </resources>

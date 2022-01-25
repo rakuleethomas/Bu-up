@@ -21,5 +21,6 @@ class BuupApiHelperImpl @Inject constructor(
     override suspend fun buupEmployerSignup(body: RequestBody): Response<EmployerSignupResponse> = employerApiService.employerSignUp(body)
     override suspend fun buupEmployerSignIn(body: RequestBody): Response<EmployerSignInResponse> = employerApiService.employerSignIn(body)
     override suspend fun buupEmployerAddJobPosting(body: RequestBody): Response<BuupAddJobPostingResponse> = employerApiService.employerAddJobPosting(body)
-    override suspend fun buupGetJobByDistance(body: RequestBody): Response<BuupGetJobPostingByDistanceResponse> = buupGetJobPostingByDistanceAPI.queryJobPosting(latitude = 37.338661400690455, longitude = -122.01387782532842, distance = 100)
+//    override suspend fun buupGetJobByDistance(body: RequestBody): Response<BuupGetJobPostingByDistanceResponse> = buupGetJobPostingByDistanceAPI.queryJobPosting(latitude = 37.338661400690455, longitude = -122.01387782532842, distance = 100)
+    override suspend fun buupGetJobByDistance(latitude: Double, longitude: Double, distance: Int): Response<BuupGetJobPostingByDistanceResponse> = buupGetJobPostingByDistanceAPI.queryJobPosting(latitude, longitude, distance)
 }

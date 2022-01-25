@@ -9,8 +9,16 @@
             type="org.rakulee.buup.fragments.jobseeker.JobSeekerMapView" />
 
         <variable
-            name="selectedMarker"
+            name="isSelectedMarker"
             type="Boolean" />
+
+        <variable
+            name="currentMarkerItem"
+            type="org.rakulee.buup.model.BuupGetJobPostingByDistanceResponse.BuupGetJobPostingByDistanceResponseItem" />
+        
+        <variable
+            name="currentMarkerItemDistanceFromYourZipcode"
+            type="String" />
 
         <import type="android.view.View"/>
     </data>
@@ -38,12 +46,12 @@
 
 
         <fragment
-            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
             android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerMapView"
             map:mapType="normal"
             map:zOrderOnTop="true"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -194,7 +202,7 @@
             android:src="@drawable/rectangle_3"
             android:background="@drawable/rectangle_border"
             android:onClick="@{() -> fragment.goJobDetail()}"
-            android:visibility="@{selectedMarker? View.VISIBLE: View.GONE}"
+            android:visibility="@{isSelectedMarker? View.VISIBLE: View.GONE}"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintVertical_bias="0.96"
@@ -224,7 +232,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Server"
+                android:text="@{currentMarkerItem.jobTitle}"
+                tools:text="Server"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginStart="16dp"
@@ -239,7 +248,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Rakulee, Inc."
+                android:text="@{currentMarkerItem.companyName}"
+                tools:text="Rakulee, Inc."
                 android:textSize="14sp"
                 android:textColor="#737272"
                 app:layout_constraintBottom_toTopOf="@+id/iv_current_place_logo"
@@ -264,7 +274,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins"
-                android:text="Campbell, CA"
+                android:text="@{currentMarkerItem.city}"
+                tools:text="Campbell, CA"
                 android:textSize="11sp"
                 android:textColor="#5B5F6E"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"
@@ -275,6 +286,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_divider"
+                android:layout_marginStart="2dp"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:background="@drawable/ic_divider"
@@ -289,7 +301,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/poppins"
-                android:text="13 miles away"
+                android:text="@{currentMarkerItemDistanceFromYourZipcode}"
+                tools:text="13 miles away"
                 android:textSize="11sp"
                 android:textColor="#5B5F6E"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_current_place_logo"

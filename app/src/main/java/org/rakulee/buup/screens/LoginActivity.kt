@@ -43,12 +43,12 @@ class LoginActivity : BaseActivity() {
     lateinit var binding : ActivityLoginBinding
     var MODE = Configs.BUUP_JOB_SEEKER
     var flag = false
-
+    var isLoading = false
     var blocking = false
     fun testEmployer(view: View){
         val intent = Intent(this, PartTimeEmployerActivity::class.java)
         if(!blocking){
-            blocking = true;
+            blocking = true
             startActivity(intent)
         }
 
@@ -59,11 +59,16 @@ class LoginActivity : BaseActivity() {
         // jobseeker login
         if(!flag){
             val jsonObject = JsonObject()
+            val plainPassword = binding.etPassword.text.toString()
+            val encryptedPassword = Util.encryptPassword(plainPassword)
             jsonObject.addProperty("loginId", binding.etEmail.text.toString())
             jsonObject.addProperty("password", binding.etPassword.text.toString())
             val jsonString = jsonObject.toString()
+            val gson = Gson()
             val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
             val loginResponse : Response<JobSeekerSignInResponse> = buupRepo.jobSeekerSignIn(requestBody)
+
+            isLoading = true
             /*
             {
                 "loginId": "john.snow@email.com",
@@ -112,6 +117,7 @@ class LoginActivity : BaseActivity() {
                     Log.d("LOGIN", "login: Error")
                 }
             }
+            isLoading = false
         }else{  // employer login
             CoroutineScope(Dispatchers.IO).launch{
                 val jsonObject = JsonObject()
@@ -278,7 +284,7 @@ class LoginActivity : BaseActivity() {
             val intent = Intent(this, EmployerSignupActivity::class.java)
             startActivity(intent)
         }else{
-            val intent = Intent(this, SignupActivity::class.java)
+            val intent = Intent(this, JobSeekerOnBoardingActivity::class.java)
             startActivity(intent)
         }
 

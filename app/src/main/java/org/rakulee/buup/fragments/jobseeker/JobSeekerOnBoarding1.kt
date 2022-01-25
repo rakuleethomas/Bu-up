@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentJobSeekerOnBoarding1Binding
+import org.rakulee.buup.model.BuupJobSeekerProfile
+import org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +26,7 @@ class JobSeekerOnBoarding1 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-
+    val viewModel : JobSeekerOnBoardingViewModel by activityViewModels()
     lateinit var binding : FragmentJobSeekerOnBoarding1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,16 +43,36 @@ class JobSeekerOnBoarding1 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_on_boarding1, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.onBoarding1 = this
+        binding.viewModel = viewModel
+
 
         binding.fab.setOnClickListener{
-            val direction : NavDirections = JobSeekerOnBoarding1Directions.actionJobSeekerOnBoarding1ToJobSeekerOnBoarding2()
-            findNavController().navigate(direction)
+            goNextStep()
         }
 
 
         return binding.root
     }
 
+
+    private fun goNextStep(){
+        var buupJobSeekerProfile : BuupJobSeekerProfile
+        viewModel.buupJobSeekerProfile.observe(viewLifecycleOwner, {
+            buupJobSeekerProfile = it
+            val wage1 = binding.spinner.selectedItem.toString().filter { it.isDigit() }
+            val wage2 = binding.spinner2.selectedItem.toString().filter { it.isDigit() }
+
+            val wageMin = Math.min(wage1.toInt(), wage2.toInt())
+            val wageMax = Math.max(wage1.toInt(), wage2.toInt())
+            buupJobSeekerProfile.wageMin = "$$wageMin"
+            buupJobSeekerProfile.wageMax = "$$wageMax"
+
+        })
+
+
+        val direction : NavDirections = JobSeekerOnBoarding1Directions.actionJobSeekerOnBoarding1ToJobSeekerOnBoarding2()
+        findNavController().navigate(direction)
+    }
 }

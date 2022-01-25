@@ -5,12 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-<data>
+    <data>
         <variable
             name="OnBoarding1"
             type="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding1" />
+        <variable
+            name="viewModel"
+            type="org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel" />
     </data>
-
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,162 +22,158 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/onboarding_banner_1"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.09">
+            app:layout_constraintTop_toTopOf="@+id/guideline3">
 
         </ImageView>
 
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/textView17"
+            android:layout_width="314dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/inter_variablefont"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            android:textSize="12sp"
+            android:text="Please your provide your desired hourly wage!"
             android:textColor="#4A4A4A"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.339" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWage" />
 
         <TextView
+            android:id="@+id/tvFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/inter_variablefont"
             android:text="From"
-            android:textSize="12dp"
             android:textColor="#898989"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.453" />
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="93dp"
             android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/spinner_rectangle"
             android:entries="@array/spinner2"
             android:theme="@style/SpinnerTheme"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.485"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvTo2"
+            app:layout_constraintTop_toBottomOf="@+id/tvTo"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/guideline"
-            app:layout_constraintGuide_begin="24dp"
-            android:orientation="vertical"/>
-
-        <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
-            app:layout_constraintGuide_end="24dp"
-            android:orientation="vertical"/>
-
-        <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
-            app:layout_constraintGuide_begin="24dp"
-            android:orientation="horizontal"/>
-
-        <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
-            app:layout_constraintGuide_end="24dp"
-            android:orientation="horizontal"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="24dp" />
 
         <TextView
             android:id="@+id/tvWage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/inter_medium"
             android:text="What's your desire hourly wage?"
             android:textColor="#292929"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.265" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="93dp"
             android:layout_height="32dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/spinner_rectangle"
             android:entries="@array/spinner1"
             android:theme="@style/SpinnerTheme"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/tvTo2"
             app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFrom"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/inter_variablefont"
             android:text="To"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.375"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.449" />
+            app:layout_constraintEnd_toEndOf="@+id/spinner2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/spinner2"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <TextView
             android:id="@+id/tvTo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/inter_medium"
-            android:text="~"
+            android:text="to"
             android:textColor="#000000"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.303"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintBottom_toBottomOf="@+id/spinner"
+            app:layout_constraintEnd_toStartOf="@+id/spinner2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/spinner"
+            app:layout_constraintTop_toTopOf="@+id/spinner" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#2C72F6"
+            android:src="@drawable/ic_arrow_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintHorizontal_bias="1.0"
-            android:backgroundTint="#2C72F6"
-            app:tint="@null"
-            android:src="@drawable/ic_arrow_right"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.951" />
+            app:layout_constraintVertical_bias="0.952"
+            app:tint="@null" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

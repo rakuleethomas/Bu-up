@@ -3,6 +3,7 @@ package org.rakulee.buup.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -24,6 +25,7 @@ class EmployerSignupActivity : BaseActivity(), Serializable {
         Configs.currentThemeMode = Configs.BUUP_ONBOARDING
         binding = DataBindingUtil.setContentView(this, R.layout.activity_employer_signup)
         binding.lifecycleOwner = this
+        binding.etPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
     }
 
     fun goBack(view : View){

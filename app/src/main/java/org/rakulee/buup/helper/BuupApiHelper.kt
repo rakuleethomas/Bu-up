@@ -13,5 +13,5 @@ interface BuupApiHelper {
     suspend fun buupEmployerSignup(body: RequestBody) : Response<EmployerSignupResponse>
     suspend fun buupEmployerSignIn(body: RequestBody) : Response<EmployerSignInResponse>
     suspend fun buupEmployerAddJobPosting(body: RequestBody) : Response<BuupAddJobPostingResponse>
-    suspend fun buupGetJobByDistance(body: RequestBody) : Response<BuupGetJobPostingByDistanceResponse>
+    suspend fun buupGetJobByDistance(latitude: Double, longitude: Double, distance: Int) : Response<BuupGetJobPostingByDistanceResponse>
 }

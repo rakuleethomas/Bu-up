@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel" />
+        <variable
+            name="fragment"
+            type="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding0" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".fragments.jobseeker.JobSeekerOnBoarding0">
+
+
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical">
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="24dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="24dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="24dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="24dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> fragment.goBack()}"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.06">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:text="Back"
+                    android:textColor="#292929"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/logo_image"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.203125"
+                app:srcCompat="@drawable/owl_logo" />
+
+                <TextView
+                    android:id="@+id/tv_job_seeker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Bu-up JobSeeker"
+                    android:fontFamily="@font/inter_medium"
+                    android:textColor="@color/buup_job_seeker"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/logo_image"
+                    app:layout_constraintEnd_toEndOf="@id/guideline2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/logo_image"
+                    app:layout_constraintTop_toTopOf="@+id/logo_image" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Find the part-time job \nthat's right for you"
+                android:textColor="#292929"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/logo_image"
+                app:layout_constraintVertical_bias="0" />
+
+
+            <LinearLayout
+                android:id="@+id/EmailLayout"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/rectangle_edittext"
+                app:layout_constraintBottom_toTopOf="@+id/PhoneLayout"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                app:layout_constraintVertical_bias="0.26999998"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@null"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:drawableStart="@drawable/ic_mail"
+                    android:drawablePadding="6.17dp"
+                    android:paddingStart="19dp"
+                    android:hint="Email address"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textColor="#292929"
+                    android:textColorHint="#B1B1B1"
+                    android:textSize="14sp" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/PhoneLayout"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rectangle_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/firstNameLayout"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/EmailLayout">
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="19dp"
+                    android:background="@null"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:hint="Phone Number"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="6.17dp"
+                    android:inputType="phone"
+                    android:maxLength="14"
+                    android:maxLines="1"
+                    android:textColor="#292929"
+                    android:textColorHint="#B1B1B1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstNameLayout"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rectangle_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/lastNameLayout"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/PhoneLayout">
+
+                <EditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="19dp"
+                    android:background="@null"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="6.17dp"
+                    android:hint="First name"
+                    android:inputType="textPersonName"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:textColor="#292929"
+                    android:textColorHint="#B1B1B1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lastNameLayout"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rectangle_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/PasswordLayout"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/firstNameLayout">
+
+
+                <EditText
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="19dp"
+                    android:background="@null"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="6.17dp"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:hint="Last name"
+                    android:inputType="textPersonName"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:textColor="#292929"
+                    android:textColorHint="#B1B1B1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/PasswordLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rectangle_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/rePasswordLayout"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameLayout">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="19dp"
+                    android:background="@null"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:drawablePadding="6.17dp"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="#292929"
+                    android:textColorHint="#B1B1B1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rePasswordLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rectangle_edittext"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/PasswordLayout">
+
+
+                <EditText
+                    android:id="@+id/etRePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:paddingStart="19dp"
+                    android:background="@null"
+                    android:fontFamily="@font/inter_variablefont"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:drawablePadding="6.17dp"
+                    android:hint="Re-enter password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="#292929"
+                    android:textColorHint="#B1B1B1"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCreateAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_button"
+                android:fontFamily="@font/inter_semibold"
+                android:onClick="@{() -> fragment.goNextStep()}"
+                android:text="Sign up"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:backgroundTint="#2C72F6"
+                app:layout_constraintBottom_toTopOf="@+id/guideline4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/rePasswordLayout"
+                app:layout_constraintVertical_bias="0.653" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

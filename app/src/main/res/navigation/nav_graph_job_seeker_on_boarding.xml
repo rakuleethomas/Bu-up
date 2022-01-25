@@ -2,9 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_job_seeker_onboarding"
-    app:startDestination="@id/jobSeekerOnBoarding1">
+    android:id="@+id/nav_graph_job_seeker_on_boarding"
+    app:startDestination="@id/jobSeekerOnBoarding0">
 
+
+    <fragment
+        android:id="@+id/jobSeekerOnBoarding0"
+        android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding0"
+        android:label="JobSeekerOnBoarding0" >
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding0_to_jobSeekerOnBoarding1"
+            app:destination="@id/jobSeekerOnBoarding1" />
+        <action
+            android:id="@+id/action_jobSeekerOnBoarding0_to_loginActivity2"
+            app:destination="@id/loginActivity2" />
+    </fragment>
     <fragment
         android:id="@+id/jobSeekerOnBoarding1"
         android:name="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding1"
@@ -44,6 +56,10 @@
             android:id="@+id/action_jobSeekerOnBoarding4_to_jobSeekerOnBoarding3"
             app:destination="@id/jobSeekerOnBoarding3" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity2"
+        android:name="org.rakulee.buup.screens.LoginActivity"
+        android:label="LoginActivity" />
 
 
 </navigation>

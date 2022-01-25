@@ -1,6 +1,5 @@
 package org.rakulee.buup.fragments.jobseeker
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,21 +12,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.parse.ParseQuery
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.rakulee.buup.R
 import org.rakulee.buup.adapters.EmployerSavedListAdapter
-import org.rakulee.buup.adapters.JobListAdapter
 import org.rakulee.buup.databinding.FragmentJobSeekerHomeBinding
-import org.rakulee.buup.fragments.employer.EmployerSaved
 import org.rakulee.buup.model.*
 import org.rakulee.buup.repo.BuupAPIRepo
-import org.rakulee.buup.screens.PartTimeJobSeekerActivity
 import org.rakulee.buup.viewmodel.JobSeekerViewModel
 import retrofit2.Response
 import javax.inject.Inject
@@ -69,13 +63,12 @@ class JobSeekerHome : Fragment() {
 
     suspend fun getPostings(list: ArrayList<EmployerSavedListItem>){
 
-        val jsonObject = JsonObject()
-        jsonObject.addProperty("latitude", viewModel.buupJobSeekerProfile.value!!.latitude)
-        jsonObject.addProperty("longitude", viewModel.buupJobSeekerProfile.value!!.longitude)
-        jsonObject.addProperty("distance", 100)
-        val jsonString = jsonObject.toString()
-        val requestBody = jsonString.toRequestBody("application/json".toMediaTypeOrNull())
-        val postingResponse : Response<BuupGetJobPostingByDistanceResponse> = buupRepo.getJobByDistance(requestBody)
+
+        val latitude =  viewModel.buupJobSeekerProfile.value!!.latitude
+        val longitude = viewModel.buupJobSeekerProfile.value!!.longitude
+        val distance = 100
+
+        val postingResponse : Response<BuupGetJobPostingByDistanceResponse> = buupRepo.getJobByDistance(latitude, longitude, distance)
 
 
         if(postingResponse.isSuccessful){

@@ -86,12 +86,27 @@
             app:srcCompat="@drawable/owl_logo"  />
 
         <TextView
+            android:id="@+id/tv_employer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Bu-up Employer"
+            android:textColor="@color/buup_employer"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvDescription"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/logo_image"
+            app:layout_constraintTop_toTopOf="@+id/logo_image" />
+
+        <TextView
             android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:font="@font/inter_medium"
-            android:text="Find the part-time job \nthat's right for you"
+            android:text="Find the part-time \nemployee"
             android:textColor="#292929"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -106,14 +121,16 @@
             android:id="@+id/EmailLayout"
             android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rectangle_edittext"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/PhoneLayout"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.390625">
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+            app:layout_constraintVertical_bias="0.26999998"
+            app:layout_constraintVertical_chainStyle="packed">
 
 
             <ImageView
@@ -127,16 +144,56 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="6.17dp"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
-                android:textColorHint="#B1B1B1"
-                android:textColor="#4A4A4A"
                 android:fontFamily="@font/inter_variablefont"
-                android:layout_gravity="center_vertical"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:textColor="#292929"
+                android:textColorHint="#B1B1B1"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/PhoneLayout"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rectangle_edittext"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/PasswordLayout"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/EmailLayout">
+
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="19dp"
+                app:srcCompat="@drawable/ic_mail" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6.17dp"
+                android:layout_marginEnd="8dp"
+                android:background="@null"
+                android:fontFamily="@font/inter_variablefont"
+                android:hint="Phone Number"
+                android:maxLength="10"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="#292929"
+                android:textColorHint="#B1B1B1"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -146,14 +203,14 @@
             android:id="@+id/PasswordLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rectangle_edittext"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rePasswordLayout"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.465625">
+            app:layout_constraintTop_toBottomOf="@+id/PhoneLayout">
 
 
             <ImageView
@@ -167,16 +224,16 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="6.17dp"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
-                android:textColorHint="#B1B1B1"
-                android:textColor="#4A4A4A"
                 android:fontFamily="@font/inter_variablefont"
-                android:layout_gravity="center_vertical"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:textColor="#292929"
+                android:textColorHint="#B1B1B1"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -185,14 +242,14 @@
             android:id="@+id/rePasswordLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/rectangle_edittext"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.538">
+            app:layout_constraintTop_toBottomOf="@+id/PasswordLayout">
 
 
             <ImageView
@@ -212,10 +269,10 @@
                 android:background="@null"
                 android:fontFamily="@font/inter_variablefont"
                 android:hint="Re-enter password"
-                android:textColorHint="#B1B1B1"
-                android:textColor="#4A4A4A"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:textColor="#292929"
+                android:textColorHint="#B1B1B1"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -232,11 +289,11 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             app:backgroundTint="@color/buup_employer"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rePasswordLayout"
             app:layout_constraintVertical_bias="0.653" />
 
 

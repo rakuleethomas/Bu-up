@@ -1,56 +1,92 @@
-package org.rakulee.buup.screens
+package org.rakulee.buup.fragments.jobseeker
 
+import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.util.Patterns
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.google.gson.Gson
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import org.rakulee.buup.BaseActivity
-import org.rakulee.buup.Configs
 import org.rakulee.buup.R
-import org.rakulee.buup.databinding.ActivitySignupBinding
+import org.rakulee.buup.databinding.FragmentJobSeekerOnBoarding0Binding
 import org.rakulee.buup.model.BuupJobSeekerProfile
 import org.rakulee.buup.util.Util
+import org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
 /**
- *
- * SignUp Activity for JobSeekers
- *
+ * A simple [Fragment] subclass.
+ * Use the [JobSeekerOnBoarding0.newInstance] factory method to
+ * create an instance of this fragment.
  */
 
 
+/**
+ * JobSeekerOnBoarding0 is navigation home fragment
+ * The navigation graph is hosted by JobSeekerOnBoardingActivity.kt
+ */
+
 @AndroidEntryPoint
-class SignupActivity : BaseActivity() {
+class JobSeekerOnBoarding0 : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
 
-    lateinit var binding : ActivitySignupBinding
-
+    val viewModel : JobSeekerOnBoardingViewModel by activityViewModels()
+    lateinit var binding : FragmentJobSeekerOnBoarding0Binding
+    lateinit var mContext : Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+
 //        Parse.initialize(
 //            Parse.Configuration.Builder(this)
 //                .applicationId("aVQUhSqemZDmI8n0mWYOSPzWBAlPb4YPUCIbtH6Q") // should correspond to Application ID env variable
 //                .clientKey("hrcIMfNQZESdJVFY5H3g11rkvQK9d5jRWruyQjfA")  // should correspond to Client key env variable
 //                .server("https://parseapi.back4app.com").build());
-        Configs.currentThemeMode = Configs.BUUP_ONBOARDING
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup)
-        binding.lifecycleOwner = this
-        binding.activity = this
+
+
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_on_boarding0, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        binding.fragment = this
+        mContext = requireContext()
         binding.etPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
-
+        return binding.root
     }
 
-    fun startOnBoarding(view: View) {
+    fun goBack(){
+        val direction : NavDirections = JobSeekerOnBoarding0Directions.actionJobSeekerOnBoarding0ToLoginActivity2()
+        findNavController().navigate(direction)
+    }
+
+    fun goNextStep() {
         if(validate()){
             val buupJobSeekerProfile = BuupJobSeekerProfile()
             val plainPassword = binding.etPassword.text.toString()
@@ -60,14 +96,13 @@ class SignupActivity : BaseActivity() {
             buupJobSeekerProfile.lastName = binding.etLastName.text.toString()
             buupJobSeekerProfile.loginId = binding.etEmail.text.toString()
             buupJobSeekerProfile.password = encryptedPassword!!
-            // serialize buupJobSeekerProfile
-            val gson = Gson()
-            val temp = gson.toJson(buupJobSeekerProfile)
-            val intent = Intent(this, JobSeekerOnBoardingActivity::class.java)
-            intent.putExtra("JobSeekerProfileJson", temp)
-            startActivity(intent)
-            finish()
+            viewModel.updateBuupJobSeekerProfile(buupJobSeekerProfile)
+
+            val direction : NavDirections = JobSeekerOnBoarding0Directions.actionJobSeekerOnBoarding0ToJobSeekerOnBoarding1()
+            findNavController().navigate(direction)
         }
+
+
 
     }
 
@@ -81,11 +116,12 @@ class SignupActivity : BaseActivity() {
         val rePassword = binding.etRePassword.text.toString()
 
 
-        val alertDialogBuilder = AlertDialog.Builder(this)
+        val alertDialogBuilder = AlertDialog.Builder(mContext)
         alertDialogBuilder.setTitle("Error")
         alertDialogBuilder.setIcon(R.drawable.bu_up_logo)
         alertDialogBuilder.setCancelable(false)
 
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){}
         /**
          *  Blank fields validation
          */
@@ -107,7 +143,7 @@ class SignupActivity : BaseActivity() {
             val dialog = alertDialogBuilder.create()
             dialog.show()
             val neutralButton = dialog.getButton(DialogInterface.BUTTON_NEUTRAL)
-            neutralButton.setTextColor(ContextCompat.getColor(this, R.color.buup_job_seeker))
+            neutralButton.setTextColor(ContextCompat.getColor(mContext, R.color.buup_job_seeker))
             return false
         }
 
@@ -122,7 +158,7 @@ class SignupActivity : BaseActivity() {
             val dialog = alertDialogBuilder.create()
             dialog.show()
             val neutralButton = dialog.getButton(DialogInterface.BUTTON_NEUTRAL)
-            neutralButton.setTextColor(ContextCompat.getColor(this, R.color.buup_job_seeker))
+            neutralButton.setTextColor(ContextCompat.getColor(mContext, R.color.buup_job_seeker))
             return false
         }
 
@@ -131,37 +167,28 @@ class SignupActivity : BaseActivity() {
         return result
     }
 
-    fun goBack(view: android.view.View) {
-        super.onBackPressed()
-    }
+    fun showDialog(msg : String){
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
 
-//    fun doSignup() {
-//
-//
-//        val user = ParseUser()
-//        val intent = Intent(this, LoginActivity::class.java)
-//
-//        with(user) {
-//            username = binding.etUsername.text.toString()
-//            setPassword(binding.etPassword.text.toString())
-//            email = binding.etEmail.text.toString()
-//            signUpInBackground { e ->
-//                if (e == null) {
-//                } else {
-//                    Log.e("SignUpActivity - ", e.toString());
-//                }
-//            }
-//
-//        }
-//        startActivity(intent)
-//        Toast.makeText(this, binding.etUsername.text.toString() + " was successfully signed up!" , Toast.LENGTH_SHORT).show()
-//    }
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment JobSeekerOnBoarding0.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            JobSeekerOnBoarding0().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
 }

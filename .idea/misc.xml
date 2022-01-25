@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.19947916666666668" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/bg_search.xml" value="0.31367521367521367" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/border_circle.xml" value="0.1675213675213675" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/drawable/bu_up_logo.xml" value="0.1675213675213675" />
@@ -128,26 +129,43 @@
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_saved_job_seeekers.xml" value="0.33" />
         <entry key="..\:/Rakulee/Hackathons/Buup/app/src/main/res/layout/item_saved_position.xml" value="0.2752808988764045" />
         <entry key="app/src/main/res/drawable/bu_up_logo.xml" value="0.20185185185185187" />
+        <entry key="app/src/main/res/drawable/ic_bu_up_dropdown_long.xml" value="0.37395833333333334" />
         <entry key="app/src/main/res/drawable/ic_mail.xml" value="0.3527777777777778" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/drawable/login_button.xml" value="0.215625" />
         <entry key="app/src/main/res/drawable/rectangle_edittext.xml" value="0.3527777777777778" />
+        <entry key="app/src/main/res/drawable/round_oval_horizontal_edges.xml" value="0.215625" />
+        <entry key="app/src/main/res/drawable/round_square_four_edges.xml" value="0.215625" />
         <entry key="app/src/main/res/drawable/spinner_rectangle.xml" value="0.2171875" />
+        <entry key="app/src/main/res/drawable/switch_background.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/layout/activity_employer_on_boarding.xml" value="0.3859375" />
+        <entry key="app/src/main/res/layout/activity_employer_signup.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/activity_job_seeker_on_boarding.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/activity_job_seeker_on_bording.xml" value="0.35885416666666664" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_part_time_employer.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/activity_part_time_job_seeker.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.3807037750315004" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employer_home.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_employer_job_posting.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_employer_message_group.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/fragment_employer_on_boarding1.xml" value="0.3859375" />
+        <entry key="app/src/main/res/layout/fragment_employer_on_boarding2.xml" value="0.3859375" />
+        <entry key="app/src/main/res/layout/fragment_employer_on_boarding5.xml" value="0.3567708333333333" />
+        <entry key="app/src/main/res/layout/fragment_employer_on_boarding6.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/fragment_employer_profile.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_employer_search.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_home.xml" value="0.35885416666666664" />
-        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding1.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_map_view.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding0.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding1.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding2.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding3.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding3.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_job_seeker_on_boarding4.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/fragment_job_seeker_search.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_profile_employer_edit.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/fragment_profile_employer_edit1.xml" value="0.20104166666666667" />
@@ -157,7 +175,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

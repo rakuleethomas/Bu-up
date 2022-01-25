@@ -1,5 +1,6 @@
 package org.rakulee.buup
 
+import android.util.Log
 import org.junit.Test
 
 import org.junit.Assert.*

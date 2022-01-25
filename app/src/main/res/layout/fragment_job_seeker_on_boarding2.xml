@@ -5,10 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-<data>
+    <data>
         <variable
             name="OnBoarding2"
             type="org.rakulee.buup.fragments.jobseeker.JobSeekerOnBoarding2" />
+        <variable
+            name="viewModel"
+            type="org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

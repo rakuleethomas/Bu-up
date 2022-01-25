@@ -7,6 +7,7 @@
     <data>
 
         <import type="org.rakulee.buup.adapters.BindingAdapters"/>
+        <import type="android.view.View"/>
         <variable
             name="activity"
             type="org.rakulee.buup.screens.LoginActivity" />
@@ -14,12 +15,16 @@
             name="flag"
             type="Boolean" />
 
+        <variable
+            name="isLoding"
+            type="Boolean" />
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
         tools:context=".screens.LoginActivity">
 
         <androidx.constraintlayout.widget.Guideline
@@ -75,13 +80,34 @@
             app:layout_constraintVertical_bias="0.203125"
             app:srcCompat="@drawable/owl_logo" />
 
+        <TextView
+            android:id="@+id/tv_job_seeker_or_employer"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@{flag? &quot;Employer Login&quot; :&quot;Job Seeker Login&quot;}"
+            android:textColor="@{flag? @color/buup_employer : @color/buup_job_seeker}"
+            android:textSize="24sp"
+            android:theme="@style/buup_employer"
+            android:textStyle="bold"
+            tools:textColor="@color/buup_job_seeker"
+            app:layout_constraintBottom_toBottomOf="@id/logo_image"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/logo_image"
+            app:layout_constraintTop_toTopOf="@id/logo_image"
+
+
+            tools:text="Job Seeker Login" />
+
 
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:font="@font/inter_medium"
+            android:fontFamily="@font/inter_medium"
             android:text="@{flag? &quot;Find the part-time \nemployee&quot; :&quot;Find the part-time job \nthat's right for you&quot;}"
             tools:text="Find the part-time job \nthat's right for you"
             android:textColor="#292929"
@@ -107,19 +133,14 @@
             app:layout_constraintVertical_bias="0.390625">
 
 
-            <ImageView
-                android:layout_width="19dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="19dp"
-                app:srcCompat="@drawable/ic_mail" />
-
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6.17dp"
                 android:layout_marginEnd="8dp"
+                android:drawableStart="@drawable/ic_mail"
+                android:paddingStart="19dp"
+                android:drawablePadding="6.17dp"
                 android:background="@null"
                 android:textColorHint="#B1B1B1"
                 android:textColor="#4A4A4A"
@@ -146,21 +167,16 @@
             app:layout_constraintVertical_bias="0.465625">
 
 
-            <ImageView
-                android:layout_width="19dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="19dp"
-                app:srcCompat="@drawable/ic_lock" />
-
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6.17dp"
+                android:paddingStart="19dp"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
                 android:textColorHint="#B1B1B1"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="8dp"
                 android:textColor="#4A4A4A"
                 android:fontFamily="@font/inter_variablefont"
                 android:layout_gravity="center_vertical"
@@ -272,6 +288,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.68" />
 
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isLoding?View.VISIBLE:View.GONE}"
+            android:indeterminate="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

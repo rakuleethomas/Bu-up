@@ -33,19 +33,56 @@
 
 
         <TextView
+            android:id="@+id/tv_zip_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:text="Zip Code: "
+            android:textColor="#292929"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_zip_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:fontFamily="@font/inter_variablefont"
-            android:textColor="#4A4A4A"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingStart="@dimen/default_8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="US Zip Code"
+            app:helperTextTextColor="@color/buup_job_seeker"
+            app:hintTextColor="@color/buup_job_seeker"
+            android:maxLength="5"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/buup_job_seeker"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_zip_code"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.339" />
+            app:layout_constraintStart_toEndOf="@+id/tv_zip_code"
+            app:layout_constraintTop_toTopOf="@+id/tv_zip_code"
+            app:layout_constraintHorizontal_bias="0">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLength="5"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_zip_code"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/tv_zip_code"
+                app:layout_constraintTop_toTopOf="@+id/tv_zip_code"
+                app:layout_constraintHorizontal_bias="0"/>
+
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
@@ -107,6 +144,7 @@
             app:layout_constraintVertical_bias="0.951" />
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="415dp"
             android:layout_height="398dp"
             android:src="@drawable/ic_image_map"

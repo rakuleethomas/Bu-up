@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentJobSeekerOnBoarding4Binding
+import org.rakulee.buup.model.BuupJobSeekerProfile
 import org.rakulee.buup.screens.PartTimeJobSeekerActivity
+import org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,7 +47,7 @@ class JobSeekerOnBoarding4 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_on_boarding4, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.fab.setOnClickListener{
             val intent = Intent(context, PartTimeJobSeekerActivity::class.java)
             startActivity(intent)

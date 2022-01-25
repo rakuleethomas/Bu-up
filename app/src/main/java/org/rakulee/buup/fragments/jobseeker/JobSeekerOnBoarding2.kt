@@ -15,11 +15,14 @@ import android.widget.ToggleButton
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.rakulee.buup.R
 import org.rakulee.buup.databinding.FragmentJobSeekerOnBoarding2Binding
+import org.rakulee.buup.model.BuupJobSeekerProfile
+import org.rakulee.buup.viewmodel.JobSeekerOnBoardingViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +40,10 @@ class JobSeekerOnBoarding2 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    val viewModel : JobSeekerOnBoardingViewModel by activityViewModels()
     lateinit var binding : FragmentJobSeekerOnBoarding2Binding
+
+    var selectedArray : MutableList<String> = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,17 +59,17 @@ class JobSeekerOnBoarding2 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_seeker_on_boarding2, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.onBoarding2 = this
+        binding.viewModel = viewModel
 
         binding.fab.setOnClickListener{
-            val direction : NavDirections = JobSeekerOnBoarding2Directions.actionJobSeekerOnBoarding2ToJobSeekerOnBoarding3()
-            findNavController().navigate(direction)
+            goNext()
         }
 
         var industryArray : Array<String> = resources.getStringArray(R.array.spinner_employer_industries)
         val density = resources.displayMetrics.scaledDensity
-        var selectedArray : MutableList<String> = ArrayList<String>()
+
 
         for (i in 0 until 147){
             val button = Button(context)
@@ -87,7 +93,6 @@ class JobSeekerOnBoarding2 : Fragment() {
                     button.background = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_rectangle_industry )
                     selectedArray.remove(industryArray[i])
                 }
-                Log.d("AAA", selectedArray.size.toString())
             }
             binding.flowLayout.addView(button)
         }
@@ -95,6 +100,19 @@ class JobSeekerOnBoarding2 : Fragment() {
 
 
         return binding.root
+    }
+
+
+    fun goNext(){
+        var buupJobSeekerProfile : BuupJobSeekerProfile
+        viewModel.buupJobSeekerProfile.observe(viewLifecycleOwner, {
+            buupJobSeekerProfile = it
+            buupJobSeekerProfile.industry = selectedArray as ArrayList<String>
+
+        })
+
+        val direction : NavDirections = JobSeekerOnBoarding2Directions.actionJobSeekerOnBoarding2ToJobSeekerOnBoarding3()
+        findNavController().navigate(direction)
     }
 
     companion object {

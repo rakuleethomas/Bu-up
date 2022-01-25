@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="50dp"
             android:fontFamily="@font/inter_variablefont"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            android:text="Congratulations! Now You are ready to use Bu-up. \n Are you excited to enjoy your adventure?"
             android:textSize="12sp"
             android:textColor="#4A4A4A"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -72,6 +72,9 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.234" />
+
+        <!-- Information checklist -->
+
 
 
         <ImageView
